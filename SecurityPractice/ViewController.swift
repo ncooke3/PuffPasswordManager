@@ -7,17 +7,35 @@
 //
 
 import UIKit
+import Locksmith
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
     let serviceField  = UITextField()
     let usernameField = UITextField()
     let passwordField = UITextField()
-    let saveButton = RoundButton()
+    let saveButton    = RoundButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let account = Account(service: "Netflix", username: "nick", password: "movies")
+        
+        do {
+            //try Locksmith.deleteDataForUserAccount(userAccount: "nick", inService: "Netflix")
+            try account.createInSecureStore()
+        } catch {
+            print("❌ Error: \(error)")
+        }
+
+        //let account = TwitterAccount(username: "_jakob", password: "snake")
+        
+        let basicLoad = Locksmith.loadDataForUserAccount(userAccount: "nick", inService: "Netflix")
+        print(basicLoad!)
+        
+        let fancyLoad = account.readFromSecureStore()
+        print(fancyLoad!)
+    
         view.backgroundColor = .lightGray
         setupHideKeyboardOnTap()
         setupServiceTextfield()
