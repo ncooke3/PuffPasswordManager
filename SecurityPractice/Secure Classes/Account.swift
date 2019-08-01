@@ -12,7 +12,8 @@ import Locksmith
 class Account:  ReadableSecureStorable,
                 CreateableSecureStorable,
                 DeleteableSecureStorable,
-                GenericPasswordSecureStorable {
+                GenericPasswordSecureStorable,
+                Codable {
     
     //var service : String
     var username: String
@@ -31,6 +32,26 @@ class Account:  ReadableSecureStorable,
         self.service = service
         self.username = username
         self.password = password
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case service
+        case username
+        // DOUBT: will account property still return
+        //        username if account is not stored
+    }
+
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        service = try values.decode(String.self, forKey: .service)
+        username = try values.decode(String.self, forKey: .username)
+        password = "" // will this work?
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(service, forKey: .service)
+        try container.encode(username, forKey: .username)
     }
     
 }
