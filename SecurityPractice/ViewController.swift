@@ -10,23 +10,27 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    let serviceField = UITextField()
+    let usernameField = UITextField()
+    let passwordField = UITextField()
+    let saveButton = RoundButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .lightGray
         setupHideKeyboardOnTap()
-        createServiceTextfield()
-        createUsernameTextfield()
-        createPasswordTextField()
-        createSaveButton()
+        setupServiceTextfield()
+        setupUsernameTextfield()
+        setupPasswordTextField()
+        setupSaveButton()
     }
     
     @objc func saveButtonTapped() {
         print("Save Button has been tapped!")
     }
 
-    fileprivate func createServiceTextfield() {
-        let serviceField = UITextField()
+    fileprivate func setupServiceTextfield() {
         serviceField.delegate = self
         serviceField.placeholder = "Service"
         serviceField.translatesAutoresizingMaskIntoConstraints = false
@@ -47,8 +51,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             ])
     }
     
-    fileprivate func createUsernameTextfield() {
-        let usernameField = UITextField()
+    fileprivate func setupUsernameTextfield() {
         usernameField.delegate = self
         usernameField.placeholder = "Username"
         usernameField.translatesAutoresizingMaskIntoConstraints = false
@@ -69,8 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             ])
     }
     
-    fileprivate func createPasswordTextField() {
-        let passwordField = UITextField()
+    fileprivate func setupPasswordTextField() {
         passwordField.delegate = self
         passwordField.placeholder = "Password"
         passwordField.translatesAutoresizingMaskIntoConstraints = false
@@ -92,8 +94,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             ])
     }
     
-    fileprivate func createSaveButton() {
-        let saveButton = RoundButton()
+    fileprivate func setupSaveButton() {
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         view.addSubview(saveButton)
         saveButton.setTitle("Save Account", for: .normal)
