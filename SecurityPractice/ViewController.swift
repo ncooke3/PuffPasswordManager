@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    let serviceField = UITextField()
+    let serviceField  = UITextField()
     let usernameField = UITextField()
     let passwordField = UITextField()
     let saveButton = RoundButton()
@@ -28,6 +28,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @objc func saveButtonTapped() {
         print("Save Button has been tapped!")
+        
+        // PRACTICE: maybe add an alert if they
+        //           aren't all filled out!
+        let service  = serviceField.text ?? "Gatech"
+        let username = usernameField.text ?? "ncooke3"
+        let password = passwordField.text ?? "smile123"
+        
+        let newAccount = Account(service: service, username: username, password: password)
+        
+        printAccount(account: newAccount)
+
+        
+    }
+    
+    fileprivate func printAccount(account: Account) {
+        print("""
+            Account
+                Service:  \(account.service)
+                Username: \(account.username)
+                Password: \(account.password)
+            
+            """)
     }
 
     fileprivate func setupServiceTextfield() {
