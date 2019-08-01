@@ -1,0 +1,817 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		197EC74844D8D07ACF042DEC351D88D7 /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40A925099E717D5D7D2FD0253674A1A /* LocksmithInternetProtocol.swift */; };
+		225B4CBB7D7F9D8B679CA67034284288 /* Locksmith.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F68097402212AF591EC2D09D54D1769 /* Locksmith.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2DE39D20F6B5085DEC0161F9FC600340 /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C4A40FDA9A2DB65BD17DE5FAD594B5 /* Locksmith.swift */; };
+		30F0EFF0E66124AEB35D49DCA2F40509 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701A0DC6A6A0F9DA590CC0D517AABE50 /* Foundation.framework */; };
+		3C05D3F603F2B8201CAF26DB7401F94C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701A0DC6A6A0F9DA590CC0D517AABE50 /* Foundation.framework */; };
+		4AFBC486E020BE65C229426371ACE27D /* LocksmithInternetAuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA8367A62FBC041F1AF06898A9E9EB5 /* LocksmithInternetAuthenticationType.swift */; };
+		4C30A5DAF4DF245530FE998D3FF281E1 /* Pods-SecurityPracticeTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46300851DB6B1AE088F0683664CF4BF0 /* Pods-SecurityPracticeTests-dummy.m */; };
+		5B952F9794A42435E949A256ACC3133B /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A9B7F6E5F075C437E2DB7908D599F5 /* LocksmithSecurityClass.swift */; };
+		69A785A26965547F814C9A9ECB5AF810 /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C93A182DFC73BEBF8C6386CA889744 /* Dictionary_Initializers.swift */; };
+		7ACA6B0B89FA52B3B298EB5239E3C41F /* LocksmithAccessibleOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B756ED4ABBC44F9E22CE5FD257A3B6 /* LocksmithAccessibleOption.swift */; };
+		7D3A07C26A1A2DE9FD825BE66AC57D8E /* Pods-SecurityPractice-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3F14BA17101FA42D6198FC31C9B066 /* Pods-SecurityPractice-dummy.m */; };
+		843C48863D264C87F28252BF115EF818 /* Locksmith-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D27C95E00488297631257AD081272F7 /* Locksmith-dummy.m */; };
+		857D2D19F861AF4A7E81E5E6EB430D3B /* Pods-SecurityPracticeTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CD681960FEA799CF58DDA1AF531CCC43 /* Pods-SecurityPracticeTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95BD0C78F0795858AA3D83C7B4D98574 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701A0DC6A6A0F9DA590CC0D517AABE50 /* Foundation.framework */; };
+		985F8C30188F5716E45CFE472E7C768F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1097409647121B59B1C4562DF2ABC919 /* Security.framework */; };
+		C5EC70F86D19D07E273E2C8F55986118 /* Locksmith-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E1136FEEECF3DD26E03CD1C766F0466F /* Locksmith-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA9A8F70B90BFA32376013247563C2D2 /* LocksmithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D721FF20ABB786779E3596076E14948 /* LocksmithError.swift */; };
+		F3C442C68EADC08330EFBB7A73FCD9AF /* Pods-SecurityPractice-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 323044AB1B7113AB44D28F60EBA79BB5 /* Pods-SecurityPractice-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		183712BE08342DF475E736E7AE0441F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3569379D9BD1D94F25C628F740C609E3;
+			remoteInfo = Locksmith;
+		};
+		FC7D3696F6B712F7199355D2B9C66477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8C86089377E1ADC1DB644C330DFBE3F;
+			remoteInfo = "Pods-SecurityPractice";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0D27C95E00488297631257AD081272F7 /* Locksmith-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Locksmith-dummy.m"; sourceTree = "<group>"; };
+		0D721FF20ABB786779E3596076E14948 /* LocksmithError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocksmithError.swift; path = Source/LocksmithError.swift; sourceTree = "<group>"; };
+		1097409647121B59B1C4562DF2ABC919 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		1335E556133F5341E9A1C11B76726943 /* Pods-SecurityPracticeTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SecurityPracticeTests-Info.plist"; sourceTree = "<group>"; };
+		161672299D51B50ADFDF86C231F26FA1 /* Pods-SecurityPracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SecurityPracticeTests.release.xcconfig"; sourceTree = "<group>"; };
+		323044AB1B7113AB44D28F60EBA79BB5 /* Pods-SecurityPractice-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SecurityPractice-umbrella.h"; sourceTree = "<group>"; };
+		3A822F8E11854CD46AE165B9E6690966 /* Pods-SecurityPractice-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SecurityPractice-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3EEA5C56EA6FA6722132800B252244A7 /* Pods_SecurityPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecurityPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F68097402212AF591EC2D09D54D1769 /* Locksmith.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Locksmith.h; path = Source/Locksmith.h; sourceTree = "<group>"; };
+		46300851DB6B1AE088F0683664CF4BF0 /* Pods-SecurityPracticeTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SecurityPracticeTests-dummy.m"; sourceTree = "<group>"; };
+		52C93A182DFC73BEBF8C6386CA889744 /* Dictionary_Initializers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Dictionary_Initializers.swift; path = Source/Dictionary_Initializers.swift; sourceTree = "<group>"; };
+		54E4D8B2E2040812082A3E2D0D6DB7ED /* Pods-SecurityPracticeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SecurityPracticeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		55DDB6F439169843AC75CC328A74BE22 /* Locksmith.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Locksmith.xcconfig; sourceTree = "<group>"; };
+		60A9B7F6E5F075C437E2DB7908D599F5 /* LocksmithSecurityClass.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocksmithSecurityClass.swift; path = Source/LocksmithSecurityClass.swift; sourceTree = "<group>"; };
+		6AD26A2A9DC771145A10CFCF74D903C5 /* Pods-SecurityPracticeTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SecurityPracticeTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		701A0DC6A6A0F9DA590CC0D517AABE50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7CA8367A62FBC041F1AF06898A9E9EB5 /* LocksmithInternetAuthenticationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocksmithInternetAuthenticationType.swift; path = Source/LocksmithInternetAuthenticationType.swift; sourceTree = "<group>"; };
+		81CF255146D3E20D3C99A9BF6EC6EC5A /* Pods_SecurityPracticeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecurityPracticeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88C4A40FDA9A2DB65BD17DE5FAD594B5 /* Locksmith.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Locksmith.swift; path = Source/Locksmith.swift; sourceTree = "<group>"; };
+		93857238D2EBDF1A646AAD992F8831F9 /* Pods-SecurityPractice.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SecurityPractice.modulemap"; sourceTree = "<group>"; };
+		992B719D65279BBB4419D9FA7E914E61 /* Pods-SecurityPracticeTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SecurityPracticeTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A40A925099E717D5D7D2FD0253674A1A /* LocksmithInternetProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocksmithInternetProtocol.swift; path = Source/LocksmithInternetProtocol.swift; sourceTree = "<group>"; };
+		A4B1FC4DF53B763A24575579572DA2D1 /* Locksmith-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Locksmith-Info.plist"; sourceTree = "<group>"; };
+		ABF5C16C75422984639941CA5153FBD0 /* Pods-SecurityPractice-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SecurityPractice-Info.plist"; sourceTree = "<group>"; };
+		AD59501B14F8503EE3B87CC9FA6F9192 /* Pods-SecurityPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SecurityPractice.debug.xcconfig"; sourceTree = "<group>"; };
+		BAB197F8A545A244DDA804FFCE849401 /* Pods-SecurityPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SecurityPractice.release.xcconfig"; sourceTree = "<group>"; };
+		BC3F14BA17101FA42D6198FC31C9B066 /* Pods-SecurityPractice-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SecurityPractice-dummy.m"; sourceTree = "<group>"; };
+		CD681960FEA799CF58DDA1AF531CCC43 /* Pods-SecurityPracticeTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SecurityPracticeTests-umbrella.h"; sourceTree = "<group>"; };
+		CEBE5A6F74D36CB2CE7AE58B1D91D963 /* Pods-SecurityPractice-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SecurityPractice-frameworks.sh"; sourceTree = "<group>"; };
+		E10DED9ED31470801C379F51CC06824C /* Locksmith-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Locksmith-prefix.pch"; sourceTree = "<group>"; };
+		E1136FEEECF3DD26E03CD1C766F0466F /* Locksmith-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Locksmith-umbrella.h"; sourceTree = "<group>"; };
+		E1B756ED4ABBC44F9E22CE5FD257A3B6 /* LocksmithAccessibleOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocksmithAccessibleOption.swift; path = Source/LocksmithAccessibleOption.swift; sourceTree = "<group>"; };
+		E4CAEE27DDC558A1B5CA446A665B99B5 /* Pods-SecurityPractice-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SecurityPractice-acknowledgements.plist"; sourceTree = "<group>"; };
+		EB70B5EBAFAB99D34D838321DD35E581 /* Locksmith.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Locksmith.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4755CD365EDC74B3B76A5381EE46AD8 /* Locksmith.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Locksmith.modulemap; sourceTree = "<group>"; };
+		FFCED7434EA8A7028F793707F9067A83 /* Pods-SecurityPracticeTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SecurityPracticeTests.modulemap"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BFA5E54F5A3E99226BB95C58F403F803 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30F0EFF0E66124AEB35D49DCA2F40509 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4C6FA532C761626E1055E7E07041F52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C05D3F603F2B8201CAF26DB7401F94C /* Foundation.framework in Frameworks */,
+				985F8C30188F5716E45CFE472E7C768F /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F027D11A42137E1F6944E28FBD498F31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95BD0C78F0795858AA3D83C7B4D98574 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0AE9926F0F40BCC1B2147C08EEE4211F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F4755CD365EDC74B3B76A5381EE46AD8 /* Locksmith.modulemap */,
+				55DDB6F439169843AC75CC328A74BE22 /* Locksmith.xcconfig */,
+				0D27C95E00488297631257AD081272F7 /* Locksmith-dummy.m */,
+				A4B1FC4DF53B763A24575579572DA2D1 /* Locksmith-Info.plist */,
+				E10DED9ED31470801C379F51CC06824C /* Locksmith-prefix.pch */,
+				E1136FEEECF3DD26E03CD1C766F0466F /* Locksmith-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Locksmith";
+			sourceTree = "<group>";
+		};
+		0C5E2032F63AA39F066D35A41AAEDB83 /* Pods-SecurityPractice */ = {
+			isa = PBXGroup;
+			children = (
+				93857238D2EBDF1A646AAD992F8831F9 /* Pods-SecurityPractice.modulemap */,
+				3A822F8E11854CD46AE165B9E6690966 /* Pods-SecurityPractice-acknowledgements.markdown */,
+				E4CAEE27DDC558A1B5CA446A665B99B5 /* Pods-SecurityPractice-acknowledgements.plist */,
+				BC3F14BA17101FA42D6198FC31C9B066 /* Pods-SecurityPractice-dummy.m */,
+				CEBE5A6F74D36CB2CE7AE58B1D91D963 /* Pods-SecurityPractice-frameworks.sh */,
+				ABF5C16C75422984639941CA5153FBD0 /* Pods-SecurityPractice-Info.plist */,
+				323044AB1B7113AB44D28F60EBA79BB5 /* Pods-SecurityPractice-umbrella.h */,
+				AD59501B14F8503EE3B87CC9FA6F9192 /* Pods-SecurityPractice.debug.xcconfig */,
+				BAB197F8A545A244DDA804FFCE849401 /* Pods-SecurityPractice.release.xcconfig */,
+			);
+			name = "Pods-SecurityPractice";
+			path = "Target Support Files/Pods-SecurityPractice";
+			sourceTree = "<group>";
+		};
+		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F8BF27D4DE2662DBD9B3EC87B18039F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		618E8693A3EC2DD6F1D7A3923227DDD8 /* Locksmith */ = {
+			isa = PBXGroup;
+			children = (
+				52C93A182DFC73BEBF8C6386CA889744 /* Dictionary_Initializers.swift */,
+				3F68097402212AF591EC2D09D54D1769 /* Locksmith.h */,
+				88C4A40FDA9A2DB65BD17DE5FAD594B5 /* Locksmith.swift */,
+				E1B756ED4ABBC44F9E22CE5FD257A3B6 /* LocksmithAccessibleOption.swift */,
+				0D721FF20ABB786779E3596076E14948 /* LocksmithError.swift */,
+				7CA8367A62FBC041F1AF06898A9E9EB5 /* LocksmithInternetAuthenticationType.swift */,
+				A40A925099E717D5D7D2FD0253674A1A /* LocksmithInternetProtocol.swift */,
+				60A9B7F6E5F075C437E2DB7908D599F5 /* LocksmithSecurityClass.swift */,
+				0AE9926F0F40BCC1B2147C08EEE4211F /* Support Files */,
+			);
+			path = Locksmith;
+			sourceTree = "<group>";
+		};
+		6B557E6FBEA1876DBB87131B1E0277B1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				618E8693A3EC2DD6F1D7A3923227DDD8 /* Locksmith */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		93AA2F2A47002ED66B922D87816BE56C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB70B5EBAFAB99D34D838321DD35E581 /* Locksmith.framework */,
+				3EEA5C56EA6FA6722132800B252244A7 /* Pods_SecurityPractice.framework */,
+				81CF255146D3E20D3C99A9BF6EC6EC5A /* Pods_SecurityPracticeTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F8BF27D4DE2662DBD9B3EC87B18039F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				701A0DC6A6A0F9DA590CC0D517AABE50 /* Foundation.framework */,
+				1097409647121B59B1C4562DF2ABC919 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		A08BFAF15931EDDB4126E8E9C6419381 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E2032F63AA39F066D35A41AAEDB83 /* Pods-SecurityPractice */,
+				B64B9564140C2B86B2B2F8CFE8C7207C /* Pods-SecurityPracticeTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		B64B9564140C2B86B2B2F8CFE8C7207C /* Pods-SecurityPracticeTests */ = {
+			isa = PBXGroup;
+			children = (
+				FFCED7434EA8A7028F793707F9067A83 /* Pods-SecurityPracticeTests.modulemap */,
+				992B719D65279BBB4419D9FA7E914E61 /* Pods-SecurityPracticeTests-acknowledgements.markdown */,
+				6AD26A2A9DC771145A10CFCF74D903C5 /* Pods-SecurityPracticeTests-acknowledgements.plist */,
+				46300851DB6B1AE088F0683664CF4BF0 /* Pods-SecurityPracticeTests-dummy.m */,
+				1335E556133F5341E9A1C11B76726943 /* Pods-SecurityPracticeTests-Info.plist */,
+				CD681960FEA799CF58DDA1AF531CCC43 /* Pods-SecurityPracticeTests-umbrella.h */,
+				54E4D8B2E2040812082A3E2D0D6DB7ED /* Pods-SecurityPracticeTests.debug.xcconfig */,
+				161672299D51B50ADFDF86C231F26FA1 /* Pods-SecurityPracticeTests.release.xcconfig */,
+			);
+			name = "Pods-SecurityPracticeTests";
+			path = "Target Support Files/Pods-SecurityPracticeTests";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
+				6B557E6FBEA1876DBB87131B1E0277B1 /* Pods */,
+				93AA2F2A47002ED66B922D87816BE56C /* Products */,
+				A08BFAF15931EDDB4126E8E9C6419381 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3598B234BA546D94E8A31E9FA73BE371 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3C442C68EADC08330EFBB7A73FCD9AF /* Pods-SecurityPractice-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		784213012EBD2298E7A712AD6B9BC35E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5EC70F86D19D07E273E2C8F55986118 /* Locksmith-umbrella.h in Headers */,
+				225B4CBB7D7F9D8B679CA67034284288 /* Locksmith.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E135BCFE53D1E74937F64F9E195BD13A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				857D2D19F861AF4A7E81E5E6EB430D3B /* Pods-SecurityPracticeTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3569379D9BD1D94F25C628F740C609E3 /* Locksmith */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65C3096DCE3A9C86A8DCC60BBC8B369C /* Build configuration list for PBXNativeTarget "Locksmith" */;
+			buildPhases = (
+				784213012EBD2298E7A712AD6B9BC35E /* Headers */,
+				3CC93DA756EE38B4B96FFFAE287F6947 /* Sources */,
+				E4C6FA532C761626E1055E7E07041F52 /* Frameworks */,
+				3D411A2FD7D804762639C9AC040E8464 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Locksmith;
+			productName = Locksmith;
+			productReference = EB70B5EBAFAB99D34D838321DD35E581 /* Locksmith.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C8C86089377E1ADC1DB644C330DFBE3F /* Pods-SecurityPractice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F72CACE72B6498C8B865B6B7ACE7D18B /* Build configuration list for PBXNativeTarget "Pods-SecurityPractice" */;
+			buildPhases = (
+				3598B234BA546D94E8A31E9FA73BE371 /* Headers */,
+				37D01718C7EB676D2B175E85B3A825BE /* Sources */,
+				F027D11A42137E1F6944E28FBD498F31 /* Frameworks */,
+				71DABC8768758A3DB7A0CA012ECB34B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				320EAF2650C843589AD0B37F851C67D0 /* PBXTargetDependency */,
+			);
+			name = "Pods-SecurityPractice";
+			productName = "Pods-SecurityPractice";
+			productReference = 3EEA5C56EA6FA6722132800B252244A7 /* Pods_SecurityPractice.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CA9B24A0864D03EA13FB83BD659AD95B /* Pods-SecurityPracticeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 350C1B2DCBA36E31BE35EFBFB86C3CD3 /* Build configuration list for PBXNativeTarget "Pods-SecurityPracticeTests" */;
+			buildPhases = (
+				E135BCFE53D1E74937F64F9E195BD13A /* Headers */,
+				43B803FB4491E488764F6CEBB48F6143 /* Sources */,
+				BFA5E54F5A3E99226BB95C58F403F803 /* Frameworks */,
+				0B8997C8DE2A2AA219D73998CD5F7C4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37F43098A96DC804F74AC8FFE145452C /* PBXTargetDependency */,
+			);
+			name = "Pods-SecurityPracticeTests";
+			productName = "Pods-SecurityPracticeTests";
+			productReference = 81CF255146D3E20D3C99A9BF6EC6EC5A /* Pods_SecurityPracticeTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 1020;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 93AA2F2A47002ED66B922D87816BE56C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3569379D9BD1D94F25C628F740C609E3 /* Locksmith */,
+				C8C86089377E1ADC1DB644C330DFBE3F /* Pods-SecurityPractice */,
+				CA9B24A0864D03EA13FB83BD659AD95B /* Pods-SecurityPracticeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0B8997C8DE2A2AA219D73998CD5F7C4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D411A2FD7D804762639C9AC040E8464 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71DABC8768758A3DB7A0CA012ECB34B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		37D01718C7EB676D2B175E85B3A825BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D3A07C26A1A2DE9FD825BE66AC57D8E /* Pods-SecurityPractice-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CC93DA756EE38B4B96FFFAE287F6947 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69A785A26965547F814C9A9ECB5AF810 /* Dictionary_Initializers.swift in Sources */,
+				843C48863D264C87F28252BF115EF818 /* Locksmith-dummy.m in Sources */,
+				2DE39D20F6B5085DEC0161F9FC600340 /* Locksmith.swift in Sources */,
+				7ACA6B0B89FA52B3B298EB5239E3C41F /* LocksmithAccessibleOption.swift in Sources */,
+				DA9A8F70B90BFA32376013247563C2D2 /* LocksmithError.swift in Sources */,
+				4AFBC486E020BE65C229426371ACE27D /* LocksmithInternetAuthenticationType.swift in Sources */,
+				197EC74844D8D07ACF042DEC351D88D7 /* LocksmithInternetProtocol.swift in Sources */,
+				5B952F9794A42435E949A256ACC3133B /* LocksmithSecurityClass.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43B803FB4491E488764F6CEBB48F6143 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C30A5DAF4DF245530FE998D3FF281E1 /* Pods-SecurityPracticeTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		320EAF2650C843589AD0B37F851C67D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Locksmith;
+			target = 3569379D9BD1D94F25C628F740C609E3 /* Locksmith */;
+			targetProxy = 183712BE08342DF475E736E7AE0441F3 /* PBXContainerItemProxy */;
+		};
+		37F43098A96DC804F74AC8FFE145452C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-SecurityPractice";
+			target = C8C86089377E1ADC1DB644C330DFBE3F /* Pods-SecurityPractice */;
+			targetProxy = FC7D3696F6B712F7199355D2B9C66477 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3E85E5CBB67F540D72003C6CBD90B6A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAB197F8A545A244DDA804FFCE849401 /* Pods-SecurityPractice.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		51AB821CA7E49FB2AA2EE5861E07E30A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54E4D8B2E2040812082A3E2D0D6DB7ED /* Pods-SecurityPracticeTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SecurityPracticeTests/Pods-SecurityPracticeTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SecurityPracticeTests/Pods-SecurityPracticeTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		84A06F28E9E7D9EB0A9B476A8668FD60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		A4F937274976815114F96F57FC407049 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55DDB6F439169843AC75CC328A74BE22 /* Locksmith.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Locksmith/Locksmith-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Locksmith/Locksmith-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Locksmith/Locksmith.modulemap";
+				PRODUCT_MODULE_NAME = Locksmith;
+				PRODUCT_NAME = Locksmith;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BF0C1EDDA05D73562CE75718D8D519CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55DDB6F439169843AC75CC328A74BE22 /* Locksmith.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Locksmith/Locksmith-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Locksmith/Locksmith-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Locksmith/Locksmith.modulemap";
+				PRODUCT_MODULE_NAME = Locksmith;
+				PRODUCT_NAME = Locksmith;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C70F1866C9D5EDB698B22056E659BF09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD59501B14F8503EE3B87CC9FA6F9192 /* Pods-SecurityPractice.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CE873F2EBD55A2DB143B9E12DA2FF763 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 161672299D51B50ADFDF86C231F26FA1 /* Pods-SecurityPracticeTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SecurityPracticeTests/Pods-SecurityPracticeTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SecurityPracticeTests/Pods-SecurityPracticeTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D0FE574C7B3479C6425BC136AA57D8C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		350C1B2DCBA36E31BE35EFBFB86C3CD3 /* Build configuration list for PBXNativeTarget "Pods-SecurityPracticeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51AB821CA7E49FB2AA2EE5861E07E30A /* Debug */,
+				CE873F2EBD55A2DB143B9E12DA2FF763 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0FE574C7B3479C6425BC136AA57D8C2 /* Debug */,
+				84A06F28E9E7D9EB0A9B476A8668FD60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65C3096DCE3A9C86A8DCC60BBC8B369C /* Build configuration list for PBXNativeTarget "Locksmith" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4F937274976815114F96F57FC407049 /* Debug */,
+				BF0C1EDDA05D73562CE75718D8D519CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F72CACE72B6498C8B865B6B7ACE7D18B /* Build configuration list for PBXNativeTarget "Pods-SecurityPractice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C70F1866C9D5EDB698B22056E659BF09 /* Debug */,
+				3E85E5CBB67F540D72003C6CBD90B6A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

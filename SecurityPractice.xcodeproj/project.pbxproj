@@ -50,6 +50,7 @@
 		EA7326F622F265510093CD4D /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		EA7326F922F268350093CD4D /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		EA7326FB22F268550093CD4D /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SecurityPractice.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 		EA7326D122F259030093CD4D /* SecurityPractice */ = {
 			isa = PBXGroup;
 			children = (
+				EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */,
 				EA7326D222F259030093CD4D /* AppDelegate.swift */,
 				EA7326D422F259030093CD4D /* ViewController.swift */,
 				EA7326FE22F27EAA0093CD4D /* Custom Classes */,
@@ -158,7 +160,6 @@
 				5B8AD467069B7B9A1E99D95C /* Pods-SecurityPracticeTests.debug.xcconfig */,
 				0C9128A632C090DF273E9288 /* Pods-SecurityPracticeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -215,6 +216,11 @@
 				TargetAttributes = {
 					EA7326CE22F259030093CD4D = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					EA7326E222F259060093CD4D = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -483,6 +489,7 @@
 			baseConfigurationReference = 8E83DB06F748596E94354B85 /* Pods-SecurityPractice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SecurityPractice/SecurityPractice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K2A6VGGX23;
 				INFOPLIST_FILE = SecurityPractice/Info.plist;
@@ -502,6 +509,7 @@
 			baseConfigurationReference = 9EB5787B73D166546A867C35 /* Pods-SecurityPractice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SecurityPractice/SecurityPractice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K2A6VGGX23;
 				INFOPLIST_FILE = SecurityPractice/Info.plist;
