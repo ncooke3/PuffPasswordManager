@@ -13,6 +13,9 @@
 		EA7326E822F259060093CD4D /* SecurityPracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326E722F259060093CD4D /* SecurityPracticeTests.swift */; };
 		EA7326F322F25A940093CD4D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326F222F25A940093CD4D /* Account.swift */; };
 		EA7326F522F261810093CD4D /* AccountDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326F422F261810093CD4D /* AccountDefaults.swift */; };
+		EA7326F722F265510093CD4D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326F622F265510093CD4D /* RoundButton.swift */; };
+		EA7326FA22F268350093CD4D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326F922F268350093CD4D /* UIViewExtension.swift */; };
+		EA7326FC22F268550093CD4D /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326FB22F268550093CD4D /* UITextFieldExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		EA7326E922F259060093CD4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA7326F222F25A940093CD4D /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		EA7326F422F261810093CD4D /* AccountDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDefaults.swift; sourceTree = "<group>"; };
+		EA7326F622F265510093CD4D /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		EA7326F922F268350093CD4D /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		EA7326FB22F268550093CD4D /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +85,9 @@
 			children = (
 				EA7326D222F259030093CD4D /* AppDelegate.swift */,
 				EA7326D422F259030093CD4D /* ViewController.swift */,
-				EA7326F222F25A940093CD4D /* Account.swift */,
-				EA7326F422F261810093CD4D /* AccountDefaults.swift */,
+				EA7326FE22F27EAA0093CD4D /* Custom Classes */,
+				EA7326F822F2681D0093CD4D /* Extensions */,
+				EA7326FD22F27E710093CD4D /* Secure Classes */,
 				EA7326D922F259060093CD4D /* Assets.xcassets */,
 				EA7326DE22F259060093CD4D /* Info.plist */,
 			);
@@ -94,6 +101,32 @@
 				EA7326E922F259060093CD4D /* Info.plist */,
 			);
 			path = SecurityPracticeTests;
+			sourceTree = "<group>";
+		};
+		EA7326F822F2681D0093CD4D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EA7326F922F268350093CD4D /* UIViewExtension.swift */,
+				EA7326FB22F268550093CD4D /* UITextFieldExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EA7326FD22F27E710093CD4D /* Secure Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EA7326F222F25A940093CD4D /* Account.swift */,
+				EA7326F422F261810093CD4D /* AccountDefaults.swift */,
+			);
+			path = "Secure Classes";
+			sourceTree = "<group>";
+		};
+		EA7326FE22F27EAA0093CD4D /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EA7326F622F265510093CD4D /* RoundButton.swift */,
+			);
+			path = "Custom Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,7 +228,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7326FA22F268350093CD4D /* UIViewExtension.swift in Sources */,
 				EA7326F522F261810093CD4D /* AccountDefaults.swift in Sources */,
+				EA7326FC22F268550093CD4D /* UITextFieldExtension.swift in Sources */,
+				EA7326F722F265510093CD4D /* RoundButton.swift in Sources */,
 				EA7326D522F259030093CD4D /* ViewController.swift in Sources */,
 				EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */,
 				EA7326F322F25A940093CD4D /* Account.swift in Sources */,
