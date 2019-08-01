@@ -19,22 +19,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let account = Account(service: "Netflix", username: "nick", password: "movies")
+//        // If we are putting stuff into the account
+//        let account = Account(service: "Netflix", username: "nick", password: "movies")
+//
+//        do {
+//            //try Locksmith.deleteDataForUserAccount(userAccount: "nick", inService: "Netflix")
+//            try account.createInSecureStore()
+//        } catch {
+//            print("❌ Error: \(error)")
+//        }
+//
+//        AccountDefaults.accounts.append(account)
         
-        do {
-            //try Locksmith.deleteDataForUserAccount(userAccount: "nick", inService: "Netflix")
-            try account.createInSecureStore()
-        } catch {
-            print("❌ Error: \(error)")
+        guard let account = AccountDefaults.accounts.first else {
+            return
         }
-
-        //let account = TwitterAccount(username: "_jakob", password: "snake")
+        
+        print(getPassword(from: account))
+        
+        print("Hello")
         
         let basicLoad = Locksmith.loadDataForUserAccount(userAccount: "nick", inService: "Netflix")
         print(basicLoad!)
         
-        let fancyLoad = account.readFromSecureStore()
-        print(fancyLoad!)
+        /*let fancyLoad = account.readFromSecureStore()
+        print(fancyLoad!)*/
     
         view.backgroundColor = .lightGray
         setupHideKeyboardOnTap()
@@ -42,6 +51,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setupUsernameTextfield()
         setupPasswordTextField()
         setupSaveButton()
+    }
+    
+    func getPassword(from account: Account?) -> String {
+        // If account is stored AccountDefaults
+        guard let storedAccount = account else {
+            print("Password is not set!")
+            return "not set!"
+        }
+        if let keychainData = storedAccount.readFromSecureStore() {
+            if let dictionary = keychainData.data {
+                if let password = dictionary["password"] as? String {
+                    print("The password for \(storedAccount.service) is: \(password).")
+                    return password
+                }
+            }
+        }
+        return "There was an error!"
     }
     
     @objc func saveButtonTapped() {
