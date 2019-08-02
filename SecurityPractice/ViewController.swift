@@ -16,35 +16,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let passwordField = UITextField()
     let saveButton    = RoundButton()
     
+    func changeUsernameFor( account: inout Account, newUsername: String) {
+        // 1 Temp store password
+        guard let oldPassword = account.getPasswordFromStore() else { return }
+        
+        // 2 Delete Curr Keychain
+        account.safelyDeleteFromKeychain()
+        
+        // 3 Make new Account
+        account = Account(service: account.service, username: newUsername, password: oldPassword)
+        
+        // 4 Replace oldAccount in AccountDefaults with newAccount
+        AccountDefaults.accounts[0] = account
+        account = AccountDefaults.accounts[0]
+        
+        // 5 Save new account into Keychain
+        account.safelyStoreInKeychain()
+        account.password = ""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        // If we are putting stuff into the account
-//        let account = Account(service: "Netflix", username: "nick", password: "movies")
-//
-//        do {
-//            //try Locksmith.deleteDataForUserAccount(userAccount: "nick", inService: "Netflix")
-//            try account.createInSecureStore()
-//        } catch {
-//            print("❌ Error: \(error)")
-//        }
-//
-//        AccountDefaults.accounts.append(account)
-        
-        guard let account = AccountDefaults.accounts.first else {
-            return
-        }
-        
-        print(getPassword(from: account))
-        
-        print("Hello")
-        
-        let basicLoad = Locksmith.loadDataForUserAccount(userAccount: "nick", inService: "Netflix")
-        print(basicLoad!)
-        
-        /*let fancyLoad = account.readFromSecureStore()
-        print(fancyLoad!)*/
-    
         view.backgroundColor = .lightGray
         setupHideKeyboardOnTap()
         setupServiceTextfield()
@@ -52,24 +45,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setupPasswordTextField()
         setupSaveButton()
     }
-    
-    func getPassword(from account: Account?) -> String {
-        // If account is stored AccountDefaults
-        guard let storedAccount = account else {
-            print("Password is not set!")
-            return "not set!"
-        }
-        if let keychainData = storedAccount.readFromSecureStore() {
-            if let dictionary = keychainData.data {
-                if let password = dictionary["password"] as? String {
-                    print("The password for \(storedAccount.service) is: \(password).")
-                    return password
-                }
-            }
-        }
-        return "There was an error!"
-    }
-    
+
     @objc func saveButtonTapped() {
         print("Save Button has been tapped!")
         
@@ -79,11 +55,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let username = usernameField.text ?? "ncooke3"
         let password = passwordField.text ?? "smile123"
         
+        // Lanyard/AddPasswordVC: Creates new account and stores in keychain + AccountDefaults
         let newAccount = Account(service: service, username: username, password: password)
-        
-        printAccount(account: newAccount)
-
-        
+        newAccount.safelyStoreInKeychain()
+        newAccount.addToAccountsDefaults()
     }
     
     fileprivate func printAccount(account: Account) {
