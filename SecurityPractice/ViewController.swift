@@ -8,6 +8,7 @@
 
 import UIKit
 import Locksmith
+import Lottie
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -15,6 +16,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let usernameField = UITextField()
     let passwordField = UITextField()
     let saveButton    = RoundButton()
+    var animationView = AnimationView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print(AccountDefaults.accounts)
+        
+        view.backgroundColor = .lightGray
+        setupCloudSecurityAnimation()
+        setupServiceTextfield()
+        setupUsernameTextfield()
+        setupPasswordTextField()
+        setupSaveButton()
+        setupHideKeyboardOnTap()
+    
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animationView.loopMode = .loop
+        animationView.play()
+        
+    }
     
     func changeUsernameFor( account: inout Account, newUsername: String) {
         // 1 Temp store password
@@ -34,17 +59,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         account.safelyStoreInKeychain()
         account.password = ""
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .lightGray
-        setupHideKeyboardOnTap()
-        setupServiceTextfield()
-        setupUsernameTextfield()
-        setupPasswordTextField()
-        setupSaveButton()
-    }
 
     @objc func saveButtonTapped() {
         print("Save Button has been tapped!")
@@ -58,6 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Lanyard/AddPasswordVC: Creates new account and stores in keychain + AccountDefaults
         let newAccount = Account(service: service, username: username, password: password)
         newAccount.safelyStoreInKeychain()
+        // TODO: avoid duplicates & maybe store after adding
         newAccount.addToAccountsDefaults()
     }
     
@@ -69,6 +84,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 Password: \(account.password)
             
             """)
+    }
+    
+    fileprivate func setupCloudSecurityAnimation() {
+        let animation = Animation.named("cloud-security")
+        animationView.animation = animation
+        animationView.contentMode = .scaleAspectFit
+        view.addSubview(animationView)
+        
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            animationView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.22),
+            animationView.widthAnchor.constraint(equalToConstant: view.frame.width),
+            animationView.heightAnchor.constraint(equalToConstant: view.frame.width)
+            ])
     }
 
     fileprivate func setupServiceTextfield() {
@@ -86,7 +117,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         NSLayoutConstraint.activate([
             serviceField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            serviceField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -250),
+            serviceField.topAnchor.constraint(equalTo: view.topAnchor, constant: 290),
             serviceField.widthAnchor.constraint(equalToConstant: 250),
             serviceField.heightAnchor.constraint(equalToConstant: 40)
             ])
@@ -107,7 +138,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         NSLayoutConstraint.activate([
             usernameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            usernameField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -175),
+            usernameField.topAnchor.constraint(equalTo: serviceField.bottomAnchor, constant: 30),
             usernameField.widthAnchor.constraint(equalToConstant: 250),
             usernameField.heightAnchor.constraint(equalToConstant: 40)
             ])
@@ -128,8 +159,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         NSLayoutConstraint.activate([
             passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant:
-                -100),
+            passwordField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant:
+                30),
             passwordField.widthAnchor.constraint(equalToConstant: 250),
             passwordField.heightAnchor.constraint(equalToConstant: 40)
             ])
@@ -139,13 +170,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         view.addSubview(saveButton)
         saveButton.setTitle("Save Account", for: .normal)
-        saveButton.backgroundColor = UIColor(red: 0.45, green: 0.73, blue: 1.00, alpha: 1.0)
+        saveButton.backgroundColor = UIColor(red: 0.69, green: 0.82, blue: 0.87, alpha: 1.0)
         
         saveButton.sizeToFit()
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            saveButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            saveButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 20)
             ])
     }
     

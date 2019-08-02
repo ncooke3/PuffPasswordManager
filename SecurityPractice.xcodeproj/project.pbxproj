@@ -18,6 +18,7 @@
 		EA7326F722F265510093CD4D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326F622F265510093CD4D /* RoundButton.swift */; };
 		EA7326FA22F268350093CD4D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326F922F268350093CD4D /* UIViewExtension.swift */; };
 		EA7326FC22F268550093CD4D /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326FB22F268550093CD4D /* UITextFieldExtension.swift */; };
+		EA88667322F3F3F700BDC38B /* cloud-security.json in Resources */ = {isa = PBXBuildFile; fileRef = EA88667222F3F3F700BDC38B /* cloud-security.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		EA7326F922F268350093CD4D /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		EA7326FB22F268550093CD4D /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SecurityPractice.entitlements; sourceTree = "<group>"; };
+		EA88667222F3F3F700BDC38B /* cloud-security.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cloud-security.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */,
 				EA7326D222F259030093CD4D /* AppDelegate.swift */,
 				EA7326D422F259030093CD4D /* ViewController.swift */,
+				EA88667222F3F3F700BDC38B /* cloud-security.json */,
 				EA7326FE22F27EAA0093CD4D /* Custom Classes */,
 				EA7326F822F2681D0093CD4D /* Extensions */,
 				EA7326FD22F27E710093CD4D /* Secure Classes */,
@@ -253,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA7326DA22F259060093CD4D /* Assets.xcassets in Resources */,
+				EA88667322F3F3F700BDC38B /* cloud-security.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
