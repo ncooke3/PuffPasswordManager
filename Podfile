@@ -7,6 +7,8 @@ target 'SecurityPractice' do
 
   # Pods for SecurityPractice
   pod 'Locksmith'
+  
+  pod 'lottie-ios'
 
   target 'SecurityPracticeTests' do
     inherit! :search_paths
