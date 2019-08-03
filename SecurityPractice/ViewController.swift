@@ -10,6 +10,17 @@ import UIKit
 import Locksmith
 import Lottie
 
+extension UILabel {
+    func copyLabel() -> UILabel {
+        let label = UILabel()
+        label.font = self.font
+        label.frame = self.frame
+        label.text = self.text
+        label.textColor = self.textColor
+        return label
+    }
+}
+
 class ViewController: UIViewController, UITextFieldDelegate {
     
     let serviceField  = UITextField()
@@ -20,6 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     let label = UILabel()
     let duration = 1.0
+    let fontSizeSmall: CGFloat = 0.1
     let fontSizeBig: CGFloat = 35.0
     
     override func viewDidLoad() {
@@ -82,6 +94,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         newAccount.safelyStoreInKeychain()
         // TODO: avoid duplicates & maybe store after adding
         newAccount.addToAccountsDefaults()
+        
+        shrinkWithCrossFade()
     }
     
     fileprivate func printAccount(account: Account) {
@@ -132,6 +146,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
         UIView.animate(withDuration: duration / 2) {
             self.label.alpha = 1.0
         }
+    }
+    
+    func shrinkWithCrossFade() {
+        let labelCopy = label.copyLabel()
+        view.addSubview(labelCopy)
+        
+        var smallerBounds = label.bounds
+        label.font = label.font.withSize(fontSizeSmall)
+        smallerBounds.size = label.intrinsicContentSize
+        
+        label.transform = scaleTransform(from: smallerBounds.size, to: label.bounds.size)
+        label.alpha = 0.0
+        
+        let shrinkTransform = scaleTransform(from: label.bounds.size, to: smallerBounds.size)
+        
+        UIView.animate(withDuration: duration, animations: {
+            labelCopy.transform = shrinkTransform
+            self.label.transform = .identity
+        }, completion: { done in
+            self.label.transform = .identity
+            self.label.bounds = smallerBounds
+        })
+        
+        let percUntilFade = 0.8
+        UIView.animate(withDuration: duration - (duration * percUntilFade), delay: duration * percUntilFade, options: .curveLinear, animations: {
+            labelCopy.alpha = 0
+            self.label.alpha = 1
+        }, completion: { done in
+            labelCopy.removeFromSuperview()
+        })
     }
     
     fileprivate func setupCloudSecurityAnimation() {
