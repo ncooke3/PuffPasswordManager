@@ -18,6 +18,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let saveButton    = RoundButton()
     var animationView = AnimationView()
     
+    let label = UILabel()
+    let duration = 1.0
+    let fontSizeBig: CGFloat = 35.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +29,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         view.backgroundColor = .lightGray
         setupCloudSecurityAnimation()
+        
+        setupLabel()
+        enlargeWithCrossFade() // TODO: move into setupLabel()
+        
         setupServiceTextfield()
         setupUsernameTextfield()
         setupPasswordTextField()
@@ -84,6 +92,46 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 Password: \(account.password)
             
             """)
+    }
+    
+    fileprivate func setupLabel() {
+        label.text = "Add an Account!"
+        label.textColor = .white
+        label.sizeToFit() // Important for enlargeWithCrossfade()
+        view.addSubview(label)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.25),
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            ])
+    }
+    
+    private func scaleTransform(from: CGSize, to: CGSize) -> CGAffineTransform {
+        let scaleX = to.width / from.width
+        let scaleY = to.height / from.height
+        
+        return CGAffineTransform(scaleX: scaleX, y: scaleY)
+    }
+    
+    // NOTE: Removed copyLabel from original code.
+    func enlargeWithCrossFade() {
+        var biggerBounds = label.bounds
+        
+        label.font = UIFont.boldSystemFont(ofSize: fontSizeBig)
+        biggerBounds.size = label.intrinsicContentSize
+        
+        label.transform = scaleTransform(from: biggerBounds.size, to: label.bounds.size)
+        label.bounds = biggerBounds
+        label.alpha = 0.0
+        
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+            self.label.transform = .identity
+        })
+        
+        UIView.animate(withDuration: duration / 2) {
+            self.label.alpha = 1.0
+        }
     }
     
     fileprivate func setupCloudSecurityAnimation() {
