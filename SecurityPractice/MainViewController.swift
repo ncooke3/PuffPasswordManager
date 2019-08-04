@@ -10,6 +10,12 @@ import UIKit
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let cloudImageView: UIImageView = {
+        let imageview = UIImageView()
+        imageview.contentMode = .scaleAspectFit
+        imageview.backgroundColor = .white
+        return imageview
+    }()
     
     let tableView: UITableView = {
         let tableview = UITableView()
@@ -27,7 +33,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         view.backgroundColor = .lightGray
         
+        setupCloudImageView()
         setupTableView()
+        
+    }
+    
+    func setupCloudImageView() {
+        view.addSubview(cloudImageView)
+        cloudImageView.translatesAutoresizingMaskIntoConstraints = false
+        //let heightConstant = 0.05 * view.safeFrame.height
+        NSLayoutConstraint.activate([
+            cloudImageView.safeTopAnchor.constraint(equalTo: view.safeTopAnchor),
+            cloudImageView.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor),
+            cloudImageView.heightAnchor.constraint(equalToConstant: 200),
+            cloudImageView.widthAnchor.constraint(equalToConstant: 200)])
     }
     
     func setupTableView() {
