@@ -19,6 +19,8 @@
 		EA7326FA22F268350093CD4D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326F922F268350093CD4D /* UIViewExtension.swift */; };
 		EA7326FC22F268550093CD4D /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326FB22F268550093CD4D /* UITextFieldExtension.swift */; };
 		EA88667322F3F3F700BDC38B /* cloud-security.json in Resources */ = {isa = PBXBuildFile; fileRef = EA88667222F3F3F700BDC38B /* cloud-security.json */; };
+		EAF9F75C22F6B13E0084B008 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF9F75B22F6B13E0084B008 /* MainViewController.swift */; };
+		EAF9F75F22F6B38B0084B008 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF9F75E22F6B38B0084B008 /* UIViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		EA7326FB22F268550093CD4D /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SecurityPractice.entitlements; sourceTree = "<group>"; };
 		EA88667222F3F3F700BDC38B /* cloud-security.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cloud-security.json"; sourceTree = "<group>"; };
+		EAF9F75B22F6B13E0084B008 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		EAF9F75E22F6B38B0084B008 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */,
+				EAF9F75B22F6B13E0084B008 /* MainViewController.swift */,
 				EA7326D222F259030093CD4D /* AppDelegate.swift */,
 				EA7326D422F259030093CD4D /* ViewController.swift */,
 				EA88667222F3F3F700BDC38B /* cloud-security.json */,
@@ -133,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				EA7326F922F268350093CD4D /* UIViewExtension.swift */,
+				EAF9F75E22F6B38B0084B008 /* UIViewControllerExtension.swift */,
 				EA7326FB22F268550093CD4D /* UITextFieldExtension.swift */,
 			);
 			path = Extensions;
@@ -346,10 +352,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA7326FA22F268350093CD4D /* UIViewExtension.swift in Sources */,
+				EAF9F75F22F6B38B0084B008 /* UIViewControllerExtension.swift in Sources */,
 				EA7326F522F261810093CD4D /* AccountDefaults.swift in Sources */,
 				EA7326FC22F268550093CD4D /* UITextFieldExtension.swift in Sources */,
 				EA7326F722F265510093CD4D /* RoundButton.swift in Sources */,
 				EA7326D522F259030093CD4D /* ViewController.swift in Sources */,
+				EAF9F75C22F6B13E0084B008 /* MainViewController.swift in Sources */,
 				EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */,
 				EA7326F322F25A940093CD4D /* Account.swift in Sources */,
 			);

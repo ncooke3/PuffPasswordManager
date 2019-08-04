@@ -8,27 +8,54 @@
 
 import UIKit
 
-extension UIViewController {
+extension UIView {
     
-    /// Dismisses open keyboards by tapping anywhere in vc
-    func setupHideKeyboardOnTap() {
-        self.view.addGestureRecognizer(self.endEditingRecognizer())
-        
-        self.navigationController?.navigationBar
-            .addGestureRecognizer(self.endEditingRecognizer())
+    var safeTopAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.topAnchor
+        }
+        return self.topAnchor
     }
     
-    /// Dismisses the keyboard from self.view
-    private func endEditingRecognizer() -> UIGestureRecognizer {
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
-        tap.cancelsTouchesInView = false
-        return tap
+    var safeBottomAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.bottomAnchor
+        }
+        return self.bottomAnchor
     }
     
-    /// Dismisses keyboard when 'return' is tapped
-    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        return false
+    var safeTrailingAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *){
+            return self.safeAreaLayoutGuide.trailingAnchor
+        }
+        return self.trailingAnchor
+    }
+    
+    var safeLeadingAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *){
+            return self.safeAreaLayoutGuide.leadingAnchor
+        }
+        return self.leadingAnchor
+    }
+    
+    var safeCenterXAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.centerXAnchor
+        }
+        return self.centerXAnchor
+    }
+    
+    var safeCenterYAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.centerYAnchor
+        }
+        return self.centerYAnchor
+    }
+    
+    var safeFrame: CGRect {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.layoutFrame
+        }
+        return self.frame
     }
 }
