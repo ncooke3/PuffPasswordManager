@@ -23,6 +23,7 @@ extension UILabel {
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    let containerView = UIView()
     let serviceField  = UITextField()
     let usernameField = UITextField()
     let passwordField = UITextField()
@@ -34,32 +35,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let fontSizeSmall: CGFloat = 0.1
     let fontSizeBig: CGFloat = 35.0
     
+    fileprivate func setupContainerView() {
+        containerView.frame = view.frame
+        view.addSubview(containerView)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print(AccountDefaults.accounts)
         
         view.backgroundColor = .lightGray
-        setupCloudSecurityAnimation()
-        
+        setupContainerView()
         setupLabel()
-        enlargeWithCrossFade() // TODO: move into setupLabel()
-        
         setupServiceTextfield()
         setupUsernameTextfield()
         setupPasswordTextField()
         setupSaveButton()
         setupHideKeyboardOnTap()
     
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animationView.loopMode = .loop
-        animationView.play()
         
+        enlargeWithCrossFade()
     }
+    
     
     func changeUsernameFor( account: inout Account, newUsername: String) {
         // 1 Temp store password
@@ -95,7 +97,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // TODO: avoid duplicates & maybe store after adding
         newAccount.addToAccountsDefaults()
         
-        shrinkWithCrossFade()
+        shrinkWithCrossFade {
+            self.setupCloudSecurityAnimation()
+            self.animationView.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
+        }
+        
     }
     
     fileprivate func printAccount(account: Account) {
@@ -110,13 +116,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func setupLabel() {
         label.text = "Add an Account!"
+        label.font = label.font.withSize(fontSizeSmall)
         label.textColor = .white
         label.sizeToFit() // Important for enlargeWithCrossfade()
         view.addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.25),
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.20),
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             ])
     }
@@ -134,12 +141,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         label.font = UIFont.boldSystemFont(ofSize: fontSizeBig)
         biggerBounds.size = label.intrinsicContentSize
-        
+
         label.transform = scaleTransform(from: biggerBounds.size, to: label.bounds.size)
         label.bounds = biggerBounds
         label.alpha = 0.0
         
-        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: duration, delay: 0.5, usingSpringWithDamping: 0.4,
+            initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+                
             self.label.transform = .identity
         })
         
@@ -148,7 +157,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func shrinkWithCrossFade() {
+    func shrinkWithCrossFade(completion: @escaping () -> ()) {
         let labelCopy = label.copyLabel()
         view.addSubview(labelCopy)
         
@@ -161,6 +170,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let shrinkTransform = scaleTransform(from: label.bounds.size, to: smallerBounds.size)
         
+        let duration = 0.5
         UIView.animate(withDuration: duration, animations: {
             labelCopy.transform = shrinkTransform
             self.label.transform = .identity
@@ -175,6 +185,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.label.alpha = 1
         }, completion: { done in
             labelCopy.removeFromSuperview()
+            completion()
         })
     }
     
@@ -182,10 +193,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let animation = Animation.named("cloud-security")
         animationView.animation = animation
         animationView.contentMode = .scaleAspectFit
-        view.addSubview(animationView)
+        view.insertSubview(animationView, belowSubview: containerView)
         
         animationView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             animationView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.22),
@@ -205,7 +215,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         serviceField.layer.borderColor = UIColor.white.cgColor
         serviceField.layer.borderWidth = 1.0
         
-        view.addSubview(serviceField)
+        containerView.addSubview(serviceField)
         
         NSLayoutConstraint.activate([
             serviceField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -226,7 +236,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         usernameField.layer.borderColor = UIColor.white.cgColor
         usernameField.layer.borderWidth = 1.0
         
-        view.addSubview(usernameField)
+        containerView.addSubview(usernameField)
         
         NSLayoutConstraint.activate([
             usernameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -247,7 +257,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordField.layer.borderColor = UIColor.white.cgColor
         passwordField.layer.borderWidth = 1.0
         
-        view.addSubview(passwordField)
+        containerView.addSubview(passwordField)
         
         NSLayoutConstraint.activate([
             passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
