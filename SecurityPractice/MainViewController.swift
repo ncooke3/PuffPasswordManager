@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var buttonDisplayMode: ButtonDisplayMode = .imageOnly
+    var buttonStyle: ButtonStyle = .circular
     
     let cloudImageView: UIImageView = {
         let imageview = UIImageView()
@@ -31,7 +35,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .lightGray
+        view.backgroundColor = Color.lightBackground.value
         
         setupCloudImageView()
         setupTableView()
@@ -41,7 +45,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func setupCloudImageView() {
         view.addSubview(cloudImageView)
         cloudImageView.translatesAutoresizingMaskIntoConstraints = false
-        //let heightConstant = 0.05 * view.safeFrame.height
         NSLayoutConstraint.activate([
             cloudImageView.safeTopAnchor.constraint(equalTo: view.safeTopAnchor),
             cloudImageView.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor),
@@ -69,6 +72,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AccountCell
+        cell.delegate = self
         return cell
     }
     
@@ -90,7 +94,59 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 }
 
-class AccountCell: UITableViewCell {
+
+extension MainViewController: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        guard orientation == .right else { return [] }
+        
+        let flag = SwipeAction(style: .default, title: nil, handler: nil)
+        flag.hidesWhenSelected = true
+        configure(action: flag, with: .flag)
+        
+        let delete = SwipeAction(style: .destructive, title: nil) { action, indexPath in
+            //self.emails.remove(at: indexPath.row)
+        }
+        configure(action: delete, with: .trash)
+        
+        return [delete, flag]
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = orientation == .left ? .selection : .destructive
+        options.transitionStyle = .reveal
+        
+        switch buttonStyle {
+        case .backgroundColor:
+            options.buttonSpacing = 11
+        case .circular:
+            options.buttonSpacing = 4
+            options.backgroundColor = .clear
+        }
+        
+        return options
+    }
+    
+    func configure(action: SwipeAction, with descriptor: ActionDescriptor) {
+        action.title = descriptor.title(forDisplayMode: buttonDisplayMode)
+        action.image = descriptor.image(forStyle: buttonStyle, displayMode: buttonDisplayMode)
+        
+        switch buttonStyle {
+        case .backgroundColor:
+            action.backgroundColor = descriptor.color
+        case .circular:
+            action.backgroundColor = .clear
+            action.textColor = descriptor.color
+            action.font = .systemFont(ofSize: 13)
+            action.transitionDelegate = ScaleTransition.default
+        }
+    }
+
+}
+
+class AccountCell: SwipeTableViewCell {
     
     let cellView: TableCellContainerView = {
         let view = TableCellContainerView()
