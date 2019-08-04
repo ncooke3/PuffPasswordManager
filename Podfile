@@ -9,6 +9,8 @@ target 'SecurityPractice' do
   pod 'Locksmith'
   
   pod 'lottie-ios'
+  
+  pod 'SwipeCellKit'
 
   target 'SecurityPracticeTests' do
     inherit! :search_paths

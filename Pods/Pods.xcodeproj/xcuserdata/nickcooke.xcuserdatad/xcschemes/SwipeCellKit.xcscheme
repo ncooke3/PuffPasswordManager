@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "29E0A2D74CFEEF77DA9F59378AFD106E"
-               BuildableName = "Pods_SecurityPractice.framework"
-               BlueprintName = "Pods-SecurityPractice"
+               BlueprintIdentifier = "83423C77EDB87BF8F8C8882C0FBEC6A7"
+               BuildableName = "SwipeCellKit.framework"
+               BlueprintName = "SwipeCellKit"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "29E0A2D74CFEEF77DA9F59378AFD106E"
-            BuildableName = "Pods_SecurityPractice.framework"
-            BlueprintName = "Pods-SecurityPractice"
+            BlueprintIdentifier = "83423C77EDB87BF8F8C8882C0FBEC6A7"
+            BuildableName = "SwipeCellKit.framework"
+            BlueprintName = "SwipeCellKit"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
