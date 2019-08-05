@@ -81,9 +81,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
         account.safelyStoreInKeychain()
         account.password = ""
     }
+    
+    func accountDefaultsDoesContain(account: Account) -> Bool {
+        let doesContain = AccountDefaults.accounts.contains(where: { (element) -> Bool in
+            let areServicesEqual  = element.service == account.service
+            let areUsernamesEqual = element.username == account.username
+            let arePasswordsEqual = element.password == account.password
+            return areServicesEqual && areUsernamesEqual && arePasswordsEqual
+        })
+        
+        return doesContain
+    }
 
     @objc func saveButtonTapped() {
         print("Save Button has been tapped!")
+        
+        shrinkWithCrossFade {
+            self.setupCloudSecurityAnimation()
+            self.animationView.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
+        }
         
         // PRACTICE: maybe add an alert if they
         //           aren't all filled out!
@@ -93,15 +109,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // Lanyard/AddPasswordVC: Creates new account and stores in keychain + AccountDefaults
         let newAccount = Account(service: service, username: username, password: password)
-        newAccount.safelyStoreInKeychain()
-        // TODO: avoid duplicates & maybe store after adding
+
+        guard !accountDefaultsDoesContain(account: newAccount) else { return }
+        
         newAccount.addToAccountsDefaults()
-        
-        shrinkWithCrossFade {
-            self.setupCloudSecurityAnimation()
-            self.animationView.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
-        }
-        
+        newAccount.safelyStoreInKeychain()
+
     }
     
     fileprivate func printAccount(account: Account) {
