@@ -37,6 +37,7 @@ class Account:  ReadableSecureStorable,
     func safelyStoreInKeychain() {
         do {
             try self.createInSecureStore()
+            print("✅ Safely Stored")
         } catch {
             print("❌ Couldn't store new account in keychain: \(error)")
         }
@@ -48,6 +49,7 @@ class Account:  ReadableSecureStorable,
     func safelyDeleteFromKeychain() {
         do {
             try self.deleteFromSecureStore()
+            print("✅ Safely Deleted!")
         } catch {
             print("❌ Couldn't delete account in keychain: \(error)")
         }
