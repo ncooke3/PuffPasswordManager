@@ -214,16 +214,16 @@ class AccountCell: SwipeTableViewCell {
     let usernameLabel: UILabel = {
         let label = UILabel()
         label.text = "Username"
+        label.font = UIFont(name: "SFProRounded-Medium", size: 19)
         label.textColor = .darkGray
-        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
     let passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "Password"
+        label.font = UIFont(name: "SFProRounded-Medium", size: 19)
         label.textColor = .darkGray
-        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
