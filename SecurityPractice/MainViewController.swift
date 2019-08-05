@@ -9,7 +9,7 @@
 import UIKit
 import SwipeCellKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainViewController: UIViewController {
     
     var buttonDisplayMode: ButtonDisplayMode = .imageOnly
     var buttonStyle: ButtonStyle = .circular
@@ -42,6 +42,54 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if tableView.layer.mask == nil {
+
+            //If you are using auto layout
+            view.layoutIfNeeded()
+
+            let maskLayer: CAGradientLayer = CAGradientLayer()
+
+            maskLayer.locations = [0.0, 0.05, 0.95, 1.0]
+            let width = tableView.frame.size.width
+            let height = tableView.frame.size.height
+            maskLayer.bounds = CGRect(x: 0.0, y: 0.0, width: width, height: height)
+            maskLayer.anchorPoint = CGPoint.zero
+
+            tableView.layer.mask = maskLayer
+        }
+
+        scrollViewDidScroll(tableView)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let outerColor = UIColor(white: 1.0, alpha: 0.0).cgColor
+        let innerColor = UIColor(white: 1.0, alpha: 1.0).cgColor
+
+        var colors = [CGColor]()
+
+        if scrollView.contentOffset.y + scrollView.contentInset.top <= 0 {
+            colors = [innerColor, innerColor, innerColor, outerColor]
+        } else if scrollView.contentOffset.y + scrollView.frame.size.height >= scrollView.contentSize.height {
+            colors = [outerColor, innerColor, innerColor, innerColor]
+        } else {
+            colors = [outerColor, innerColor, innerColor, outerColor]
+        }
+
+        if let mask = scrollView.layer.mask as? CAGradientLayer {
+            mask.colors = colors
+
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            mask.position = CGPoint(x: 0.0, y: scrollView.contentOffset.y)
+            CATransaction.commit()
+        }
+
+    }
+    
     func setupCloudImageView() {
         view.addSubview(cloudImageView)
         cloudImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,6 +114,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor)])
     }
     
+}
+
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
     }
@@ -77,7 +128,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 100
     }
     
     // SHADOW:
@@ -91,11 +142,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // ME: this hide the shadow color
         cell.layer.shadowColor = UIColor.clear.cgColor
     }
-    
 }
 
-
-extension MainViewController: SwipeTableViewCellDelegate {
+extension MainViewController: SwipeTableViewCellDelegate  {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         
         guard orientation == .right else { return [] }
@@ -155,8 +204,8 @@ class AccountCell: SwipeTableViewCell {
         return view
     }()
     
-    let cellImageView: UIImageView = {
-        let imageview = UIImageView()
+    let cellImageView: ContainerImageView = {
+        let imageview = ContainerImageView()
         imageview.backgroundColor = .white
         imageview.contentMode = .scaleAspectFit
         return imageview
@@ -204,29 +253,29 @@ class AccountCell: SwipeTableViewCell {
         
         cellView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cellView.safeTopAnchor.constraint(equalTo: self.safeTopAnchor, constant: 15),
-            cellView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -15),
+            cellView.safeTopAnchor.constraint(equalTo: self.safeTopAnchor, constant: 5),
+            cellView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -5),
             cellView.safeLeadingAnchor.constraint(equalTo: self.safeLeadingAnchor, constant: 10),
             cellView.safeTrailingAnchor.constraint(equalTo: self.safeTrailingAnchor, constant: -10)])
         
         cellImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cellImageView.safeTopAnchor.constraint(equalTo: cellView.safeTopAnchor, constant: 15),
-            cellImageView.safeBottomAnchor.constraint(equalTo: cellView.safeBottomAnchor, constant: -15),
-            cellImageView.safeLeadingAnchor.constraint(equalTo: cellView.safeLeadingAnchor, constant: 15),
-            cellImageView.safeTrailingAnchor.constraint(equalTo: cellView.safeTrailingAnchor, constant: -250)
+            cellImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -5),
+            cellImageView.safeLeadingAnchor.constraint(equalTo: cellView.safeLeadingAnchor, constant: 30),
+            cellImageView.widthAnchor.constraint(equalToConstant: 60),
+            cellImageView.heightAnchor.constraint(equalToConstant: 60)
             ])
         
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            usernameLabel.safeTopAnchor.constraint(equalTo: cellView.safeTopAnchor, constant: 30),
-            usernameLabel.safeLeadingAnchor.constraint(equalTo: cellImageView.safeTrailingAnchor, constant: 15)
+            usernameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -5),
+            usernameLabel.safeLeadingAnchor.constraint(equalTo: cellImageView.safeTrailingAnchor, constant: 30)
             ])
         
         passwordLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            passwordLabel.safeTopAnchor.constraint(equalTo: usernameLabel.safeBottomAnchor, constant: 20),
-            passwordLabel.safeLeadingAnchor.constraint(equalTo: cellImageView.safeTrailingAnchor, constant: 15)
+            passwordLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -5),
+            passwordLabel.safeLeadingAnchor.constraint(equalTo: usernameLabel.safeTrailingAnchor, constant: 30)
             ])
     }
     
@@ -236,6 +285,19 @@ class AccountCell: SwipeTableViewCell {
     
 }
 
+class ContainerImageView: UIImageView {
+    override func layoutSubviews() {
+        self.setBezierPathCorners()
+    }
+    
+    func setBezierPathCorners() {
+        let roundPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.bounds.height / 3)
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = roundPath.cgPath
+        layer.mask = maskLayer
+    }
+}
+
 class TableCellContainerView: UIView {
     
     override func layoutSubviews() {
@@ -243,10 +305,9 @@ class TableCellContainerView: UIView {
     }
     
     func setBezierPathCorners() {
-        let roundPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.bounds.height / 5)
+        let roundPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.bounds.height / 3.5)
         let maskLayer = CAShapeLayer()
         maskLayer.path = roundPath.cgPath
         layer.mask = maskLayer
     }
 }
-
