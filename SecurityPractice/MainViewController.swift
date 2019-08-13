@@ -118,12 +118,16 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return AccountDefaults.accounts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AccountCell
         cell.delegate = self
+        
+        cell.usernameLabel.text = AccountDefaults.accounts[indexPath.row].username
+        cell.passwordLabel.text = AccountDefaults.accounts[indexPath.row].getPasswordFromStore()
+        
         return cell
     }
     
@@ -154,7 +158,9 @@ extension MainViewController: SwipeTableViewCellDelegate  {
         configure(action: flag, with: .flag)
         
         let delete = SwipeAction(style: .destructive, title: nil) { action, indexPath in
-            //self.emails.remove(at: indexPath.row)
+            let removedAccount = AccountDefaults.accounts.remove(at: indexPath.row)
+            removedAccount.safelyDeleteFromKeychain()
+
         }
         configure(action: delete, with: .trash)
         

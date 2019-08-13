@@ -59,11 +59,6 @@ class Account:  ReadableSecureStorable,
         AccountDefaults.accounts.append(self)
     }
     
-    // TODO: This probabaly doesnt need to be an instance method of Account
-    func removeFromAccountDefaults(at index: Int) {
-        AccountDefaults.accounts.remove(at: index)
-    }
-    
     // Lanyard/DetailVC: Load password to populate passwordTextField
     func getPasswordFromStore() -> String? {
         if let keychainData = self.readFromSecureStore() {
@@ -89,15 +84,14 @@ class Account:  ReadableSecureStorable,
     private enum CodingKeys: String, CodingKey {
         case service
         case username
-        // DOUBT: will account property still return
-        //        username if account is not stored
+
     }
 
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         service = try values.decode(String.self, forKey: .service)
         username = try values.decode(String.self, forKey: .username)
-        password = "" // will this work?
+        password = ""
     }
 
     func encode(to encoder: Encoder) throws {

@@ -53,7 +53,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setupPasswordTextField()
         setupSaveButton()
         setupHideKeyboardOnTap()
-    
+
+        /// 👷🏻‍♂️🏗for development!
+        for index in 0..<AccountDefaults.accounts.count {
+            print("Index: \(index)")
+            printAccount(account: AccountDefaults.accounts[index])
+            AccountDefaults.accounts[index].getPasswordFromStore()
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,6 +89,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         account.password = ""
     }
     
+    // 🐞: This doesnt work? da fuq
     func accountDefaultsDoesContain(account: Account) -> Bool {
         let doesContain = AccountDefaults.accounts.contains(where: { (element) -> Bool in
             let areServicesEqual  = element.service == account.service
@@ -109,8 +117,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // Lanyard/AddPasswordVC: Creates new account and stores in keychain + AccountDefaults
         let newAccount = Account(service: service, username: username, password: password)
+        
+        //print(accountDefaultsDoesContain(account: newAccount))
 
-        guard !accountDefaultsDoesContain(account: newAccount) else { return }
+        //guard !accountDefaultsDoesContain(account: newAccount) else { return }
         
         newAccount.addToAccountsDefaults()
         newAccount.safelyStoreInKeychain()
