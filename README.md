@@ -1,3 +1,3 @@
 # SecurityPractice
 
-![Alt Text](https://gph.is/g/Z2VW7Gv)
+![Alt Text](https://media.giphy.com/media/IdxqPmkB6Hsd8o4WjK/giphy.gif)
