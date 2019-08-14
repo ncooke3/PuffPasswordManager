@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		95D5A74287ECCF62F090C574 /* Pods_SecurityPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8512C693397E8E97F86967 /* Pods_SecurityPractice.framework */; };
 		E37985D2DB53ED5C022362BB /* Pods_SecurityPracticeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B18C07FAE9E7AA9C841F8FB /* Pods_SecurityPracticeTests.framework */; };
-		EA02D0DF230307C2006BE9EE /* CloudsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0DE230307C2006BE9EE /* CloudsView.swift */; };
+		EA02D0DF230307C2006BE9EE /* CloudsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */; };
+		EA02D0E123042EE9006BE9EE /* CloudsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0E023042EE9006BE9EE /* CloudsView.swift */; };
 		EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D222F259030093CD4D /* AppDelegate.swift */; };
 		EA7326D522F259030093CD4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D422F259030093CD4D /* ViewController.swift */; };
 		EA7326DA22F259060093CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7326D922F259060093CD4D /* Assets.xcassets */; };
@@ -52,7 +53,8 @@
 		7F8512C693397E8E97F86967 /* Pods_SecurityPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecurityPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E83DB06F748596E94354B85 /* Pods-SecurityPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurityPractice.debug.xcconfig"; path = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice.debug.xcconfig"; sourceTree = "<group>"; };
 		9EB5787B73D166546A867C35 /* Pods-SecurityPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurityPractice.release.xcconfig"; path = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice.release.xcconfig"; sourceTree = "<group>"; };
-		EA02D0DE230307C2006BE9EE /* CloudsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsView.swift; sourceTree = "<group>"; };
+		EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsViewController.swift; sourceTree = "<group>"; };
+		EA02D0E023042EE9006BE9EE /* CloudsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsView.swift; sourceTree = "<group>"; };
 		EA7326CF22F259030093CD4D /* SecurityPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurityPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7326D222F259030093CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7326D422F259030093CD4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */,
-				EA02D0DE230307C2006BE9EE /* CloudsView.swift */,
+				EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */,
+				EA02D0E023042EE9006BE9EE /* CloudsView.swift */,
 				EAF9F75B22F6B13E0084B008 /* MainViewController.swift */,
 				EA7326D222F259030093CD4D /* AppDelegate.swift */,
 				EA96F11522F7F750006EF8B3 /* Fonts */,
@@ -412,9 +415,10 @@
 				EA7326F522F261810093CD4D /* AccountDefaults.swift in Sources */,
 				EA7326FC22F268550093CD4D /* UITextFieldExtension.swift in Sources */,
 				EA7326F722F265510093CD4D /* RoundButton.swift in Sources */,
+				EA02D0E123042EE9006BE9EE /* CloudsView.swift in Sources */,
 				EA79721D22F7784D00A1CDFE /* ColorScheme.swift in Sources */,
 				EA7326D522F259030093CD4D /* ViewController.swift in Sources */,
-				EA02D0DF230307C2006BE9EE /* CloudsView.swift in Sources */,
+				EA02D0DF230307C2006BE9EE /* CloudsViewController.swift in Sources */,
 				EAF9F75C22F6B13E0084B008 /* MainViewController.swift in Sources */,
 				EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */,
 				EA7326F322F25A940093CD4D /* Account.swift in Sources */,
