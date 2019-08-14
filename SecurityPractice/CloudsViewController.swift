@@ -25,6 +25,8 @@ class CloudsViewController: UIViewController {
         cloudsView.animateTopCloud()
         cloudsView.animateMiddleCloud()
         cloudsView.animateBottomCloud()
+        
+        cloudsView.animateTitleCloud()
     }
     
     

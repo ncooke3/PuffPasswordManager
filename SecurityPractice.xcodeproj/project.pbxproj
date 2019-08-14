@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		95D5A74287ECCF62F090C574 /* Pods_SecurityPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8512C693397E8E97F86967 /* Pods_SecurityPractice.framework */; };
 		E37985D2DB53ED5C022362BB /* Pods_SecurityPracticeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B18C07FAE9E7AA9C841F8FB /* Pods_SecurityPracticeTests.framework */; };
+		EA02397023048972001212B6 /* clouds.json in Resources */ = {isa = PBXBuildFile; fileRef = EA02396F23048972001212B6 /* clouds.json */; };
 		EA02D0DF230307C2006BE9EE /* CloudsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */; };
 		EA02D0E123042EE9006BE9EE /* CloudsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0E023042EE9006BE9EE /* CloudsView.swift */; };
 		EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D222F259030093CD4D /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		7F8512C693397E8E97F86967 /* Pods_SecurityPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecurityPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E83DB06F748596E94354B85 /* Pods-SecurityPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurityPractice.debug.xcconfig"; path = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice.debug.xcconfig"; sourceTree = "<group>"; };
 		9EB5787B73D166546A867C35 /* Pods-SecurityPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurityPractice.release.xcconfig"; path = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice.release.xcconfig"; sourceTree = "<group>"; };
+		EA02396F23048972001212B6 /* clouds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clouds.json; sourceTree = "<group>"; };
 		EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsViewController.swift; sourceTree = "<group>"; };
 		EA02D0E023042EE9006BE9EE /* CloudsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsView.swift; sourceTree = "<group>"; };
 		EA7326CF22F259030093CD4D /* SecurityPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurityPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				EA7326D422F259030093CD4D /* ViewController.swift */,
 				EA79721C22F7784D00A1CDFE /* ColorScheme.swift */,
 				EA88667222F3F3F700BDC38B /* cloud-security.json */,
+				EA02396F23048972001212B6 /* clouds.json */,
 				EA7326FE22F27EAA0093CD4D /* Custom Classes */,
 				EA7326F822F2681D0093CD4D /* Extensions */,
 				EA7326FD22F27E710093CD4D /* Secure Classes */,
@@ -313,6 +316,7 @@
 				EA96F12122F7F979006EF8B3 /* SF-Pro-Rounded-Heavy.otf in Resources */,
 				EA96F12222F7F979006EF8B3 /* SF-Pro-Rounded-Light.otf in Resources */,
 				EA96F12322F7F979006EF8B3 /* SF-Pro-Rounded-Medium.otf in Resources */,
+				EA02397023048972001212B6 /* clouds.json in Resources */,
 				EA96F12422F7F979006EF8B3 /* SF-Pro-Rounded-Regular.otf in Resources */,
 				EA96F12522F7F979006EF8B3 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				EA96F12622F7F979006EF8B3 /* SF-Pro-Rounded-Thin.otf in Resources */,
