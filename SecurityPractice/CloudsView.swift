@@ -17,7 +17,7 @@ class CloudsView: UIView {
     let topCloudImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.contentMode = .scaleAspectFit
-        imageview.image = UIImage(named: "cloud.png")
+        imageview.image = UIImage(named: "cloud_scheme_no_bg.png")
         imageview.backgroundColor = .clear
         imageview.translatesAutoresizingMaskIntoConstraints = false
         return imageview
@@ -26,7 +26,7 @@ class CloudsView: UIView {
     let middleCloudImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.contentMode = .scaleAspectFit
-        imageview.image = UIImage(named: "cloud.png")
+        imageview.image = UIImage(named: "cloud_scheme_no_bg.png")
         imageview.backgroundColor = .clear
         imageview.translatesAutoresizingMaskIntoConstraints = false
         return imageview
@@ -35,7 +35,7 @@ class CloudsView: UIView {
     let bottomCloudImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.contentMode = .scaleAspectFit
-        imageview.image = UIImage(named: "cloud.png")
+        imageview.image = UIImage(named: "cloud_scheme_no_bg.png")
         imageview.backgroundColor = .clear
         imageview.translatesAutoresizingMaskIntoConstraints = false
         return imageview
@@ -51,7 +51,7 @@ class CloudsView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .orange
+        backgroundColor = Color.darkBackground.value
         addSubview(topCloudImageView)
         addSubview(middleCloudImageView)
         addSubview(bottomCloudImageView)
