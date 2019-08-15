@@ -45,14 +45,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         print(AccountDefaults.accounts)
         
-        view.backgroundColor = .lightGray
+        view.backgroundColor = Color.darkBackground.value
         setupContainerView()
-        setupLabel()
+        //setupLabel()
         setupServiceTextfield()
         setupUsernameTextfield()
         setupPasswordTextField()
         setupSaveButton()
         setupHideKeyboardOnTap()
+        
+        setupCloudSecurityAnimation()
+        animationView.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
 
         /// 👷🏻‍♂️🏗for development!
         for index in 0..<AccountDefaults.accounts.count {
@@ -66,7 +69,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        enlargeWithCrossFade()
+//        enlargeWithCrossFade()
     }
     
     
@@ -104,10 +107,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @objc func saveButtonTapped() {
         print("Save Button has been tapped!")
         
-        shrinkWithCrossFade {
-            self.setupCloudSecurityAnimation()
-            self.animationView.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
-        }
+//        shrinkWithCrossFade {
+//            self.setupCloudSecurityAnimation()
+//            self.animationView.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
+//        }
         
         // PRACTICE: maybe add an alert if they
         //           aren't all filled out!
@@ -213,7 +216,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     fileprivate func setupCloudSecurityAnimation() {
-        let animation = Animation.named("cloud-security")
+        let animation = Animation.named("clouds")
         animationView.animation = animation
         animationView.contentMode = .scaleAspectFit
         view.insertSubview(animationView, belowSubview: containerView)
@@ -295,7 +298,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         view.addSubview(saveButton)
         saveButton.setTitle("Save Account", for: .normal)
-        saveButton.backgroundColor = UIColor(red: 0.69, green: 0.82, blue: 0.87, alpha: 1.0)
+        saveButton.backgroundColor = Color.brightYarrow.value
         
         saveButton.sizeToFit()
         saveButton.translatesAutoresizingMaskIntoConstraints = false
