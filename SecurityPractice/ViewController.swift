@@ -125,8 +125,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
         //guard !accountDefaultsDoesContain(account: newAccount) else { return }
         
+        /*
         newAccount.addToAccountsDefaults()
         newAccount.safelyStoreInKeychain()
+        */
 
     }
     
@@ -235,7 +237,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         serviceField.placeholder = "Service"
         serviceField.translatesAutoresizingMaskIntoConstraints = false
         serviceField.backgroundColor = .white
-        serviceField.setLeftAndRightPadding(amount: 20)
+        //serviceField.setLeftAndRightPadding(amount: 20)
+        serviceField.tintColor = Color.soothingBreeze.value
+        serviceField.setIcon(#imageLiteral(resourceName: "icon-account"))
         
         serviceField.layer.cornerRadius = 7.0
         serviceField.layer.borderColor = UIColor.white.cgColor
@@ -256,7 +260,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         usernameField.placeholder = "Username"
         usernameField.translatesAutoresizingMaskIntoConstraints = false
         usernameField.backgroundColor = .white
-        usernameField.setLeftAndRightPadding(amount: 20)
+        //usernameField.setLeftAndRightPadding(amount: 20)
+        usernameField.tintColor = Color.soothingBreeze.value
+        usernameField.setIcon(#imageLiteral(resourceName: "icon-user"))
         
         usernameField.layer.cornerRadius = 7.0
         usernameField.layer.borderColor = UIColor.white.cgColor
@@ -275,9 +281,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     fileprivate func setupPasswordTextField() {
         passwordField.delegate = self
         passwordField.placeholder = "Password"
+        
+        
+        
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.backgroundColor = .white
-        passwordField.setLeftAndRightPadding(amount: 20)
+        //passwordField.setLeftAndRightPadding(amount: 20)
+        passwordField.tintColor = Color.soothingBreeze.value
+        passwordField.setIcon(#imageLiteral(resourceName: "icon-lock"))
         
         passwordField.layer.cornerRadius = 7.0
         passwordField.layer.borderColor = UIColor.white.cgColor

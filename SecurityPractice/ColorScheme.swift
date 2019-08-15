@@ -22,6 +22,7 @@ enum Color {
     case shadow
     
     case brightYarrow
+    case soothingBreeze
     
     case darkBackground
     case lightBackground
@@ -55,6 +56,8 @@ extension Color {
             break
         case .brightYarrow:
             instanceColor = UIColor(hexString: "#fdcb6e")
+        case .soothingBreeze:
+            instanceColor = UIColor(hexString: "#b2bec3")
         case .darkBackground:
             instanceColor = UIColor(hexString: "#74b9ff")
         case .lightBackground:
