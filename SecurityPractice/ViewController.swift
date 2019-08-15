@@ -23,6 +23,17 @@ extension UILabel {
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    let blurView = UIVisualEffectView()
+    
+    let popupView: UIImageView = {
+        let imageview = UIImageView()
+        imageview.contentMode = .scaleAspectFit
+        imageview.image = UIImage(named: "white_ghost.png")
+        imageview.backgroundColor = .clear
+        //imageview.translatesAutoresizingMaskIntoConstraints = false
+        return imageview
+    }()
+    
     let containerView = UIView()
     let serviceField  = UITextField()
     let usernameField = UITextField()
@@ -105,18 +116,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc func saveButtonTapped() {
-        print("Save Button has been tapped!")
         
-//        shrinkWithCrossFade {
-//            self.setupCloudSecurityAnimation()
-//            self.animationView.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
-//        }
+        let service  = serviceField.text!
+        let username = usernameField.text!
+        let password = passwordField.text!
         
-        // PRACTICE: maybe add an alert if they
-        //           aren't all filled out!
-        let service  = serviceField.text ?? "Gatech"
-        let username = usernameField.text ?? "ncooke3"
-        let password = passwordField.text ?? "smile123"
+        guard service != "" else {
+            self.handlePopupAndBlurView()
+            return
+        }
+        
+        guard username != "" else {
+            self.handlePopupAndBlurView()
+            return
+        }
+        
+        guard password != "" else {
+            self.handlePopupAndBlurView()
+            return
+        }
         
         // Lanyard/AddPasswordVC: Creates new account and stores in keychain + AccountDefaults
         let newAccount = Account(service: service, username: username, password: password)
@@ -129,7 +147,60 @@ class ViewController: UIViewController, UITextFieldDelegate {
         newAccount.addToAccountsDefaults()
         newAccount.safelyStoreInKeychain()
         */
-
+    }
+    
+    func setupBlurView() {
+        view.addSubview(blurView)
+        blurView.frame = view.frame
+        blurView.effect = nil
+    
+        let tapToDismiss = UITapGestureRecognizer(target: self, action: #selector(animatePopupAndBlurViewOut(after:)))
+        blurView.addGestureRecognizer(tapToDismiss)
+    }
+    
+    func setupPopup() {
+        view.addSubview(popupView)
+        popupView.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
+        popupView.center = view.center
+        //popupView.backgroundColor = Color.soothingBreeze.value
+        animateGhostHover()
+    }
+    
+    func animateGhostHover() {
+        UIView.animate(withDuration: 0.75, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
+            self.popupView.frame.origin.y -= 10
+        }, completion: nil)
+    }
+    
+    func animatePopupAndBlurViewIn() {
+        popupView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        popupView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4) {
+            self.blurView.effect = UIBlurEffect(style: .dark)
+            self.popupView.alpha = 1
+            self.popupView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    @objc func animatePopupAndBlurViewOut(after delay: Double = 0.0) {
+        print("here!")
+        UIView.animate(withDuration: 0.3, delay: delay, animations: {
+            self.popupView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+            self.popupView.alpha = 0
+            self.blurView.effect = nil
+            
+        }) { (success: Bool) in
+            self.blurView.removeFromSuperview()
+            self.popupView.removeFromSuperview()
+        }
+    }
+    
+    func handlePopupAndBlurView() {
+        setupBlurView()
+        setupPopup()
+        animatePopupAndBlurViewIn()
+        animatePopupAndBlurViewOut(after: 3.0)
     }
     
     fileprivate func printAccount(account: Account) {
