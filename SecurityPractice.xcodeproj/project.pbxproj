@@ -13,6 +13,8 @@
 		EA0239722304F362001212B6 /* BlurredGhostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0239712304F362001212B6 /* BlurredGhostViewController.swift */; };
 		EA02D0DF230307C2006BE9EE /* CloudsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */; };
 		EA02D0E123042EE9006BE9EE /* CloudsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0E023042EE9006BE9EE /* CloudsView.swift */; };
+		EA0F82F72306250100777425 /* GhostPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F82F62306250100777425 /* GhostPopupView.swift */; };
+		EA0F82FB23062DE900777425 /* Development.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F82FA23062DE900777425 /* Development.swift */; };
 		EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D222F259030093CD4D /* AppDelegate.swift */; };
 		EA7326D522F259030093CD4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D422F259030093CD4D /* ViewController.swift */; };
 		EA7326DA22F259060093CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7326D922F259060093CD4D /* Assets.xcassets */; };
@@ -59,6 +61,8 @@
 		EA0239712304F362001212B6 /* BlurredGhostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredGhostViewController.swift; sourceTree = "<group>"; };
 		EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsViewController.swift; sourceTree = "<group>"; };
 		EA02D0E023042EE9006BE9EE /* CloudsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsView.swift; sourceTree = "<group>"; };
+		EA0F82F62306250100777425 /* GhostPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostPopupView.swift; sourceTree = "<group>"; };
+		EA0F82FA23062DE900777425 /* Development.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Development.swift; sourceTree = "<group>"; };
 		EA7326CF22F259030093CD4D /* SecurityPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurityPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7326D222F259030093CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7326D422F259030093CD4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,8 +148,10 @@
 				EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */,
 				EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */,
 				EA02D0E023042EE9006BE9EE /* CloudsView.swift */,
+				EA0F82F62306250100777425 /* GhostPopupView.swift */,
 				EAF9F75B22F6B13E0084B008 /* MainViewController.swift */,
 				EA7326D422F259030093CD4D /* ViewController.swift */,
+				EA0F82FA23062DE900777425 /* Development.swift */,
 				EA7326D222F259030093CD4D /* AppDelegate.swift */,
 				EA0239712304F362001212B6 /* BlurredGhostViewController.swift */,
 				EA96F11522F7F750006EF8B3 /* Fonts */,
@@ -419,6 +425,7 @@
 				EA79721B22F765B500A1CDFE /* SwipeCellEnums.swift in Sources */,
 				EA7326FA22F268350093CD4D /* UIViewExtension.swift in Sources */,
 				EAF9F75F22F6B38B0084B008 /* UIViewControllerExtension.swift in Sources */,
+				EA0F82F72306250100777425 /* GhostPopupView.swift in Sources */,
 				EA7326F522F261810093CD4D /* AccountDefaults.swift in Sources */,
 				EA7326FC22F268550093CD4D /* UITextFieldExtension.swift in Sources */,
 				EA7326F722F265510093CD4D /* RoundButton.swift in Sources */,
@@ -430,6 +437,7 @@
 				EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */,
 				EA0239722304F362001212B6 /* BlurredGhostViewController.swift in Sources */,
 				EA7326F322F25A940093CD4D /* Account.swift in Sources */,
+				EA0F82FB23062DE900777425 /* Development.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

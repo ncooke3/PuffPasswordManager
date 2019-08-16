@@ -10,29 +10,11 @@ import UIKit
 import Locksmith
 import Lottie
 
-extension UILabel {
-    func copyLabel() -> UILabel {
-        let label = UILabel()
-        label.font = self.font
-        label.frame = self.frame
-        label.text = self.text
-        label.textColor = self.textColor
-        return label
-    }
-}
-
 class ViewController: UIViewController, UITextFieldDelegate {
     
     let blurView = UIVisualEffectView()
     
-    let popupView: UIImageView = {
-        let imageview = UIImageView()
-        imageview.contentMode = .scaleAspectFit
-        imageview.image = UIImage(named: "white_ghost.png")
-        imageview.backgroundColor = .clear
-        //imageview.translatesAutoresizingMaskIntoConstraints = false
-        return imageview
-    }()
+    var ghostPopupView: GhostPopupView!
     
     let containerView = UIView()
     let serviceField  = UITextField()
@@ -58,31 +40,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         view.backgroundColor = Color.darkBackground.value
         setupContainerView()
-        //setupLabel()
         setupServiceTextfield()
         setupUsernameTextfield()
         setupPasswordTextField()
         setupSaveButton()
         setupHideKeyboardOnTap()
-        
         setupCloudSecurityAnimation()
         animationView.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
 
-        /// 👷🏻‍♂️🏗for development!
-        for index in 0..<AccountDefaults.accounts.count {
-            print("Index: \(index)")
-            printAccount(account: AccountDefaults.accounts[index])
-            AccountDefaults.accounts[index].getPasswordFromStore()
-        }
-        
+        Development.printAllAccounts()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        enlargeWithCrossFade()
-    }
-    
     
     func changeUsernameFor( account: inout Account, newUsername: String) {
         // 1 Temp store password
@@ -137,7 +104,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Lanyard/AddPasswordVC: Creates new account and stores in keychain + AccountDefaults
+        
+        /*
         let newAccount = Account(service: service, username: username, password: password)
+        */
         
         //print(accountDefaultsDoesContain(account: newAccount))
 
@@ -151,66 +121,58 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func setupBlurView() {
         view.addSubview(blurView)
-        blurView.frame = view.frame
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            blurView.topAnchor.constraint(equalTo: view.topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
+        
         blurView.effect = nil
-    
-        let tapToDismiss = UITapGestureRecognizer(target: self, action: #selector(animatePopupAndBlurViewOut(after:)))
-        blurView.addGestureRecognizer(tapToDismiss)
     }
     
-    func setupPopup() {
-        view.addSubview(popupView)
-        popupView.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
-        popupView.center = view.center
-        //popupView.backgroundColor = Color.soothingBreeze.value
-        animateGhostHover()
+    func setupGhostPopupView() {
+        ghostPopupView = GhostPopupView(frame: view.frame)
+        view.addSubview(ghostPopupView)
+        ghostPopupView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            ghostPopupView.topAnchor.constraint(equalTo: view.topAnchor),
+            ghostPopupView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            ghostPopupView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            ghostPopupView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
+        
+        ghostPopupView.animateGhostHover()
     }
-    
-    func animateGhostHover() {
-        UIView.animate(withDuration: 0.75, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
-            self.popupView.frame.origin.y -= 10
-        }, completion: nil)
-    }
-    
+
     func animatePopupAndBlurViewIn() {
-        popupView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        popupView.alpha = 0
+        ghostPopupView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        ghostPopupView.alpha = 0
         
         UIView.animate(withDuration: 0.4) {
             self.blurView.effect = UIBlurEffect(style: .dark)
-            self.popupView.alpha = 1
-            self.popupView.transform = CGAffineTransform.identity
+            self.ghostPopupView.alpha = 1
+            self.ghostPopupView.transform = CGAffineTransform.identity
         }
     }
     
-    @objc func animatePopupAndBlurViewOut(after delay: Double = 0.0) {
-        print("here!")
+    func animatePopupAndBlurViewOut(after delay: Double = 0.0) {
         UIView.animate(withDuration: 0.3, delay: delay, animations: {
-            self.popupView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-            self.popupView.alpha = 0
+            self.ghostPopupView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+            self.ghostPopupView.alpha = 0
             self.blurView.effect = nil
             
         }) { (success: Bool) in
             self.blurView.removeFromSuperview()
-            self.popupView.removeFromSuperview()
+            self.ghostPopupView.removeConstraints(self.ghostPopupView.constraints)
+            self.ghostPopupView.removeFromSuperview()
         }
     }
     
     func handlePopupAndBlurView() {
         setupBlurView()
-        setupPopup()
+        setupGhostPopupView()
         animatePopupAndBlurViewIn()
         animatePopupAndBlurViewOut(after: 3.0)
-    }
-    
-    fileprivate func printAccount(account: Account) {
-        print("""
-            Account
-                Service:  \(account.service)
-                Username: \(account.username)
-                Password: \(account.password)
-            
-            """)
     }
     
     fileprivate func setupLabel() {
@@ -234,60 +196,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return CGAffineTransform(scaleX: scaleX, y: scaleY)
     }
     
-    // NOTE: Removed copyLabel from original code.
-    func enlargeWithCrossFade() {
-        var biggerBounds = label.bounds
-        
-        label.font = UIFont.boldSystemFont(ofSize: fontSizeBig)
-        biggerBounds.size = label.intrinsicContentSize
-
-        label.transform = scaleTransform(from: biggerBounds.size, to: label.bounds.size)
-        label.bounds = biggerBounds
-        label.alpha = 0.0
-        
-        UIView.animate(withDuration: duration, delay: 0.5, usingSpringWithDamping: 0.4,
-            initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
-                
-            self.label.transform = .identity
-        })
-        
-        UIView.animate(withDuration: duration / 2) {
-            self.label.alpha = 1.0
-        }
-    }
-    
-    func shrinkWithCrossFade(completion: @escaping () -> ()) {
-        let labelCopy = label.copyLabel()
-        view.addSubview(labelCopy)
-        
-        var smallerBounds = label.bounds
-        label.font = label.font.withSize(fontSizeSmall)
-        smallerBounds.size = label.intrinsicContentSize
-        
-        label.transform = scaleTransform(from: smallerBounds.size, to: label.bounds.size)
-        label.alpha = 0.0
-        
-        let shrinkTransform = scaleTransform(from: label.bounds.size, to: smallerBounds.size)
-        
-        let duration = 0.5
-        UIView.animate(withDuration: duration, animations: {
-            labelCopy.transform = shrinkTransform
-            self.label.transform = .identity
-        }, completion: { done in
-            self.label.transform = .identity
-            self.label.bounds = smallerBounds
-        })
-        
-        let percUntilFade = 0.8
-        UIView.animate(withDuration: duration - (duration * percUntilFade), delay: duration * percUntilFade, options: .curveLinear, animations: {
-            labelCopy.alpha = 0
-            self.label.alpha = 1
-        }, completion: { done in
-            labelCopy.removeFromSuperview()
-            completion()
-        })
-    }
-    
     fileprivate func setupCloudSecurityAnimation() {
         let animation = Animation.named("clouds")
         animationView.animation = animation
@@ -308,7 +216,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         serviceField.placeholder = "Service"
         serviceField.translatesAutoresizingMaskIntoConstraints = false
         serviceField.backgroundColor = .white
-        //serviceField.setLeftAndRightPadding(amount: 20)
         serviceField.tintColor = Color.soothingBreeze.value
         serviceField.setIcon(#imageLiteral(resourceName: "icon-account"))
         

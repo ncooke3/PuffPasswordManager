@@ -64,7 +64,7 @@ class Account:  ReadableSecureStorable,
         if let keychainData = self.readFromSecureStore() {
             if let dictionary = keychainData.data {
                 if let password = dictionary["password"] as? String {
-                    print("The password for \(self.service) is: \(password).")
+                    //print("The password for \(self.service) is: \(password).")
                     return password
                 }
             }
