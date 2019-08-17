@@ -13,15 +13,48 @@ import Lottie
 class ViewController: UIViewController, UITextFieldDelegate {
     
     let blurView = UIVisualEffectView()
-    
     var ghostPopupView: GhostPopupView!
+    
+    lazy var loadingAnimation = AnimationView()
+    
+    func setupLoadingAnimation() {
+        let animation = Animation.named("loading")
+        loadingAnimation.animation = animation
+        loadingAnimation.contentMode = .scaleAspectFit
+        view.addSubview(loadingAnimation)
+        
+        loadingAnimation.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingAnimation.widthAnchor.constraint(equalToConstant: view.frame.width * 0.5),
+            loadingAnimation.heightAnchor.constraint(equalToConstant: view.frame.width * 0.5)
+            ])
+    }
+    
+    lazy var successAnimation = AnimationView()
+    
+    func setupSuccessAnimation() {
+        let animation = Animation.named("success")
+        successAnimation.animation = animation
+        successAnimation.contentMode = .scaleAspectFit
+        view.addSubview(successAnimation)
+        
+        successAnimation.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            successAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            successAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            successAnimation.widthAnchor.constraint(equalToConstant: view.frame.width * 0.5),
+            successAnimation.heightAnchor.constraint(equalToConstant: view.frame.width * 0.5)
+            ])
+    }
     
     let containerView = UIView()
     let serviceField  = UITextField()
     let usernameField = UITextField()
     let passwordField = UITextField()
     let saveButton    = RoundButton()
-    var animationView = AnimationView()
+    var cloudsAnimation = AnimationView()
     
     let label = UILabel()
     let duration = 1.0
@@ -46,7 +79,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setupSaveButton()
         setupHideKeyboardOnTap()
         setupCloudSecurityAnimation()
-        animationView.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
+        cloudsAnimation.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
 
         Development.printAllAccounts()
     }
@@ -103,11 +136,55 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        setupBlurView()
+        animateLightBlurViewIn()
+        setupLoadingAnimation()
+        
+        loadingAnimation.loopMode = .loop
+        loadingAnimation.play()
+        
         // Lanyard/AddPasswordVC: Creates new account and stores in keychain + AccountDefaults
         
-        /*
+        /// Work:
+        // Make Account
         let newAccount = Account(service: service, username: username, password: password)
-        */
+        
+        // Make URL to hit
+        let serviceString = newAccount.service.trimmingCharacters(in: .whitespacesAndNewlines)
+        let stringURL = "https://autocomplete.clearbit.com/v1/companies/suggest?query=\(serviceString)"
+        let url = URL(string: stringURL)!
+        // Make API call
+        Requests().fetchCompanyInformation(with: url) { (info) in
+            print("Here is the info", info)
+            
+            DispatchQueue.main.async {
+                self.loadingAnimation.pause()
+                self.loadingAnimation.loopMode = .playOnce
+                self.loadingAnimation.play(toProgress: 1) { (_) in
+                    self.loadingAnimation.loopMode = .playOnce
+                    
+                    self.loadingAnimation.removeFromSuperview()
+                    self.loadingAnimation.removeConstraints(self.loadingAnimation.constraints)
+                    self.setupSuccessAnimation()
+                    
+                    self.successAnimation.play() { (_) in
+                        
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.successAnimation.alpha = 0
+                            
+                        }, completion: { (_) in
+                            self.successAnimation.removeFromSuperview()
+                            self.successAnimation.removeConstraints(self.successAnimation.constraints)
+                            self.successAnimation.alpha = 1
+                        })
+                        
+                        self.animateLightBlurViewOut()
+                        
+                    }
+                }
+            }
+        }
+        
         
         //print(accountDefaultsDoesContain(account: newAccount))
 
@@ -142,6 +219,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
             ghostPopupView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
         
         ghostPopupView.animateGhostHover()
+    }
+    
+    func animateLightBlurViewIn() {
+        UIView.animate(withDuration: 0.4) {
+            self.blurView.effect = UIBlurEffect(style: .light)
+        }
+    }
+    
+    func animateLightBlurViewOut() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.blurView.effect = nil
+        }) { (_) in
+            self.blurView.removeFromSuperview()
+        }
     }
 
     func animatePopupAndBlurViewIn() {
@@ -198,21 +289,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func setupCloudSecurityAnimation() {
         let animation = Animation.named("clouds")
-        animationView.animation = animation
-        animationView.contentMode = .scaleAspectFit
-        view.insertSubview(animationView, belowSubview: containerView)
+        cloudsAnimation.animation = animation
+        cloudsAnimation.contentMode = .scaleAspectFit
+        view.insertSubview(cloudsAnimation, belowSubview: containerView)
         
-        animationView.translatesAutoresizingMaskIntoConstraints = false
+        cloudsAnimation.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            animationView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.22),
-            animationView.widthAnchor.constraint(equalToConstant: view.frame.width),
-            animationView.heightAnchor.constraint(equalToConstant: view.frame.width)
+            cloudsAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cloudsAnimation.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.22),
+            cloudsAnimation.widthAnchor.constraint(equalToConstant: view.frame.width),
+            cloudsAnimation.heightAnchor.constraint(equalToConstant: view.frame.width)
             ])
     }
 
     fileprivate func setupServiceTextfield() {
         serviceField.delegate = self
+        
         serviceField.placeholder = "Service"
         serviceField.translatesAutoresizingMaskIntoConstraints = false
         serviceField.backgroundColor = .white
@@ -223,7 +315,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         serviceField.layer.borderColor = UIColor.white.cgColor
         serviceField.layer.borderWidth = 1.0
         
+        
         containerView.addSubview(serviceField)
+        serviceField.tag = 1
+        print(serviceField.tag)
         
         NSLayoutConstraint.activate([
             serviceField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -233,8 +328,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
             ])
     }
     
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if serviceField.hasText && usernameField.hasText && passwordField.hasText {
+            textField.resignFirstResponder()
+        } else {
+            switch textField {
+            case serviceField:
+                usernameField.becomeFirstResponder()
+            case usernameField:
+                passwordField.becomeFirstResponder()
+            case passwordField:
+                passwordField.resignFirstResponder()
+            default:
+                textField.resignFirstResponder()
+            }
+        }
+
+        return true
+    }
+    
     fileprivate func setupUsernameTextfield() {
         usernameField.delegate = self
+        
         usernameField.placeholder = "Username"
         usernameField.translatesAutoresizingMaskIntoConstraints = false
         usernameField.backgroundColor = .white
@@ -247,6 +363,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         usernameField.layer.borderWidth = 1.0
         
         containerView.addSubview(usernameField)
+        usernameField.tag = 2
+        print(serviceField.tag)
+        
         
         NSLayoutConstraint.activate([
             usernameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -259,7 +378,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     fileprivate func setupPasswordTextField() {
         passwordField.delegate = self
         passwordField.placeholder = "Password"
-        
+        serviceField.tag = 3
         
         
         passwordField.translatesAutoresizingMaskIntoConstraints = false

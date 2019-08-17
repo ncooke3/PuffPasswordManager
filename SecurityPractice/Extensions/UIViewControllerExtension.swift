@@ -27,8 +27,15 @@ extension UIViewController {
     
     /// Dismisses keyboard when 'return' is tapped
     @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        print(textField.tag)
+        let nextTag = textField.tag + 1
         
-        return false
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
 }
