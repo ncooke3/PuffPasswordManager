@@ -1,24 +1,30 @@
 PODS:
   - Locksmith (4.0.0)
   - lottie-ios (3.1.1)
+  - SDWebImage (5.1.0):
+    - SDWebImage/Core (= 5.1.0)
+  - SDWebImage/Core (5.1.0)
   - SwipeCellKit (2.6.0)
 
 DEPENDENCIES:
   - Locksmith
   - lottie-ios
+  - SDWebImage (~> 5.0)
   - SwipeCellKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Locksmith
     - lottie-ios
+    - SDWebImage
     - SwipeCellKit
 
 SPEC CHECKSUMS:
   Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
   lottie-ios: 43a472d22b2dd2bed292cc4010c0b4d2e66d3ba8
+  SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: 7c0fafe72fd5cdb8455c0402fe064bf7dd37abec
+PODFILE CHECKSUM: 01907e1f4ec860fdeca1ee06276e3046134063e3
 
 COCOAPODS: 1.6.1

@@ -11,6 +11,8 @@ target 'SecurityPractice' do
   pod 'lottie-ios'
   
   pod 'SwipeCellKit'
+  
+  pod 'SDWebImage', '~> 5.0'
 
   target 'SecurityPracticeTests' do
     inherit! :search_paths
