@@ -10,7 +10,6 @@
 		95D5A74287ECCF62F090C574 /* Pods_SecurityPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8512C693397E8E97F86967 /* Pods_SecurityPractice.framework */; };
 		E37985D2DB53ED5C022362BB /* Pods_SecurityPracticeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B18C07FAE9E7AA9C841F8FB /* Pods_SecurityPracticeTests.framework */; };
 		EA02397023048972001212B6 /* clouds.json in Resources */ = {isa = PBXBuildFile; fileRef = EA02396F23048972001212B6 /* clouds.json */; };
-		EA0239722304F362001212B6 /* BlurredGhostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0239712304F362001212B6 /* BlurredGhostViewController.swift */; };
 		EA02D0DF230307C2006BE9EE /* CloudsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */; };
 		EA02D0E123042EE9006BE9EE /* CloudsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0E023042EE9006BE9EE /* CloudsView.swift */; };
 		EA0F82F72306250100777425 /* GhostPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F82F62306250100777425 /* GhostPopupView.swift */; };
@@ -18,6 +17,7 @@
 		EA0F8303230766E200777425 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F8302230766E200777425 /* Requests.swift */; };
 		EA0F83082307961900777425 /* success.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0F83072307961900777425 /* success.json */; };
 		EA0F830A2307961E00777425 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0F83092307961E00777425 /* loading.json */; };
+		EA0F831023081E7400777425 /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0F830F23081E7400777425 /* error.json */; };
 		EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D222F259030093CD4D /* AppDelegate.swift */; };
 		EA7326D522F259030093CD4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D422F259030093CD4D /* ViewController.swift */; };
 		EA7326DA22F259060093CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7326D922F259060093CD4D /* Assets.xcassets */; };
@@ -61,14 +61,14 @@
 		8E83DB06F748596E94354B85 /* Pods-SecurityPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurityPractice.debug.xcconfig"; path = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice.debug.xcconfig"; sourceTree = "<group>"; };
 		9EB5787B73D166546A867C35 /* Pods-SecurityPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurityPractice.release.xcconfig"; path = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice.release.xcconfig"; sourceTree = "<group>"; };
 		EA02396F23048972001212B6 /* clouds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clouds.json; sourceTree = "<group>"; };
-		EA0239712304F362001212B6 /* BlurredGhostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredGhostViewController.swift; sourceTree = "<group>"; };
 		EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsViewController.swift; sourceTree = "<group>"; };
 		EA02D0E023042EE9006BE9EE /* CloudsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsView.swift; sourceTree = "<group>"; };
 		EA0F82F62306250100777425 /* GhostPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostPopupView.swift; sourceTree = "<group>"; };
 		EA0F82FA23062DE900777425 /* Development.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Development.swift; sourceTree = "<group>"; };
 		EA0F8302230766E200777425 /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
-		EA0F83072307961900777425 /* success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = success.json; path = LottieAnimations/success.json; sourceTree = "<group>"; };
-		EA0F83092307961E00777425 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = LottieAnimations/loading.json; sourceTree = "<group>"; };
+		EA0F83072307961900777425 /* success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success.json; sourceTree = "<group>"; };
+		EA0F83092307961E00777425 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		EA0F830F23081E7400777425 /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
 		EA7326CF22F259030093CD4D /* SecurityPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurityPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7326D222F259030093CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7326D422F259030093CD4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,10 +131,50 @@
 		EA0F8306230795AE00777425 /* LottieAnimations */ = {
 			isa = PBXGroup;
 			children = (
+				EA0F830F23081E7400777425 /* error.json */,
 				EA02396F23048972001212B6 /* clouds.json */,
+				EA0F83092307961E00777425 /* loading.json */,
 				EA88667222F3F3F700BDC38B /* cloud-security.json */,
+				EA0F83072307961900777425 /* success.json */,
 			);
 			path = LottieAnimations;
+			sourceTree = "<group>";
+		};
+		EA0F830B23081A8300777425 /* Development */ = {
+			isa = PBXGroup;
+			children = (
+				EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */,
+				EA0F82FA23062DE900777425 /* Development.swift */,
+			);
+			path = Development;
+			sourceTree = "<group>";
+		};
+		EA0F830C23081B4900777425 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				EA79721C22F7784D00A1CDFE /* ColorScheme.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		EA0F830D23081B9B00777425 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EAF9F75B22F6B13E0084B008 /* MainViewController.swift */,
+				EA02D0E023042EE9006BE9EE /* CloudsView.swift */,
+				EA79721A22F765B500A1CDFE /* SwipeCellEnums.swift */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		EA0F830E23081BB300777425 /* AddAccountViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EA7326D422F259030093CD4D /* ViewController.swift */,
+				EA0F82F62306250100777425 /* GhostPopupView.swift */,
+				EA0F8302230766E200777425 /* Requests.swift */,
+			);
+			path = AddAccountViewController;
 			sourceTree = "<group>";
 		};
 		EA7326C622F259030093CD4D = {
@@ -161,20 +201,12 @@
 			isa = PBXGroup;
 			children = (
 				EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */,
-				EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */,
-				EA02D0E023042EE9006BE9EE /* CloudsView.swift */,
-				EA0F82F62306250100777425 /* GhostPopupView.swift */,
-				EAF9F75B22F6B13E0084B008 /* MainViewController.swift */,
-				EA0F83072307961900777425 /* success.json */,
-				EA7326D422F259030093CD4D /* ViewController.swift */,
-				EA0F83092307961E00777425 /* loading.json */,
-				EA79721C22F7784D00A1CDFE /* ColorScheme.swift */,
-				EA79721A22F765B500A1CDFE /* SwipeCellEnums.swift */,
-				EA0F8302230766E200777425 /* Requests.swift */,
-				EA0F8306230795AE00777425 /* LottieAnimations */,
-				EA0F82FA23062DE900777425 /* Development.swift */,
 				EA7326D222F259030093CD4D /* AppDelegate.swift */,
-				EA0239712304F362001212B6 /* BlurredGhostViewController.swift */,
+				EA0F830D23081B9B00777425 /* MainViewController */,
+				EA0F830E23081BB300777425 /* AddAccountViewController */,
+				EA0F830B23081A8300777425 /* Development */,
+				EA0F830C23081B4900777425 /* Colors */,
+				EA0F8306230795AE00777425 /* LottieAnimations */,
 				EA96F11522F7F750006EF8B3 /* Fonts */,
 				EA7326FE22F27EAA0093CD4D /* Custom Classes */,
 				EA7326F822F2681D0093CD4D /* Extensions */,
@@ -337,6 +369,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0F831023081E7400777425 /* error.json in Resources */,
 				EA96F11F22F7F979006EF8B3 /* SF-Pro-Rounded-Black.otf in Resources */,
 				EA96F12022F7F979006EF8B3 /* SF-Pro-Rounded-Bold.otf in Resources */,
 				EA96F12122F7F979006EF8B3 /* SF-Pro-Rounded-Heavy.otf in Resources */,
@@ -455,7 +488,6 @@
 				EA02D0DF230307C2006BE9EE /* CloudsViewController.swift in Sources */,
 				EAF9F75C22F6B13E0084B008 /* MainViewController.swift in Sources */,
 				EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */,
-				EA0239722304F362001212B6 /* BlurredGhostViewController.swift in Sources */,
 				EA7326F322F25A940093CD4D /* Account.swift in Sources */,
 				EA0F82FB23062DE900777425 /* Development.swift in Sources */,
 			);

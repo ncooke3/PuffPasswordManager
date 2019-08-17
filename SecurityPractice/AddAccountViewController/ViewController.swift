@@ -149,9 +149,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func handleLoadingAndSuccessAnimation() {
         let loadingDurationInSeconds = self.loadingAnimation.animation!.duration
-        
         self.finishLoadingAnimation(loadingDurationInSeconds)
-        
         self.finishSuccessAnimation(loadingDurationInSeconds)
     }
     
@@ -176,26 +174,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        // Launch Loading Animation & Blur
         setupBlurView()
         animateLightBlurViewIn()
         setupLoadingAnimation()
-        
         loadingAnimation.loopMode = .loop
         loadingAnimation.play()
         
-        print(UInt64(loadingAnimation.animation!.duration * Double(NSEC_PER_SEC)))
-        
-        // Lanyard/AddPasswordVC: Creates new account and stores in keychain + AccountDefaults
-        
-        /// Work:
         // Make Account
         let newAccount = Account(service: service, username: username, password: password)
         
-        // Make URL to hit
-        let serviceString = newAccount.service.trimmingCharacters(in: .whitespacesAndNewlines)
-        let stringURL = "https://autocomplete.clearbit.com/v1/companies/suggest?query=\(serviceString)"
+        // 🚧 Handle Duplicate Accounts Here
+        // Maybe by updating current's password (the same as if you edited an account)
+        
+        let trimmedServiceString = newAccount.service.trimmingCharacters(in: .whitespacesAndNewlines)
+        // 🚧 Handle punctuation?
+        let urlSafeServiceString = trimmedServiceString.replacingOccurrences(of: " ", with: "")
+        let stringURL = "https://autocomplete.clearbit.com/v1/companies/suggest?query=\(urlSafeServiceString)"
         let url = URL(string: stringURL)!
-        // Make API call
+        
+        // Make API call 🚧 Handles errors!
         Requests().fetchCompanyInformation(with: url) { (info) in
             print("Here is the info", info)
             
@@ -423,6 +421,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         view.addSubview(saveButton)
         saveButton.setTitle("Save Account", for: .normal)
+        saveButton.titleLabel?.font = UIFont(name: "SFProRounded-Medium", size: 17)
         saveButton.backgroundColor = Color.brightYarrow.value
         
         saveButton.sizeToFit()
