@@ -66,6 +66,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(containerView)
     }
     
+    fileprivate func setupBackgroundForegroundNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,6 +93,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        CompanyDefaults.deleteAllCompanies()
         Development.printAllAccounts()
         Development.printAllCompanies()
+        
+        setupBackgroundForegroundNotifications()
+    }
+    
+    @objc func appMovedToBackground() {
+        cloudsAnimation.pause()
+    }
+    
+    @objc func appMovedToForeground() {
+        cloudsAnimation.play()
     }
     
     func changeUsernameFor( account: inout Account, newUsername: String) {

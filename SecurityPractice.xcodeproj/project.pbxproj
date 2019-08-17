@@ -20,6 +20,7 @@
 		EA0F831023081E7400777425 /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = EA0F830F23081E7400777425 /* error.json */; };
 		EA0F83132308215100777425 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83122308215100777425 /* Company.swift */; };
 		EA0F83152308216100777425 /* CompanyDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83142308216100777425 /* CompanyDefaults.swift */; };
+		EA0F83172308914D00777425 /* AddAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83162308914D00777425 /* AddAccountButton.swift */; };
 		EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D222F259030093CD4D /* AppDelegate.swift */; };
 		EA7326D522F259030093CD4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D422F259030093CD4D /* ViewController.swift */; };
 		EA7326DA22F259060093CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7326D922F259060093CD4D /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		EA0F830F23081E7400777425 /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
 		EA0F83122308215100777425 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		EA0F83142308216100777425 /* CompanyDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDefaults.swift; sourceTree = "<group>"; };
+		EA0F83162308914D00777425 /* AddAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountButton.swift; sourceTree = "<group>"; };
 		EA7326CF22F259030093CD4D /* SecurityPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurityPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7326D222F259030093CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7326D422F259030093CD4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				EA7326F622F265510093CD4D /* RoundButton.swift */,
+				EA0F83162308914D00777425 /* AddAccountButton.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				EAF9F75C22F6B13E0084B008 /* MainViewController.swift in Sources */,
 				EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */,
 				EA7326F322F25A940093CD4D /* Account.swift in Sources */,
+				EA0F83172308914D00777425 /* AddAccountButton.swift in Sources */,
 				EA0F82FB23062DE900777425 /* Development.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

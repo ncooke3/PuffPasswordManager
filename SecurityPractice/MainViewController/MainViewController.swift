@@ -17,6 +17,13 @@ class MainViewController: UIViewController {
     
     var backgroundView: CloudsView!
     
+    private lazy var addAccountButton: AddAccountButton = {
+        let button = AddAccountButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.value = "+"
+        return button
+    }()
+    
     let tableView: UITableView = {
         let tableview = UITableView()
         tableview.separatorStyle = .none
@@ -50,7 +57,29 @@ class MainViewController: UIViewController {
         Development.printAllAccounts()
         Development.printAllCompanies()
         
-
+        
+        view.addSubview(addAccountButton)
+        NSLayoutConstraint.activate([
+            addAccountButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 15),
+            addAccountButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -15),
+            addAccountButton.widthAnchor.constraint(equalToConstant: 50),
+            addAccountButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        //addAccountButton.center(in: view)
+        
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func appMovedToBackground() {
+        print("App moved to background!")
+    }
+    
+    @objc func appMovedToForeground() {
+        print("App moved to foreground!")
         
     }
     
