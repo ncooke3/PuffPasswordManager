@@ -115,6 +115,46 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return doesContain
     }
 
+    fileprivate func finishLoadingAnimation(_ loadingDurationInSeconds: TimeInterval) {
+        DispatchQueue.main.async {
+            self.loadingAnimation.pause()
+            self.loadingAnimation.play(toProgress: 1)
+            self.loadingAnimation.loopMode = .playOnce
+            
+            UIView.animate(withDuration: loadingDurationInSeconds, delay: 0, options: [.curveEaseOut], animations: {
+                self.loadingAnimation.alpha = 0
+            }, completion: { (_) in
+                self.loadingAnimation.removeFromSuperview()
+                self.loadingAnimation.removeConstraints(self.loadingAnimation.constraints)
+                self.loadingAnimation.alpha = 1
+            })
+        }
+    }
+    
+    fileprivate func finishSuccessAnimation(_ loadingDurationInSeconds: TimeInterval) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + loadingDurationInSeconds, execute: {
+            self.setupSuccessAnimation()
+            self.successAnimation.play() { (_) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.successAnimation.alpha = 0
+                    self.animateLightBlurViewOut()
+                }, completion: { (_) in
+                    self.successAnimation.removeFromSuperview()
+                    self.successAnimation.removeConstraints(self.successAnimation.constraints)
+                    self.successAnimation.alpha = 1
+                })
+            }
+        })
+    }
+    
+    fileprivate func handleLoadingAndSuccessAnimation() {
+        let loadingDurationInSeconds = self.loadingAnimation.animation!.duration
+        
+        self.finishLoadingAnimation(loadingDurationInSeconds)
+        
+        self.finishSuccessAnimation(loadingDurationInSeconds)
+    }
+    
     @objc func saveButtonTapped() {
         
         let service  = serviceField.text!
@@ -143,6 +183,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loadingAnimation.loopMode = .loop
         loadingAnimation.play()
         
+        print(UInt64(loadingAnimation.animation!.duration * Double(NSEC_PER_SEC)))
+        
         // Lanyard/AddPasswordVC: Creates new account and stores in keychain + AccountDefaults
         
         /// Work:
@@ -157,32 +199,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         Requests().fetchCompanyInformation(with: url) { (info) in
             print("Here is the info", info)
             
-            DispatchQueue.main.async {
-                self.loadingAnimation.pause()
-                self.loadingAnimation.loopMode = .playOnce
-                self.loadingAnimation.play(toProgress: 1) { (_) in
-                    self.loadingAnimation.loopMode = .playOnce
-                    
-                    self.loadingAnimation.removeFromSuperview()
-                    self.loadingAnimation.removeConstraints(self.loadingAnimation.constraints)
-                    self.setupSuccessAnimation()
-                    
-                    self.successAnimation.play() { (_) in
-                        
-                        UIView.animate(withDuration: 0.3, animations: {
-                            self.successAnimation.alpha = 0
-                            
-                        }, completion: { (_) in
-                            self.successAnimation.removeFromSuperview()
-                            self.successAnimation.removeConstraints(self.successAnimation.constraints)
-                            self.successAnimation.alpha = 1
-                        })
-                        
-                        self.animateLightBlurViewOut()
-                        
-                    }
-                }
-            }
+            self.handleLoadingAndSuccessAnimation()
         }
         
         
