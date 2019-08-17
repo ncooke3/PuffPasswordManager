@@ -8,18 +8,14 @@
 
 import UIKit
 import SwipeCellKit
+import SDWebImage
 
 class MainViewController: UIViewController {
     
     var buttonDisplayMode: ButtonDisplayMode = .imageOnly
     var buttonStyle: ButtonStyle = .circular
     
-    let cloudImageView: UIImageView = {
-        let imageview = UIImageView()
-        imageview.contentMode = .scaleAspectFit
-        imageview.backgroundColor = .white
-        return imageview
-    }()
+    var backgroundView: CloudsView!
     
     let tableView: UITableView = {
         let tableview = UITableView()
@@ -35,18 +31,37 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Color.lightBackground.value
+        backgroundView = CloudsView(frame: view.frame)
+        view.addSubview(backgroundView)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
         
-        setupCloudImageView()
+        // 🚧 SDWebImage
+//        SDImageCache.shared.clearMemory()
+//        SDImageCache.shared.clearDisk(onCompletion: nil)
+        
         setupTableView()
         
         // 🚧 Development Printing
         Development.printAllAccounts()
         Development.printAllCompanies()
+        
+
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        backgroundView.animateTopCloud()
+        backgroundView.animateMiddleCloud()
+        backgroundView.animateBottomCloud()
+        
+        backgroundView.animateTitleCloud()
 
         if tableView.layer.mask == nil {
 
@@ -93,23 +108,13 @@ class MainViewController: UIViewController {
 
     }
     
-    func setupCloudImageView() {
-        view.addSubview(cloudImageView)
-        cloudImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            cloudImageView.safeTopAnchor.constraint(equalTo: view.safeTopAnchor),
-            cloudImageView.safeCenterXAnchor.constraint(equalTo: view.safeCenterXAnchor),
-            cloudImageView.heightAnchor.constraint(equalToConstant: 200),
-            cloudImageView.widthAnchor.constraint(equalToConstant: 200)])
-    }
-    
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(AccountCell.self, forCellReuseIdentifier: cellId)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        let topAnchorConstant = 0.25 * view.safeFrame.height
+        let topAnchorConstant = 0.30 * view.safeFrame.height
         NSLayoutConstraint.activate([
             tableView.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: topAnchorConstant),
             tableView.safeBottomAnchor.constraint(equalTo: view.safeBottomAnchor),
@@ -127,6 +132,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AccountCell
         cell.delegate = self
+        
+        let service = AccountDefaults.accounts[indexPath.row].service
+        let company = CompanyDefaults.companies[service]
+        cell.cellImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        cell.cellImageView.sd_imageIndicator = SDWebImageProgressIndicator.`default`
+        cell.cellImageView.sd_setImage(with: company?.url, completed: nil)
         
         cell.usernameLabel.text = AccountDefaults.accounts[indexPath.row].username
         cell.passwordLabel.text = AccountDefaults.accounts[indexPath.row].getPasswordFromStore()
@@ -208,8 +219,8 @@ class AccountCell: SwipeTableViewCell {
     
     let cellView: TableCellContainerView = {
         let view = TableCellContainerView()
-        view.backgroundColor = UIColor(red: 0.69, green: 0.82, blue: 0.87, alpha: 1.0)
-        // setup shadow?
+        view.backgroundColor = Color.cityLights.withAlpha(0.8)
+        // 🚧 setup shadow?
         return view
     }()
     
