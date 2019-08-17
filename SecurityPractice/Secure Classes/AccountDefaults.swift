@@ -22,4 +22,12 @@ struct AccountDefaults {
             UserDefaults.standard.set(data, forKey: accountsKey)
         }
     }
+    
+    static func safelyDeleteAllAccounts() {
+        for index in 0..<AccountDefaults.accounts.count {
+            self.accounts[index].safelyDeleteFromKeychain()
+        }
+        self.accounts.removeAll()
+    }
+    
 }

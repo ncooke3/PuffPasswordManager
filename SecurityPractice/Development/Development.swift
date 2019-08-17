@@ -27,4 +27,11 @@ struct Development {
             print("The password is", password!)
         }
     }
+    
+    static func printAllCompanies() {
+        print("\nCompanies")
+        for key in CompanyDefaults.companies.keys {
+            print("\(key) : \(CompanyDefaults.companies[key]!)")
+        }
+    }
 }

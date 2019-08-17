@@ -40,6 +40,9 @@ class MainViewController: UIViewController {
         setupCloudImageView()
         setupTableView()
         
+        // 🚧 Development Printing
+        Development.printAllAccounts()
+        Development.printAllCompanies()
     }
     
     override func viewDidLayoutSubviews() {

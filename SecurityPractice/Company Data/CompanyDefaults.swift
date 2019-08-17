@@ -21,4 +21,9 @@ struct CompanyDefaults {
             UserDefaults.standard.set(data, forKey: companiesKey)
         }
     }
+    
+    static func deleteAllCompanies() {
+        self.companies.removeAll()
+    }
+    
 }

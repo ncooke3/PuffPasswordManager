@@ -81,7 +81,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setupCloudSecurityAnimation()
         cloudsAnimation.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
 
+        // 🚧 Development Printing
+//        AccountDefaults.safelyDeleteAllAccounts()
+//        CompanyDefaults.deleteAllCompanies()
         Development.printAllAccounts()
+        Development.printAllCompanies()
     }
     
     func changeUsernameFor( account: inout Account, newUsername: String) {
@@ -149,15 +153,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func handleLoadingAndSuccessAnimation() {
         let loadingDurationInSeconds = self.loadingAnimation.animation!.duration
+        print(loadingDurationInSeconds)
         self.finishLoadingAnimation(loadingDurationInSeconds)
         self.finishSuccessAnimation(loadingDurationInSeconds)
     }
     
     @objc func saveButtonTapped() {
         
-        let service  = serviceField.text!
-        let username = usernameField.text!
-        let password = passwordField.text!
+        var service  = serviceField.text!
+        var username = usernameField.text!
+        var password = passwordField.text!
         
         guard service != "" else {
             self.handlePopupAndBlurView()
@@ -182,20 +187,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loadingAnimation.play()
         
         // Make Account
+        service = service.trimmingCharacters(in: .whitespacesAndNewlines)
+        username = username.trimmingCharacters(in: .whitespacesAndNewlines)
+        password = password.trimmingCharacters(in: .whitespacesAndNewlines)
         let newAccount = Account(service: service, username: username, password: password)
+        
+        // Clear all Textfields
+        serviceField.text  = ""
+        usernameField.text = ""
+        passwordField.text = ""
         
         // 🚧 Handle Duplicate Accounts Here
         // Maybe by updating current's password (the same as if you edited an account)
         
-        let trimmedServiceString = newAccount.service.trimmingCharacters(in: .whitespacesAndNewlines)
         // 🚧 Handle punctuation?
-        let urlSafeServiceString = trimmedServiceString.replacingOccurrences(of: " ", with: "")
+        let urlSafeServiceString = newAccount.service.replacingOccurrences(of: " ", with: "")
         let stringURL = "https://autocomplete.clearbit.com/v1/companies/suggest?query=\(urlSafeServiceString)"
         let url = URL(string: stringURL)!
         
         // Make API call 🚧 Handles errors!
         Requests().fetchCompanyInformation(with: url) { (info) in
-            print("Here is the info", info)
+            print("✅ API Call results:", info)
+            
+            guard let logoURLString = info["logo"] else { return } // Empty logo -> Fail!
+            
+            guard let logoURL = URL(string: logoURLString) else { return } // Bad URL -> Fail!
+            
+            // 🚧 newAccount.service should probably be passed into an extracted function?
+            CompanyDefaults.companies[newAccount.service] = Company(name: newAccount.service, url: logoURL, color: nil)
+            newAccount.addToAccountsDefaults()
+            newAccount.safelyStoreInKeychain()
             
             self.handleLoadingAndSuccessAnimation()
         }
@@ -329,11 +350,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         serviceField.layer.cornerRadius = 7.0
         serviceField.layer.borderColor = UIColor.white.cgColor
         serviceField.layer.borderWidth = 1.0
-        
-        
+
         containerView.addSubview(serviceField)
-        serviceField.tag = 1
-        print(serviceField.tag)
         
         NSLayoutConstraint.activate([
             serviceField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -378,9 +396,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         usernameField.layer.borderWidth = 1.0
         
         containerView.addSubview(usernameField)
-        usernameField.tag = 2
-        print(serviceField.tag)
-        
         
         NSLayoutConstraint.activate([
             usernameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -393,8 +408,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     fileprivate func setupPasswordTextField() {
         passwordField.delegate = self
         passwordField.placeholder = "Password"
-        serviceField.tag = 3
-        
         
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.backgroundColor = .white
