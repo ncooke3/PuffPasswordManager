@@ -10,7 +10,11 @@ import UIKit
 import SwipeCellKit
 import SDWebImage
 
+var globalMainViewController: MainViewController?
+
 class MainViewController: UIViewController {
+    
+    let transition = CircularTransition()
     
     var buttonDisplayMode: ButtonDisplayMode = .imageOnly
     var buttonStyle: ButtonStyle = .circular
@@ -51,6 +55,9 @@ class MainViewController: UIViewController {
         
         view.backgroundColor = Color.lightBackground.value
         
+        // allows for reloading tablview when AddAccountVC dismisses
+        globalMainViewController = self
+        
         setupBackgroundView()
         
         // 🚧 SDWebImage
@@ -72,10 +79,19 @@ class MainViewController: UIViewController {
             addAccountButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         
+        addAccountButton.addTarget(self, action: #selector(handleAddAccountTapped), for: [.touchUpInside])
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func handleAddAccountTapped() {
+        print("tapped!")
+        let nextVC = ViewController()
+        nextVC.transitioningDelegate = self
+        nextVC.modalPresentationStyle = .custom
+        self.present(nextVC, animated: true, completion: nil)
     }
     
     @objc func appMovedToBackground() {
@@ -85,6 +101,11 @@ class MainViewController: UIViewController {
     
     @objc func appMovedToForeground() {
         setupBackgroundView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -102,8 +123,7 @@ class MainViewController: UIViewController {
             view.layoutIfNeeded()
 
             let maskLayer: CAGradientLayer = CAGradientLayer()
-
-            maskLayer.locations = [0.0, 0.05, 0.95, 1.0]
+            maskLayer.locations = [0.0, 0.01, 0.985, 1.0]
             let width = tableView.frame.size.width
             let height = tableView.frame.size.height
             maskLayer.bounds = CGRect(x: 0.0, y: 0.0, width: width, height: height)
@@ -150,9 +170,29 @@ class MainViewController: UIViewController {
         let topAnchorConstant = 0.30 * view.safeFrame.height
         NSLayoutConstraint.activate([
             tableView.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: topAnchorConstant),
-            tableView.safeBottomAnchor.constraint(equalTo: view.safeBottomAnchor),
+            tableView.safeBottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.safeLeadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
             tableView.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor)])
+    }
+    
+}
+
+extension MainViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.startingPoint = addAccountButton.center
+        transition.circleColor = addAccountButton.backgroundColor!
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        transition.startingPoint = addAccountButton.center
+        transition.circleColor = addAccountButton.backgroundColor!
+        
+        return transition
     }
     
 }
@@ -283,23 +323,17 @@ class AccountCell: SwipeTableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
-        
-        // SHADOW: add shadow on cell
-        backgroundColor = .clear // very important
-//        layer.masksToBounds = false
-//        layer.shadowOpacity = 0.23
-//        layer.shadowRadius = 4
-//        layer.shadowOffset = CGSize(width: 0, height: 0)
-//        layer.shadowColor = UIColor.black.cgColor
-
-//        // add corner radius on `contentView`
-        contentView.backgroundColor = .clear
-//        contentView.layer.cornerRadius = 8
+        sharedInit()
     }
     
-    func setup() {
-        addSubview(cellView)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func sharedInit() {
+        self.backgroundColor = .clear
+        
+        self.addSubview(cellView)
         cellView.addSubview(cellImageView)
         cellView.addSubview(usernameLabel)
         cellView.addSubview(passwordLabel)
@@ -331,11 +365,6 @@ class AccountCell: SwipeTableViewCell {
             passwordLabel.safeLeadingAnchor.constraint(equalTo: usernameLabel.safeTrailingAnchor, constant: 30)
             ])
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }
 
 class ContainerImageView: UIImageView {

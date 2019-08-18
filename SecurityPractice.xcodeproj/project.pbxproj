@@ -21,6 +21,7 @@
 		EA0F83132308215100777425 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83122308215100777425 /* Company.swift */; };
 		EA0F83152308216100777425 /* CompanyDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83142308216100777425 /* CompanyDefaults.swift */; };
 		EA0F83172308914D00777425 /* AddAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83162308914D00777425 /* AddAccountButton.swift */; };
+		EA0F83192308DF8C00777425 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83182308DF8C00777425 /* CircularTransition.swift */; };
 		EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D222F259030093CD4D /* AppDelegate.swift */; };
 		EA7326D522F259030093CD4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D422F259030093CD4D /* ViewController.swift */; };
 		EA7326DA22F259060093CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7326D922F259060093CD4D /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		EA0F83122308215100777425 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		EA0F83142308216100777425 /* CompanyDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDefaults.swift; sourceTree = "<group>"; };
 		EA0F83162308914D00777425 /* AddAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountButton.swift; sourceTree = "<group>"; };
+		EA0F83182308DF8C00777425 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		EA7326CF22F259030093CD4D /* SecurityPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurityPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7326D222F259030093CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7326D422F259030093CD4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				EAF9F75B22F6B13E0084B008 /* MainViewController.swift */,
+				EA0F83182308DF8C00777425 /* CircularTransition.swift */,
 				EA02D0E023042EE9006BE9EE /* CloudsView.swift */,
 				EA79721A22F765B500A1CDFE /* SwipeCellEnums.swift */,
 			);
@@ -508,6 +511,7 @@
 				EA02D0DF230307C2006BE9EE /* CloudsViewController.swift in Sources */,
 				EA0F83132308215100777425 /* Company.swift in Sources */,
 				EAF9F75C22F6B13E0084B008 /* MainViewController.swift in Sources */,
+				EA0F83192308DF8C00777425 /* CircularTransition.swift in Sources */,
 				EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */,
 				EA7326F322F25A940093CD4D /* Account.swift in Sources */,
 				EA0F83172308914D00777425 /* AddAccountButton.swift in Sources */,

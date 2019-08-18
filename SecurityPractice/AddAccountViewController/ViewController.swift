@@ -34,6 +34,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     lazy var successAnimation = AnimationView()
     
+    
+    private lazy var cancelButton: AddAccountButton = {
+        let button = AddAccountButton()
+        button.backgroundColor = Color.custom(hexString: "#0984e3", alpha: 1).value
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.value = "x"
+        return button
+    }()
+    
     func setupSuccessAnimation() {
         let animation = Animation.named("success")
         successAnimation.animation = animation
@@ -95,6 +104,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
         Development.printAllCompanies()
         
         setupBackgroundForegroundNotifications()
+        
+        
+        view.addSubview(cancelButton)
+        NSLayoutConstraint.activate([
+            cancelButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 15),
+            cancelButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -15),
+            cancelButton.widthAnchor.constraint(equalToConstant: 50),
+            cancelButton.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        
+        cancelButton.addTarget(self, action: #selector(handleCancelTapped), for: [.touchUpInside])
+    }
+    
+    @objc func handleCancelTapped() {
+        self.dismiss(animated: true)
     }
     
     @objc func appMovedToBackground() {
@@ -152,7 +176,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    fileprivate func finishSuccessAnimation(_ loadingDurationInSeconds: TimeInterval) {
+    fileprivate func finishSuccessAnimation(_ loadingDurationInSeconds: TimeInterval, completion: @escaping () -> ()) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + loadingDurationInSeconds, execute: {
             self.setupSuccessAnimation()
             self.successAnimation.play() { (_) in
@@ -163,16 +187,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     self.successAnimation.removeFromSuperview()
                     self.successAnimation.removeConstraints(self.successAnimation.constraints)
                     self.successAnimation.alpha = 1
+                    completion()
                 })
             }
         })
     }
     
-    fileprivate func handleLoadingAndSuccessAnimation() {
+    fileprivate func handleLoadingAndSuccessAnimation(donedone: @escaping () -> ()) {
         let loadingDurationInSeconds = self.loadingAnimation.animation!.duration
         print(loadingDurationInSeconds)
         self.finishLoadingAnimation(loadingDurationInSeconds)
-        self.finishSuccessAnimation(loadingDurationInSeconds)
+        self.finishSuccessAnimation(loadingDurationInSeconds) {
+            donedone()
+        }
+        
     }
     
     @objc func saveButtonTapped() {
@@ -235,7 +263,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             newAccount.addToAccountsDefaults()
             newAccount.safelyStoreInKeychain()
             
-            self.handleLoadingAndSuccessAnimation()
+            self.handleLoadingAndSuccessAnimation() {
+                self.dismiss(animated: true, completion: {
+                    globalMainViewController?.tableView.reloadData()
+                })
+            }
         }
         
         

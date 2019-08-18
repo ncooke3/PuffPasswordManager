@@ -65,7 +65,7 @@ class CloudsView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = Color.darkBackground.value
+        backgroundColor = Color.custom(hexString: "#0984e3", alpha: 1).value//Color.darkBackground.value
         addSubview(topCloudImageView)
         addSubview(middleCloudImageView)
         addSubview(bottomCloudImageView)

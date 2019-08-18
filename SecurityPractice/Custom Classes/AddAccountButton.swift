@@ -27,8 +27,8 @@ class AddAccountButton: UIControl {
     
     private var animator = UIViewPropertyAnimator()
     
-    private let normalColor = Color.brightYarrow.value
-    private let highlightedColor = Color.sourLemon.value
+    private let normalColor = Color.darkBackground.value//Color.brightYarrow.value
+    private let highlightedColor = Color.custom(hexString: "#b3d8ff", alpha: 1).value//Color.sourLemon.value
     
     override init(frame: CGRect) {
         super.init(frame: frame)
