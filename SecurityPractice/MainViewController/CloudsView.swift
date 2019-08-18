@@ -69,7 +69,7 @@ class CloudsView: UIView {
         addSubview(topCloudImageView)
         addSubview(middleCloudImageView)
         addSubview(bottomCloudImageView)
-        addSubview(titleCloudImageView)
+        addSubview(titleCloudImageView)        
         setupLayout()
         
     }
@@ -138,7 +138,7 @@ class CloudsView: UIView {
         titleCloudImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         titleCloudImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
-        titleCloudSlidingConstraint = titleCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 50)
+        titleCloudSlidingConstraint = titleCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 45)
         titleCloudSlidingConstraint.isActive = true
     }
     

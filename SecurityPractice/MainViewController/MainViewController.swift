@@ -35,17 +35,23 @@ class MainViewController: UIViewController {
     
     let cellId = "cellId"
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    fileprivate func setupBackgroundView() {
         backgroundView = CloudsView(frame: view.frame)
-        view.addSubview(backgroundView)
+        view.insertSubview(backgroundView, at: 0)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = Color.lightBackground.value
+        
+        setupBackgroundView()
         
         // 🚧 SDWebImage
 //        SDImageCache.shared.clearMemory()
@@ -65,8 +71,6 @@ class MainViewController: UIViewController {
             addAccountButton.widthAnchor.constraint(equalToConstant: 50),
             addAccountButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-        //addAccountButton.center(in: view)
-        
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
@@ -75,12 +79,12 @@ class MainViewController: UIViewController {
     }
     
     @objc func appMovedToBackground() {
-        print("App moved to background!")
+        backgroundView.removeFromSuperview()
+        backgroundView.removeConstraints(backgroundView.constraints)
     }
     
     @objc func appMovedToForeground() {
-        print("App moved to foreground!")
-        
+        setupBackgroundView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -309,7 +313,7 @@ class AccountCell: SwipeTableViewCell {
         
         cellImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cellImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -5),
+            cellImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             cellImageView.safeLeadingAnchor.constraint(equalTo: cellView.safeLeadingAnchor, constant: 30),
             cellImageView.widthAnchor.constraint(equalToConstant: 60),
             cellImageView.heightAnchor.constraint(equalToConstant: 60)
