@@ -270,15 +270,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        
-        //print(accountDefaultsDoesContain(account: newAccount))
-
-        //guard !accountDefaultsDoesContain(account: newAccount) else { return }
-        
-        /*
-        newAccount.addToAccountsDefaults()
-        newAccount.safelyStoreInKeychain()
-        */
     }
     
     func setupBlurView() {

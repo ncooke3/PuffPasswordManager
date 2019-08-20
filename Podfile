@@ -12,6 +12,8 @@ target 'SecurityPractice' do
   
   pod 'SwipeCellKit'
   
+  pod 'UIImageColors'
+  
   pod 'SDWebImage', '~> 5.0'
 
   target 'SecurityPracticeTests' do

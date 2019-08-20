@@ -5,12 +5,14 @@ PODS:
     - SDWebImage/Core (= 5.1.0)
   - SDWebImage/Core (5.1.0)
   - SwipeCellKit (2.6.0)
+  - UIImageColors (2.1.0)
 
 DEPENDENCIES:
   - Locksmith
   - lottie-ios
   - SDWebImage (~> 5.0)
   - SwipeCellKit
+  - UIImageColors
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -18,13 +20,15 @@ SPEC REPOS:
     - lottie-ios
     - SDWebImage
     - SwipeCellKit
+    - UIImageColors
 
 SPEC CHECKSUMS:
   Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
   lottie-ios: 43a472d22b2dd2bed292cc4010c0b4d2e66d3ba8
   SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
+  UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: 01907e1f4ec860fdeca1ee06276e3046134063e3
+PODFILE CHECKSUM: 37964ea71f81392d5a36047a2d8bc6d5bd60b01a
 
 COCOAPODS: 1.6.1

@@ -22,6 +22,7 @@
 		EA0F83152308216100777425 /* CompanyDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83142308216100777425 /* CompanyDefaults.swift */; };
 		EA0F83172308914D00777425 /* AddAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83162308914D00777425 /* AddAccountButton.swift */; };
 		EA0F83192308DF8C00777425 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83182308DF8C00777425 /* CircularTransition.swift */; };
+		EA0F831D2309F29F00777425 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F831C2309F29F00777425 /* EditAccountViewController.swift */; };
 		EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D222F259030093CD4D /* AppDelegate.swift */; };
 		EA7326D522F259030093CD4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D422F259030093CD4D /* ViewController.swift */; };
 		EA7326DA22F259060093CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7326D922F259060093CD4D /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		EA0F83142308216100777425 /* CompanyDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDefaults.swift; sourceTree = "<group>"; };
 		EA0F83162308914D00777425 /* AddAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountButton.swift; sourceTree = "<group>"; };
 		EA0F83182308DF8C00777425 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
+		EA0F831C2309F29F00777425 /* EditAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
 		EA7326CF22F259030093CD4D /* SecurityPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurityPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7326D222F259030093CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7326D422F259030093CD4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */,
 				EA7326D222F259030093CD4D /* AppDelegate.swift */,
+				EA0F831C2309F29F00777425 /* EditAccountViewController.swift */,
 				EA0F83112308212200777425 /* Company Data */,
 				EA0F830D23081B9B00777425 /* MainViewController */,
 				EA0F830E23081BB300777425 /* AddAccountViewController */,
@@ -429,6 +432,7 @@
 				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/UIImageColors/UIImageColors.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -438,6 +442,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageColors.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +504,7 @@
 				EA79721B22F765B500A1CDFE /* SwipeCellEnums.swift in Sources */,
 				EA7326FA22F268350093CD4D /* UIViewExtension.swift in Sources */,
 				EAF9F75F22F6B38B0084B008 /* UIViewControllerExtension.swift in Sources */,
+				EA0F831D2309F29F00777425 /* EditAccountViewController.swift in Sources */,
 				EA0F82F72306250100777425 /* GhostPopupView.swift in Sources */,
 				EA7326F522F261810093CD4D /* AccountDefaults.swift in Sources */,
 				EA7326FC22F268550093CD4D /* UITextFieldExtension.swift in Sources */,

@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
     let tableView: UITableView = {
         let tableview = UITableView()
         tableview.separatorStyle = .none
-        tableview.allowsSelection = false
+        tableview.allowsSelection = true
         tableview.backgroundColor = .clear
         tableview.showsVerticalScrollIndicator = false
         return tableview
@@ -222,16 +222,25 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return 100
     }
     
-    // SHADOW:
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // this will turn on `masksToBounds` just before showing the cell
         cell.contentView.layer.masksToBounds = true
-        // if you do not set `shadowPath` you'll notice laggy scrolling
-        // add this in `willDisplay` method
         let radius = cell.contentView.layer.cornerRadius
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
-        // ME: this hide the shadow color
         cell.layer.shadowColor = UIColor.clear.cgColor
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let selectedAccount = AccountDefaults.accounts[indexPath.row]
+        
+        let editAccountVC = EditAccountViewController()
+        editAccountVC.serviceLabel.text = selectedAccount.service
+        editAccountVC.usernameField.text = selectedAccount.username
+        editAccountVC.passwordField.text = selectedAccount.getPasswordFromStore()
+        editAccountVC.modalPresentationStyle = .overCurrentContext
+        
+        self.present(editAccountVC, animated: true, completion: nil)
+        
     }
 }
 
@@ -240,19 +249,20 @@ extension MainViewController: SwipeTableViewCellDelegate  {
         
         guard orientation == .right else { return [] }
         
-        let flag = SwipeAction(style: .default, title: nil, handler: nil)
-        flag.hidesWhenSelected = true
-        configure(action: flag, with: .flag)
+        let more = SwipeAction(style: .default, title: nil) { action, indexPath in
+            print("tapped!")
+        }
+        more.hidesWhenSelected = true
+        configure(action: more, with: .more)
         
         let delete = SwipeAction(style: .destructive, title: nil) { action, indexPath in
             let removedAccount = AccountDefaults.accounts.remove(at: indexPath.row)
             removedAccount.safelyDeleteFromKeychain()
-
         }
+        delete.hidesWhenSelected = true
         configure(action: delete, with: .trash)
         
-        return [delete, flag]
-        
+        return [delete, more]
     }
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
