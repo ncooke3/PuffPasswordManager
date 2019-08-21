@@ -194,6 +194,14 @@
 			path = "Company Data";
 			sourceTree = "<group>";
 		};
+		EA0F831E230CCDFC00777425 /* EditAccountViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EA0F831C2309F29F00777425 /* EditAccountViewController.swift */,
+			);
+			path = EditAccountViewController;
+			sourceTree = "<group>";
+		};
 		EA7326C622F259030093CD4D = {
 			isa = PBXGroup;
 			children = (
@@ -219,9 +227,9 @@
 			children = (
 				EA7326FF22F28D1E0093CD4D /* SecurityPractice.entitlements */,
 				EA7326D222F259030093CD4D /* AppDelegate.swift */,
-				EA0F831C2309F29F00777425 /* EditAccountViewController.swift */,
 				EA0F83112308212200777425 /* Company Data */,
 				EA0F830D23081B9B00777425 /* MainViewController */,
+				EA0F831E230CCDFC00777425 /* EditAccountViewController */,
 				EA0F830E23081BB300777425 /* AddAccountViewController */,
 				EA0F830B23081A8300777425 /* Development */,
 				EA0F830C23081B4900777425 /* Colors */,

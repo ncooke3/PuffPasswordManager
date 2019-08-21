@@ -65,7 +65,7 @@ extension EditAccountViewController {
     
     private func setupCardView() {
         cardView.layer.cornerRadius = 20
-        cardView.layer.backgroundColor = Color.custom(hexString: "#a29bfe", alpha: 1.0).value.cgColor
+        cardView.layer.backgroundColor = Color.electronBlue.value.cgColor
         cardView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(cardView)
@@ -255,7 +255,6 @@ extension EditAccountViewController {
         let pasteboard = UIPasteboard.general
         pasteboard.string = passwordField.text
     }
-    
 }
 
 
