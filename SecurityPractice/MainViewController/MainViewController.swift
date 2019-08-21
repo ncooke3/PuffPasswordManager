@@ -9,19 +9,15 @@
 import UIKit
 import SwipeCellKit
 import SDWebImage
+import UIImageColors
 
 var globalMainViewController: MainViewController?
 
 class MainViewController: UIViewController {
     
-    let transition = CircularTransition()
-    
-    var buttonDisplayMode: ButtonDisplayMode = .imageOnly
-    var buttonStyle: ButtonStyle = .circular
-    
     var backgroundView: CloudsView!
     
-    private lazy var addAccountButton: AddAccountButton = {
+    var addAccountButton: AddAccountButton = {
         let button = AddAccountButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.value = "+"
@@ -38,69 +34,31 @@ class MainViewController: UIViewController {
     }()
     
     let cellId = "cellId"
-
-    fileprivate func setupBackgroundView() {
-        backgroundView = CloudsView(frame: view.frame)
-        view.insertSubview(backgroundView, at: 0)
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
-    }
+    
+    // For transition to ViewController
+    let transition = CircularTransition()
+    
+    // SwipeCellKit
+    var buttonDisplayMode: ButtonDisplayMode = .imageOnly
+    var buttonStyle: ButtonStyle = .circular
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = Color.lightBackground.value
-        
-        // allows for reloading tablview when AddAccountVC dismisses
         globalMainViewController = self
-        
         setupBackgroundView()
-        
-        // 🚧 SDWebImage
-//        SDImageCache.shared.clearMemory()
-//        SDImageCache.shared.clearDisk(onCompletion: nil)
-        
         setupTableView()
-        
+        setupAddAccountButton()
+        setupForegroundAndBackgroundNotifications()
+
         // 🚧 Development Printing
         Development.printAllAccounts()
         Development.printAllCompanies()
-        
-        
-        view.addSubview(addAccountButton)
-        NSLayoutConstraint.activate([
-            addAccountButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 15),
-            addAccountButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -15),
-            addAccountButton.widthAnchor.constraint(equalToConstant: 50),
-            addAccountButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        addAccountButton.addTarget(self, action: #selector(handleAddAccountTapped), for: [.touchUpInside])
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        
-        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
-    
-    @objc func handleAddAccountTapped() {
-        print("tapped!")
-        let nextVC = ViewController()
-        nextVC.transitioningDelegate = self
-        nextVC.modalPresentationStyle = .custom
-        self.present(nextVC, animated: true, completion: nil)
-    }
-    
-    @objc func appMovedToBackground() {
-        backgroundView.removeFromSuperview()
-        backgroundView.removeConstraints(backgroundView.constraints)
-    }
-    
-    @objc func appMovedToForeground() {
-        setupBackgroundView()
+        // 🚧 SDWebImage
+        //        SDImageCache.shared.clearMemory()
+        //        SDImageCache.shared.clearDisk(onCompletion: nil)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,14 +72,9 @@ class MainViewController: UIViewController {
         backgroundView.animateTopCloud()
         backgroundView.animateMiddleCloud()
         backgroundView.animateBottomCloud()
-        
         backgroundView.animateTitleCloud()
 
         if tableView.layer.mask == nil {
-
-            //If you are using auto layout
-            view.layoutIfNeeded()
-
             let maskLayer: CAGradientLayer = CAGradientLayer()
             maskLayer.locations = [0.0, 0.01, 0.985, 1.0]
             let width = tableView.frame.size.width
@@ -135,13 +88,29 @@ class MainViewController: UIViewController {
         scrollViewDidScroll(tableView)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
+    
+    @objc func handleAddAccountTapped() {
+        print("tapped!")
+        let nextVC = ViewController()
+        nextVC.transitioningDelegate = self
+        nextVC.modalPresentationStyle = .custom
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
+
+    
+}
+
+/// Handles Tableview Blur on Scroll
+extension MainViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         let outerColor = UIColor(white: 1.0, alpha: 0.0).cgColor
         let innerColor = UIColor(white: 1.0, alpha: 1.0).cgColor
-
+        
         var colors = [CGColor]()
-
+        
         if scrollView.contentOffset.y + scrollView.contentInset.top <= 0 {
             colors = [innerColor, innerColor, innerColor, outerColor]
         } else if scrollView.contentOffset.y + scrollView.frame.size.height >= scrollView.contentSize.height {
@@ -149,19 +118,32 @@ class MainViewController: UIViewController {
         } else {
             colors = [outerColor, innerColor, innerColor, outerColor]
         }
-
+        
         if let mask = scrollView.layer.mask as? CAGradientLayer {
             mask.colors = colors
-
             CATransaction.begin()
             CATransaction.setDisableActions(true)
             mask.position = CGPoint(x: 0.0, y: scrollView.contentOffset.y)
             CATransaction.commit()
         }
+    }
+}
 
+/// View Setup
+extension MainViewController {
+    
+    private func setupBackgroundView() {
+        backgroundView = CloudsView(frame: view.frame)
+        view.insertSubview(backgroundView, at: 0)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(AccountCell.self, forCellReuseIdentifier: cellId)
@@ -173,6 +155,37 @@ class MainViewController: UIViewController {
             tableView.safeBottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.safeLeadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
             tableView.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor)])
+    }
+    
+    private func setupAddAccountButton() {
+        view.addSubview(addAccountButton)
+        addAccountButton.addTarget(self, action: #selector(handleAddAccountTapped), for: [.touchUpInside])
+        NSLayoutConstraint.activate([
+            addAccountButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 15),
+            addAccountButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -15),
+            addAccountButton.widthAnchor.constraint(equalToConstant: 50),
+            addAccountButton.heightAnchor.constraint(equalToConstant: 50)
+            ])
+    }
+}
+
+/// Registration for Notifications
+extension MainViewController {
+    
+    private func setupForegroundAndBackgroundNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func appMovedToForeground() {
+        setupBackgroundView()
+    }
+    
+    @objc func appMovedToBackground() {
+        backgroundView.removeFromSuperview()
+        backgroundView.removeConstraints(backgroundView.constraints)
     }
     
 }
@@ -197,7 +210,9 @@ extension MainViewController: UIViewControllerTransitioningDelegate {
     
 }
 
+/// Conforms MainViewController to UITableViewDelegate & UITableViewDataSource
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return AccountDefaults.accounts.count
     }
@@ -206,8 +221,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AccountCell
         cell.delegate = self
         
+        cell.selectionStyle = .none
+        
         let service = AccountDefaults.accounts[indexPath.row].service
         let company = CompanyDefaults.companies[service]
+        
         cell.cellImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
         cell.cellImageView.sd_imageIndicator = SDWebImageProgressIndicator.`default`
         cell.cellImageView.sd_setImage(with: company?.url, completed: nil)
@@ -223,6 +241,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         cell.contentView.layer.masksToBounds = true
         let radius = cell.contentView.layer.cornerRadius
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
@@ -232,29 +251,23 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedAccount = AccountDefaults.accounts[indexPath.row]
-        
         let editAccountVC = EditAccountViewController()
-        editAccountVC.serviceLabel.text = selectedAccount.service
-        editAccountVC.usernameField.text = selectedAccount.username
-        editAccountVC.passwordField.text = selectedAccount.getPasswordFromStore()
+        editAccountVC.selectedAccount = selectedAccount
         editAccountVC.modalPresentationStyle = .overCurrentContext
-        
-        self.present(editAccountVC, animated: true, completion: nil)
-        
+
+        DispatchQueue.main.async {
+            self.present(editAccountVC, animated: true, completion: nil)
+        }
     }
 }
 
+/// Conforms MainViewController to SwipeTableViewCellDelegate
 extension MainViewController: SwipeTableViewCellDelegate  {
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         
         guard orientation == .right else { return [] }
-        
-        let more = SwipeAction(style: .default, title: nil) { action, indexPath in
-            print("tapped!")
-        }
-        more.hidesWhenSelected = true
-        configure(action: more, with: .more)
-        
+    
         let delete = SwipeAction(style: .destructive, title: nil) { action, indexPath in
             let removedAccount = AccountDefaults.accounts.remove(at: indexPath.row)
             removedAccount.safelyDeleteFromKeychain()
@@ -262,7 +275,7 @@ extension MainViewController: SwipeTableViewCellDelegate  {
         delete.hidesWhenSelected = true
         configure(action: delete, with: .trash)
         
-        return [delete, more]
+        return [delete]
     }
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
@@ -282,6 +295,7 @@ extension MainViewController: SwipeTableViewCellDelegate  {
     }
     
     func configure(action: SwipeAction, with descriptor: ActionDescriptor) {
+        
         action.title = descriptor.title(forDisplayMode: buttonDisplayMode)
         action.image = descriptor.image(forStyle: buttonStyle, displayMode: buttonDisplayMode)
         
@@ -295,7 +309,6 @@ extension MainViewController: SwipeTableViewCellDelegate  {
             action.transitionDelegate = ScaleTransition.default
         }
     }
-
 }
 
 class AccountCell: SwipeTableViewCell {

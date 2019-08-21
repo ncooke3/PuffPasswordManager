@@ -25,6 +25,7 @@ enum Color {
     case sourLemon
     case soothingBreeze
     case cityLights
+    case electronBlue
     
     case darkBackground
     case lightBackground
@@ -64,6 +65,8 @@ extension Color {
             instanceColor = UIColor(hexString: "#b2bec3")
         case .cityLights:
             instanceColor = UIColor(hexString: "#dfe6e9")
+        case .electronBlue:
+            instanceColor = UIColor(hexString: "#0984e3")
         case .darkBackground:
             instanceColor = UIColor(hexString: "#74b9ff")
         case .lightBackground:
@@ -117,5 +120,14 @@ extension UIColor {
         let blue  = CGFloat(b) / 255.0
         
         self.init(red:red, green:green, blue:blue, alpha:1)
+    }
+    
+    func toHexString() -> String {
+        var red: CGFloat = 0.0
+        var green: CGFloat = 0.0
+        var blue: CGFloat = 0.0
+        var alpha: CGFloat = 0.0
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return String(format: "#%02x%02x%02x%02x", Int(red * 255), Int(green * 255), Int(blue * 255), Int(alpha * 255))
     }
 }

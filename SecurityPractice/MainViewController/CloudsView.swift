@@ -11,7 +11,6 @@ import UIKit
 let cloudImage = "cloud.png"
 let cloudTitleImage = "cloud_with_title.png"
 
-
 class CloudsView: UIView {
     
     var titleCloudSlidingConstraint: NSLayoutConstraint!
@@ -65,7 +64,7 @@ class CloudsView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = Color.custom(hexString: "#0984e3", alpha: 1).value//Color.darkBackground.value
+        backgroundColor = Color.electronBlue.value
         addSubview(topCloudImageView)
         addSubview(middleCloudImageView)
         addSubview(bottomCloudImageView)
@@ -74,7 +73,7 @@ class CloudsView: UIView {
         
     }
     
-    func animateTopCloud() {
+    public func animateTopCloud() {
         self.layoutIfNeeded()
         topCloudSlidingConstraint.constant = -(self.frame.width + topCloudImageView.frame.width)
         UIView.animate(withDuration: 16, delay: 1, options: [.repeat, .curveLinear, .autoreverse], animations: {
@@ -82,7 +81,7 @@ class CloudsView: UIView {
         }, completion: nil)
     }
     
-    func animateMiddleCloud() {
+    public func animateMiddleCloud() {
         self.layoutIfNeeded()
         middleCloudSlidingConstraint.constant = self.frame.width + middleCloudImageView.frame.width
         UIView.animate(withDuration: 12, delay: 2, options: [.repeat, .curveLinear, .autoreverse], animations: {
@@ -90,7 +89,7 @@ class CloudsView: UIView {
         }, completion: nil)
     }
     
-    func animateBottomCloud() {
+    public func animateBottomCloud() {
         self.layoutIfNeeded()
         bottomCloudSlidingConstraint.constant = self.frame.width + bottomCloudImageView.frame.width
         UIView.animate(withDuration: 10, delay: 0, options: [.repeat, .curveLinear], animations: {
@@ -98,7 +97,7 @@ class CloudsView: UIView {
         }, completion: nil)
     }
     
-    func animateTitleCloud() {
+    public func animateTitleCloud() {
         self.layoutIfNeeded()
         titleCloudSlidingConstraint.constant = 40
         UIView.animate(withDuration: 3, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
@@ -106,7 +105,7 @@ class CloudsView: UIView {
         }, completion: nil)
     }
     
-    fileprivate func setupTopCloudConstraints() {
+    private func setupTopCloudConstraints() {
         topCloudImageView.widthAnchor.constraint(equalToConstant: 175).isActive = true
         topCloudImageView.heightAnchor.constraint(equalToConstant: 175).isActive = true
         topCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
@@ -115,7 +114,7 @@ class CloudsView: UIView {
         topCloudSlidingConstraint.isActive = true
     }
     
-    fileprivate func setupMiddleCloudConstraints() {
+    private func setupMiddleCloudConstraints() {
         middleCloudImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         middleCloudImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         middleCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 300).isActive = true
@@ -124,7 +123,7 @@ class CloudsView: UIView {
         middleCloudSlidingConstraint.isActive = true
     }
     
-    fileprivate func setupBottomCloudConstraints() {
+    private func setupBottomCloudConstraints() {
         bottomCloudImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         bottomCloudImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         bottomCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 550).isActive = true
@@ -133,7 +132,7 @@ class CloudsView: UIView {
         bottomCloudSlidingConstraint.isActive = true
     }
     
-    fileprivate func setupTitleCloudConstraints() {
+    private func setupTitleCloudConstraints() {
         titleCloudImageView.widthAnchor.constraint(equalToConstant: 300).isActive = true
         titleCloudImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         titleCloudImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -143,7 +142,6 @@ class CloudsView: UIView {
     }
     
     private func setupLayout() {
-
         setupTopCloudConstraints()
         setupMiddleCloudConstraints()
         setupBottomCloudConstraints()

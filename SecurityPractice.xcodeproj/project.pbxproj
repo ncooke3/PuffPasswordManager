@@ -10,7 +10,6 @@
 		95D5A74287ECCF62F090C574 /* Pods_SecurityPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8512C693397E8E97F86967 /* Pods_SecurityPractice.framework */; };
 		E37985D2DB53ED5C022362BB /* Pods_SecurityPracticeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B18C07FAE9E7AA9C841F8FB /* Pods_SecurityPracticeTests.framework */; };
 		EA02397023048972001212B6 /* clouds.json in Resources */ = {isa = PBXBuildFile; fileRef = EA02396F23048972001212B6 /* clouds.json */; };
-		EA02D0DF230307C2006BE9EE /* CloudsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */; };
 		EA02D0E123042EE9006BE9EE /* CloudsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02D0E023042EE9006BE9EE /* CloudsView.swift */; };
 		EA0F82F72306250100777425 /* GhostPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F82F62306250100777425 /* GhostPopupView.swift */; };
 		EA0F82FB23062DE900777425 /* Development.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F82FA23062DE900777425 /* Development.swift */; };
@@ -66,7 +65,6 @@
 		8E83DB06F748596E94354B85 /* Pods-SecurityPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurityPractice.debug.xcconfig"; path = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice.debug.xcconfig"; sourceTree = "<group>"; };
 		9EB5787B73D166546A867C35 /* Pods-SecurityPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecurityPractice.release.xcconfig"; path = "Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice.release.xcconfig"; sourceTree = "<group>"; };
 		EA02396F23048972001212B6 /* clouds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clouds.json; sourceTree = "<group>"; };
-		EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsViewController.swift; sourceTree = "<group>"; };
 		EA02D0E023042EE9006BE9EE /* CloudsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsView.swift; sourceTree = "<group>"; };
 		EA0F82F62306250100777425 /* GhostPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostPopupView.swift; sourceTree = "<group>"; };
 		EA0F82FA23062DE900777425 /* Development.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Development.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 		EA0F830B23081A8300777425 /* Development */ = {
 			isa = PBXGroup;
 			children = (
-				EA02D0DE230307C2006BE9EE /* CloudsViewController.swift */,
 				EA0F82FA23062DE900777425 /* Development.swift */,
 			);
 			path = Development;
@@ -514,7 +511,6 @@
 				EA79721D22F7784D00A1CDFE /* ColorScheme.swift in Sources */,
 				EA0F8303230766E200777425 /* Requests.swift in Sources */,
 				EA7326D522F259030093CD4D /* ViewController.swift in Sources */,
-				EA02D0DF230307C2006BE9EE /* CloudsViewController.swift in Sources */,
 				EA0F83132308215100777425 /* Company.swift in Sources */,
 				EAF9F75C22F6B13E0084B008 /* MainViewController.swift in Sources */,
 				EA0F83192308DF8C00777425 /* CircularTransition.swift in Sources */,

@@ -16,47 +16,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var ghostPopupView: GhostPopupView!
     
     lazy var loadingAnimation = AnimationView()
-    
-    func setupLoadingAnimation() {
-        let animation = Animation.named("loading")
-        loadingAnimation.animation = animation
-        loadingAnimation.contentMode = .scaleAspectFit
-        view.addSubview(loadingAnimation)
-        
-        loadingAnimation.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            loadingAnimation.widthAnchor.constraint(equalToConstant: view.frame.width * 0.5),
-            loadingAnimation.heightAnchor.constraint(equalToConstant: view.frame.width * 0.5)
-            ])
-    }
-    
     lazy var successAnimation = AnimationView()
-    
-    
-    private lazy var cancelButton: AddAccountButton = {
-        let button = AddAccountButton()
-        button.backgroundColor = Color.custom(hexString: "#0984e3", alpha: 1).value
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.value = "x"
-        return button
-    }()
-    
-    func setupSuccessAnimation() {
-        let animation = Animation.named("success")
-        successAnimation.animation = animation
-        successAnimation.contentMode = .scaleAspectFit
-        view.addSubview(successAnimation)
-        
-        successAnimation.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            successAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            successAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            successAnimation.widthAnchor.constraint(equalToConstant: view.frame.width * 0.5),
-            successAnimation.heightAnchor.constraint(equalToConstant: view.frame.width * 0.5)
-            ])
-    }
     
     let containerView = UIView()
     let serviceField  = UITextField()
@@ -70,22 +30,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let fontSizeSmall: CGFloat = 0.1
     let fontSizeBig: CGFloat = 35.0
     
-    fileprivate func setupContainerView() {
-        containerView.frame = view.frame
-        view.addSubview(containerView)
-    }
-    
-    fileprivate func setupBackgroundForegroundNotifications() {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        
-        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
+    private lazy var cancelButton: AddAccountButton = {
+        let button = AddAccountButton()
+        button.backgroundColor = Color.custom(hexString: "#0984e3", alpha: 1).value
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.value = "x"
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(AccountDefaults.accounts)
         
         view.backgroundColor = Color.darkBackground.value
         setupContainerView()
@@ -96,111 +50,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setupHideKeyboardOnTap()
         setupCloudSecurityAnimation()
         cloudsAnimation.play(fromFrame: 0, toFrame: 600, loopMode: .autoReverse)
-
+        setupBackgroundForegroundNotifications()
+        setupCancelButton()
+        
         // 🚧 Development Printing
 //        AccountDefaults.safelyDeleteAllAccounts()
 //        CompanyDefaults.deleteAllCompanies()
         Development.printAllAccounts()
         Development.printAllCompanies()
-        
-        setupBackgroundForegroundNotifications()
-        
-        
-        view.addSubview(cancelButton)
-        NSLayoutConstraint.activate([
-            cancelButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 15),
-            cancelButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -15),
-            cancelButton.widthAnchor.constraint(equalToConstant: 50),
-            cancelButton.heightAnchor.constraint(equalToConstant: 50)
-            ])
-        
-        cancelButton.addTarget(self, action: #selector(handleCancelTapped), for: [.touchUpInside])
-    }
-    
-    @objc func handleCancelTapped() {
-        self.dismiss(animated: true)
-    }
-    
-    @objc func appMovedToBackground() {
-        cloudsAnimation.pause()
-    }
-    
-    @objc func appMovedToForeground() {
-        cloudsAnimation.play()
-    }
-    
-    func changeUsernameFor( account: inout Account, newUsername: String) {
-        // 1 Temp store password
-        guard let oldPassword = account.getPasswordFromStore() else { return }
-        
-        // 2 Delete Curr Keychain
-        account.safelyDeleteFromKeychain()
-        
-        // 3 Make new Account
-        account = Account(service: account.service, username: newUsername, password: oldPassword)
-        
-        // 4 Replace oldAccount in AccountDefaults with newAccount
-        AccountDefaults.accounts[0] = account
-        account = AccountDefaults.accounts[0]
-        
-        // 5 Save new account into Keychain
-        account.safelyStoreInKeychain()
-        account.password = ""
-    }
-    
-    // 🐞: This doesnt work? da fuq
-    func accountDefaultsDoesContain(account: Account) -> Bool {
-        let doesContain = AccountDefaults.accounts.contains(where: { (element) -> Bool in
-            let areServicesEqual  = element.service == account.service
-            let areUsernamesEqual = element.username == account.username
-            let arePasswordsEqual = element.password == account.password
-            return areServicesEqual && areUsernamesEqual && arePasswordsEqual
-        })
-        
-        return doesContain
-    }
-
-    fileprivate func finishLoadingAnimation(_ loadingDurationInSeconds: TimeInterval) {
-        DispatchQueue.main.async {
-            self.loadingAnimation.pause()
-            self.loadingAnimation.play(toProgress: 1)
-            self.loadingAnimation.loopMode = .playOnce
-            
-            UIView.animate(withDuration: loadingDurationInSeconds, delay: 0, options: [.curveEaseOut], animations: {
-                self.loadingAnimation.alpha = 0
-            }, completion: { (_) in
-                self.loadingAnimation.removeFromSuperview()
-                self.loadingAnimation.removeConstraints(self.loadingAnimation.constraints)
-                self.loadingAnimation.alpha = 1
-            })
-        }
-    }
-    
-    fileprivate func finishSuccessAnimation(_ loadingDurationInSeconds: TimeInterval, completion: @escaping () -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + loadingDurationInSeconds, execute: {
-            self.setupSuccessAnimation()
-            self.successAnimation.play() { (_) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.successAnimation.alpha = 0
-                    self.animateLightBlurViewOut()
-                }, completion: { (_) in
-                    self.successAnimation.removeFromSuperview()
-                    self.successAnimation.removeConstraints(self.successAnimation.constraints)
-                    self.successAnimation.alpha = 1
-                    completion()
-                })
-            }
-        })
-    }
-    
-    fileprivate func handleLoadingAndSuccessAnimation(donedone: @escaping () -> ()) {
-        let loadingDurationInSeconds = self.loadingAnimation.animation!.duration
-        print(loadingDurationInSeconds)
-        self.finishLoadingAnimation(loadingDurationInSeconds)
-        self.finishSuccessAnimation(loadingDurationInSeconds) {
-            donedone()
-        }
-        
     }
     
     @objc func saveButtonTapped() {
@@ -342,19 +199,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         animatePopupAndBlurViewOut(after: 3.0)
     }
     
-    fileprivate func setupLabel() {
-        label.text = "Add an Account!"
-        label.font = label.font.withSize(fontSizeSmall)
-        label.textColor = .white
-        label.sizeToFit() // Important for enlargeWithCrossfade()
-        view.addSubview(label)
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.20),
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            ])
-    }
     
     private func scaleTransform(from: CGSize, to: CGSize) -> CGAffineTransform {
         let scaleX = to.width / from.width
@@ -363,7 +207,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return CGAffineTransform(scaleX: scaleX, y: scaleY)
     }
     
-    fileprivate func setupCloudSecurityAnimation() {
+}
+
+
+/// Handles setting up Container View, Cloud Animation, Service, Username, and Password Textfields
+extension ViewController {
+    
+    private func setupContainerView() {
+        containerView.frame = view.frame
+        view.addSubview(containerView)
+    }
+    
+    private func setupCloudSecurityAnimation() {
         let animation = Animation.named("clouds")
         cloudsAnimation.animation = animation
         cloudsAnimation.contentMode = .scaleAspectFit
@@ -377,8 +232,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             cloudsAnimation.heightAnchor.constraint(equalToConstant: view.frame.width)
             ])
     }
-
-    fileprivate func setupServiceTextfield() {
+    
+    private func setupServiceTextfield() {
         serviceField.delegate = self
         
         serviceField.placeholder = "Service"
@@ -390,7 +245,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         serviceField.layer.cornerRadius = 7.0
         serviceField.layer.borderColor = UIColor.white.cgColor
         serviceField.layer.borderWidth = 1.0
-
+        
         containerView.addSubview(serviceField)
         
         NSLayoutConstraint.activate([
@@ -401,33 +256,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             ])
     }
     
-    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        if serviceField.hasText && usernameField.hasText && passwordField.hasText {
-            textField.resignFirstResponder()
-        } else {
-            switch textField {
-            case serviceField:
-                usernameField.becomeFirstResponder()
-            case usernameField:
-                passwordField.becomeFirstResponder()
-            case passwordField:
-                passwordField.resignFirstResponder()
-            default:
-                textField.resignFirstResponder()
-            }
-        }
-
-        return true
-    }
-    
-    fileprivate func setupUsernameTextfield() {
+    private func setupUsernameTextfield() {
         usernameField.delegate = self
         
         usernameField.placeholder = "Username"
         usernameField.translatesAutoresizingMaskIntoConstraints = false
         usernameField.backgroundColor = .white
-        //usernameField.setLeftAndRightPadding(amount: 20)
         usernameField.tintColor = Color.soothingBreeze.value
         usernameField.setIcon(#imageLiteral(resourceName: "icon-user"))
         
@@ -445,13 +279,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             ])
     }
     
-    fileprivate func setupPasswordTextField() {
+    private func setupPasswordTextField() {
         passwordField.delegate = self
         passwordField.placeholder = "Password"
-        
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.backgroundColor = .white
-        //passwordField.setLeftAndRightPadding(amount: 20)
         passwordField.tintColor = Color.soothingBreeze.value
         passwordField.setIcon(#imageLiteral(resourceName: "icon-lock"))
         
@@ -470,7 +302,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             ])
     }
     
-    fileprivate func setupSaveButton() {
+    private func setupSaveButton() {
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         view.addSubview(saveButton)
         saveButton.setTitle("Save Account", for: .normal)
@@ -484,5 +316,147 @@ class ViewController: UIViewController, UITextFieldDelegate {
             saveButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 20)
             ])
     }
+}
+
+/// Handles the finishing of the Loading and Success Animations
+extension ViewController {
+    private func finishLoadingAnimation(_ loadingDurationInSeconds: TimeInterval) {
+        DispatchQueue.main.async {
+            self.loadingAnimation.pause()
+            self.loadingAnimation.play(toProgress: 1)
+            self.loadingAnimation.loopMode = .playOnce
+            
+            UIView.animate(withDuration: loadingDurationInSeconds, delay: 0, options: [.curveEaseOut], animations: {
+                self.loadingAnimation.alpha = 0
+            }, completion: { (_) in
+                self.loadingAnimation.removeFromSuperview()
+                self.loadingAnimation.removeConstraints(self.loadingAnimation.constraints)
+                self.loadingAnimation.alpha = 1
+            })
+        }
+    }
     
+    private func finishSuccessAnimation(_ loadingDurationInSeconds: TimeInterval, completion: @escaping () -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + loadingDurationInSeconds, execute: {
+            self.setupSuccessAnimation()
+            self.successAnimation.play() { (_) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.successAnimation.alpha = 0
+                    self.animateLightBlurViewOut()
+                }, completion: { (_) in
+                    self.successAnimation.removeFromSuperview()
+                    self.successAnimation.removeConstraints(self.successAnimation.constraints)
+                    self.successAnimation.alpha = 1
+                    completion()
+                })
+            }
+        })
+    }
+    
+    private func handleLoadingAndSuccessAnimation(donedone: @escaping () -> ()) {
+        let loadingDurationInSeconds = self.loadingAnimation.animation!.duration
+        print(loadingDurationInSeconds)
+        self.finishLoadingAnimation(loadingDurationInSeconds)
+        self.finishSuccessAnimation(loadingDurationInSeconds) {
+            donedone()
+        }
+        
+    }
+}
+
+/// Sets up cancel button
+extension ViewController {
+    
+    private func setupCancelButton() {
+        view.addSubview(cancelButton)
+        NSLayoutConstraint.activate([
+            cancelButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 15),
+            cancelButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -15),
+            cancelButton.widthAnchor.constraint(equalToConstant: 50),
+            cancelButton.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        
+        cancelButton.addTarget(self, action: #selector(handleCancelTapped), for: [.touchUpInside])
+    }
+    
+    @objc func handleCancelTapped() {
+        self.dismiss(animated: true)
+    }
+    
+}
+
+/// Sets up Loading and Success Animations
+extension ViewController {
+    func setupLoadingAnimation() {
+        let animation = Animation.named("loading")
+        loadingAnimation.animation = animation
+        loadingAnimation.contentMode = .scaleAspectFit
+        view.addSubview(loadingAnimation)
+        
+        loadingAnimation.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingAnimation.widthAnchor.constraint(equalToConstant: view.frame.width * 0.5),
+            loadingAnimation.heightAnchor.constraint(equalToConstant: view.frame.width * 0.5)
+            ])
+    }
+    
+    func setupSuccessAnimation() {
+        let animation = Animation.named("success")
+        successAnimation.animation = animation
+        successAnimation.contentMode = .scaleAspectFit
+        view.addSubview(successAnimation)
+        
+        successAnimation.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            successAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            successAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            successAnimation.widthAnchor.constraint(equalToConstant: view.frame.width * 0.5),
+            successAnimation.heightAnchor.constraint(equalToConstant: view.frame.width * 0.5)
+            ])
+    }
+}
+
+
+/// Registration and Handling for foreground/background entry/exit
+extension ViewController {
+    private func setupBackgroundForegroundNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func appMovedToBackground() {
+        cloudsAnimation.pause()
+    }
+    
+    @objc func appMovedToForeground() {
+        cloudsAnimation.play()
+    }
+}
+
+
+/// TextFieldShouldReturn
+extension ViewController{
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if serviceField.hasText && usernameField.hasText && passwordField.hasText {
+            textField.resignFirstResponder()
+        } else {
+            switch textField {
+            case serviceField:
+                usernameField.becomeFirstResponder()
+            case usernameField:
+                passwordField.becomeFirstResponder()
+            case passwordField:
+                passwordField.resignFirstResponder()
+            default:
+                textField.resignFirstResponder()
+            }
+        }
+        
+        return true
+    }
 }
