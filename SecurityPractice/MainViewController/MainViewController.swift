@@ -91,7 +91,6 @@ class MainViewController: UIViewController {
 
     
     @objc func handleAddAccountTapped() {
-        print("tapped!")
         let nextVC = ViewController()
         nextVC.transitioningDelegate = self
         nextVC.modalPresentationStyle = .custom
@@ -271,6 +270,18 @@ extension MainViewController: SwipeTableViewCellDelegate  {
         let delete = SwipeAction(style: .destructive, title: nil) { action, indexPath in
             let removedAccount = AccountDefaults.accounts.remove(at: indexPath.row)
             removedAccount.safelyDeleteFromKeychain()
+            
+            var shouldRemoveCompany = true
+            AccountDefaults.accounts.forEach({ (account) in
+                if account.service == removedAccount.service {
+                    shouldRemoveCompany = false
+                }
+            })
+            
+            if shouldRemoveCompany {
+                CompanyDefaults.companies.removeValue(forKey: removedAccount.service)
+            }
+            
         }
         delete.hidesWhenSelected = true
         configure(action: delete, with: .trash)
