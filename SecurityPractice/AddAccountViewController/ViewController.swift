@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     lazy var loadingAnimation = AnimationView()
     lazy var successAnimation = AnimationView()
+    lazy var errorAnimation = AnimationView()
     
     let containerView = UIView()
     let serviceField  = UITextField()
@@ -29,6 +30,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let duration = 1.0
     let fontSizeSmall: CGFloat = 0.1
     let fontSizeBig: CGFloat = 35.0
+    
+    let errorLabel: UILabel = {
+        let label = UILabel()
+        label.text = """
+                        Something went wrong!
+                        Try again later...
+                     """
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.font = UIFont(name: "SFProRounded-Medium", size: 23)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     private lazy var cancelButton: AddAccountButton = {
         let button = AddAccountButton()
@@ -109,6 +124,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // Make API call 🚧 Handles errors!
         Requests().fetchCompanyInformation(with: url) { (info) in
+            
+            guard let info = info else {
+                print("fail")
+                self.handleLoadingAndErrorAnimation() {
+                    self.dismiss(animated: true, completion: {
+                        globalMainViewController?.tableView.reloadData()
+                    })
+                }
+                return
+            }
+            
             print("✅ API Call results:", info)
             
             guard let logoURLString = info["logo"] else { return } // Empty logo -> Fail!
@@ -362,6 +388,53 @@ extension ViewController {
         }
         
     }
+    
+    
+    private func handleLoadingAndErrorAnimation(donedone: @escaping () -> ()) {
+        let loadingDurationInSeconds = self.loadingAnimation.animation!.duration
+        print(loadingDurationInSeconds)
+        self.finishLoadingAnimation(loadingDurationInSeconds)
+        self.finishErrorAnimation(loadingDurationInSeconds) {
+            donedone()
+        }
+        
+    }
+    
+    private func finishErrorAnimation(_ loadingDurationInSeconds: TimeInterval, completion: @escaping () -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + loadingDurationInSeconds, execute: {
+            self.setupErrorAnimation()
+            
+            
+            self.view.addSubview(self.errorLabel)
+            NSLayoutConstraint.activate([
+                self.errorLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                self.errorLabel.bottomAnchor.constraint(equalTo: self.errorAnimation.topAnchor, constant: -60)
+                ])
+            self.errorLabel.alpha = 0
+            
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+                self.errorLabel.alpha = 1
+            }, completion: { (_) in
+                self.errorAnimation.play() { (_) in
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.errorAnimation.alpha = 0
+                        self.animateLightBlurViewOut()
+                        
+                        self.errorLabel.alpha = 0
+                    }, completion: { (_) in
+                        self.errorAnimation.removeFromSuperview()
+                        self.errorAnimation.removeConstraints(self.errorAnimation.constraints)
+                        self.errorAnimation.alpha = 1
+                        
+                        self.errorLabel.removeFromSuperview()
+                        self.errorLabel.removeConstraints(self.errorLabel.constraints)
+                        
+                        completion()
+                    })
+                }
+            })
+        })
+    }
 }
 
 /// Sets up cancel button
@@ -414,6 +487,21 @@ extension ViewController {
             successAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             successAnimation.widthAnchor.constraint(equalToConstant: view.frame.width * 0.5),
             successAnimation.heightAnchor.constraint(equalToConstant: view.frame.width * 0.5)
+            ])
+    }
+    
+    func setupErrorAnimation() {
+        let animation = Animation.named("error")
+        errorAnimation.animation = animation
+        errorAnimation.contentMode = .scaleAspectFit
+        view.addSubview(errorAnimation)
+        
+        errorAnimation.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            errorAnimation.widthAnchor.constraint(equalToConstant: view.frame.width * 0.5),
+            errorAnimation.heightAnchor.constraint(equalToConstant: view.frame.width * 0.5)
             ])
     }
 }

@@ -38,7 +38,7 @@ extension URLSession {
 }
 
 class Requests {
-    func fetchCompanyInformation(with url: URL, completion: @escaping ([String: String]) -> Void) {
+    func fetchCompanyInformation(with url: URL, completion: @escaping ([String: String]?) -> Void) {
         URLSession.shared.dataTask(with: url) { result in
             switch result {
             case .success(let data):
@@ -63,6 +63,7 @@ class Requests {
                 break
             case .failure(let error):
                 print(error.localizedDescription)
+                completion(nil)
                 break
             }
             
