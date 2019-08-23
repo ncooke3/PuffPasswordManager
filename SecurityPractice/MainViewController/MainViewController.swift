@@ -10,8 +10,62 @@ import UIKit
 import SwipeCellKit
 import SDWebImage
 import UIImageColors
+import LocalAuthentication
 
 var globalMainViewController: MainViewController?
+
+/// handles local authentication
+extension MainViewController {
+    
+    func authenticateUser() {
+        let context = LAContext()
+        var error:NSError?
+        guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
+            showAlertViewIfNoBiometricSensorHasBeenDetected()
+            return
+        }
+        
+        let reason = "Let's make sure you are who you say you are! 😎"
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason, reply: { (success, error) in
+                if success {
+                    DispatchQueue.main.async {
+                        print("Authentication was successful")
+                    }
+                }else {
+                    DispatchQueue.main.async {
+                        self.showAlertWith(title: "Something went wrong... 🤔", message: "Please try again!")
+                        print("Authentication was error")
+                    }
+                }
+            })
+        } else {
+            self.showAlertWith(title: "Error", message: (error?.localizedDescription)!)
+        }
+    }
+    
+    
+    func showAlertWith( title:String, message:String ) {
+        
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let retryAction = UIAlertAction(title: "Retry", style: .default) {
+            (action) in
+            self.authenticateUser()
+        }
+        alertVC.addAction(retryAction)
+        
+        DispatchQueue.main.async {
+             self.present(alertVC, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func showAlertViewIfNoBiometricSensorHasBeenDetected(){
+        
+        showAlertWith(title: "Error", message: "This device does not have a FaceID/TouchID sensor.")
+        
+    }
+}
 
 class MainViewController: UIViewController {
     
@@ -64,12 +118,12 @@ class MainViewController: UIViewController {
 //                SDImageCache.shared.clearDisk(onCompletion: nil)
 //        AccountDefaults.accounts.removeAll()
 //        CompanyDefaults.deleteAllCompanies()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        authenticateUser()
     }
     
     override func viewDidLayoutSubviews() {
@@ -186,6 +240,7 @@ extension MainViewController {
     
     @objc func appMovedToForeground() {
         setupBackgroundView()
+        authenticateUser()
     }
     
     @objc func appMovedToBackground() {
