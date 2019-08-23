@@ -10,6 +10,10 @@ import UIKit
 
 class EditAccountViewController: UIViewController, UITextFieldDelegate {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // Passed from MainViewController
     var selectedAccount: Account?
     
@@ -23,7 +27,7 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
     
     var cancelButton: AddAccountButton = {
         let button = AddAccountButton()
-        button.backgroundColor = Color.custom(hexString: "#0984e3", alpha: 1).value
+        button.backgroundColor = Color.brightYarrow.value
         button.translatesAutoresizingMaskIntoConstraints = false
         button.value = "x"
         return button
@@ -50,7 +54,7 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
         
         setupBlurView()
         setupCancelButton()
-        setupCardView()
+        setupCardView(brandColor: CompanyDefaults.companies[selectedAccount!.service]?.color)
         setupServiceLabel()
         setupUsernameTextfield()
         setupPasswordTextField()
@@ -63,9 +67,14 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
 /// Handles View Setup
 extension EditAccountViewController {
     
-    private func setupCardView() {
+    private func setupCardView(brandColor : String?) {
         cardView.layer.cornerRadius = 20
-        cardView.layer.backgroundColor = Color.electronBlue.value.cgColor
+        if let colorString = brandColor {
+
+            cardView.layer.backgroundColor = Color.custom(hexString: colorString, alpha: 1).value.cgColor
+        } else {
+            cardView.layer.backgroundColor = Color.electronBlue.value.cgColor
+        }
         cardView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(cardView)

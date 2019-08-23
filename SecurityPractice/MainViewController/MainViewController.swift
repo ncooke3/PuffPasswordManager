@@ -15,6 +15,10 @@ var globalMainViewController: MainViewController?
 
 class MainViewController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var backgroundView: CloudsView!
     
     var addAccountButton: AddAccountButton = {
@@ -56,8 +60,10 @@ class MainViewController: UIViewController {
         Development.printAllAccounts()
         Development.printAllCompanies()
         // 🚧 SDWebImage
-        //        SDImageCache.shared.clearMemory()
-        //        SDImageCache.shared.clearDisk(onCompletion: nil)
+//                SDImageCache.shared.clearMemory()
+//                SDImageCache.shared.clearDisk(onCompletion: nil)
+//        AccountDefaults.accounts.removeAll()
+//        CompanyDefaults.deleteAllCompanies()
 
     }
     
@@ -216,6 +222,25 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return AccountDefaults.accounts.count
     }
     
+    fileprivate func setupLabelWithCompantLetter(_ firstLetter: String.Element, cell: AccountCell) {
+        let label = UILabel()
+        label.text = String(firstLetter)
+        label.font = UIFont(name: "SFProRounded-Medium", size: 46)
+        label.textColor = Color.soothingBreeze.value
+        label.sizeToFit()
+        cell.cellImageView.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            label.centerYAnchor.constraint(equalTo: cell.cellImageView.centerYAnchor),
+            label.centerXAnchor.constraint(equalTo: cell.cellImageView.centerXAnchor)
+            ])
+        
+        label.alpha = 0
+        UIView.animate(withDuration: 0.2, animations: {
+            label.alpha = 1
+        })
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AccountCell
         cell.delegate = self
@@ -224,14 +249,27 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         let service = AccountDefaults.accounts[indexPath.row].service
         let company = CompanyDefaults.companies[service]
-        
-        cell.cellImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        cell.cellImageView.sd_imageIndicator = SDWebImageProgressIndicator.`default`
-        cell.cellImageView.sd_setImage(with: company?.url, completed: nil)
+
+        cell.cellImageView.sd_setImage(with: company?.url) {
+            (image, error, cacheType, url) in
+            
+            if let image = image {
+                if CompanyDefaults.companies[service]?.color == nil {
+                    if let colors = image.getColors() {
+                        if let companyColor = colors.background {
+                            let colorString = companyColor.toHexString() == "#ffffffff" ? Color.cityLights.value.toHexString() : companyColor.toHexString()
+                            CompanyDefaults.companies[service]?.color = String(colorString.dropLast(2))
+                        }
+                        
+                    }
+                }
+            }
+
+            
+        }
         
         cell.usernameLabel.text = AccountDefaults.accounts[indexPath.row].username
-        cell.passwordLabel.text = AccountDefaults.accounts[indexPath.row].getPasswordFromStore()
-        
+
         return cell
     }
     
@@ -341,19 +379,11 @@ class AccountCell: SwipeTableViewCell {
     let usernameLabel: UILabel = {
         let label = UILabel()
         label.text = "Username"
-        label.font = UIFont(name: "SFProRounded-Medium", size: 19)
+        label.font = UIFont(name: "SFProRounded-Medium", size: 21)
         label.textColor = .darkGray
+        label.textAlignment = .left
         return label
     }()
-    
-    let passwordLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Password"
-        label.font = UIFont(name: "SFProRounded-Medium", size: 19)
-        label.textColor = .darkGray
-        return label
-    }()
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -370,7 +400,6 @@ class AccountCell: SwipeTableViewCell {
         self.addSubview(cellView)
         cellView.addSubview(cellImageView)
         cellView.addSubview(usernameLabel)
-        cellView.addSubview(passwordLabel)
         
         cellView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -382,21 +411,15 @@ class AccountCell: SwipeTableViewCell {
         cellImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cellImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            cellImageView.safeLeadingAnchor.constraint(equalTo: cellView.safeLeadingAnchor, constant: 30),
+            cellImageView.safeLeadingAnchor.constraint(equalTo: cellView.safeLeadingAnchor, constant: 50),
             cellImageView.widthAnchor.constraint(equalToConstant: 60),
             cellImageView.heightAnchor.constraint(equalToConstant: 60)
             ])
         
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            usernameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -5),
-            usernameLabel.safeLeadingAnchor.constraint(equalTo: cellImageView.safeTrailingAnchor, constant: 30)
-            ])
-        
-        passwordLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            passwordLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -5),
-            passwordLabel.safeLeadingAnchor.constraint(equalTo: usernameLabel.safeTrailingAnchor, constant: 30)
+            usernameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            usernameLabel.leadingAnchor.constraint(equalTo: cellImageView.trailingAnchor, constant: 50)
             ])
     }
 }

@@ -9,8 +9,13 @@
 import UIKit
 import Locksmith
 import Lottie
+import UIImageColors
 
 class ViewController: UIViewController, UITextFieldDelegate {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     let blurView = UIVisualEffectView()
     var ghostPopupView: GhostPopupView!
@@ -121,6 +126,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let urlSafeServiceString = newAccount.service.replacingOccurrences(of: " ", with: "")
         let stringURL = "https://autocomplete.clearbit.com/v1/companies/suggest?query=\(urlSafeServiceString)"
         let url = URL(string: stringURL)!
+        
+        let testUrl = URL(string: "https://httpstat.us/404")!
         
         // Make API call 🚧 Handles errors!
         Requests().fetchCompanyInformation(with: url) { (info) in
