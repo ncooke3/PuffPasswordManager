@@ -258,7 +258,7 @@ extension ViewController {
         cloudsAnimation.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cloudsAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cloudsAnimation.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.20),
+            cloudsAnimation.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.203),
             cloudsAnimation.widthAnchor.constraint(equalToConstant: view.frame.width),
             cloudsAnimation.heightAnchor.constraint(equalToConstant: view.frame.width)
             ])
