@@ -76,13 +76,13 @@ extension EditAccountViewController {
             cardView.layer.backgroundColor = Color.electronBlue.value.cgColor
         }
         cardView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         view.addSubview(cardView)
         NSLayoutConstraint.activate([
-            cardView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            cardView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -0.061 * view.frame.height),
             cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cardView.heightAnchor.constraint(equalToConstant: 375),
-            cardView.widthAnchor.constraint(equalToConstant: 335)
+            cardView.heightAnchor.constraint(equalToConstant: 0.461 * view.frame.height),
+            cardView.widthAnchor.constraint(equalToConstant: 0.412 * view.frame.height)
             ])
     }
     
@@ -103,9 +103,9 @@ extension EditAccountViewController {
         cardView.addSubview(serviceLabel)
         serviceLabel.text = selectedAccount?.service
         NSLayoutConstraint.activate([
-            serviceLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 50),
+            serviceLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 0.061 * view.frame.height),
             serviceLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
-            ])
+        ])
     }
     
     private func setupUsernameTextfield() {
@@ -127,10 +127,10 @@ extension EditAccountViewController {
         cardView.addSubview(usernameField)
         
         NSLayoutConstraint.activate([
-            usernameField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 15),
-            usernameField.centerYAnchor.constraint(equalTo: cardView.centerYAnchor, constant: -25),
-            usernameField.widthAnchor.constraint(equalToConstant: 250),
-            usernameField.heightAnchor.constraint(equalToConstant: 40)
+            usernameField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 0.018 * view.frame.height),
+            usernameField.centerYAnchor.constraint(equalTo: cardView.centerYAnchor, constant: -0.030 * view.frame.height),
+            usernameField.widthAnchor.constraint(equalToConstant: 0.307 * view.frame.height),
+            usernameField.heightAnchor.constraint(equalToConstant: 0.049 * view.frame.height)
             ])
     }
     
@@ -152,10 +152,10 @@ extension EditAccountViewController {
         cardView.addSubview(passwordField)
         
         NSLayoutConstraint.activate([
-            passwordField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 15),
-            passwordField.centerYAnchor.constraint(equalTo: cardView.centerYAnchor, constant: 75),
-            passwordField.widthAnchor.constraint(equalToConstant: 250),
-            passwordField.heightAnchor.constraint(equalToConstant: 40)
+            passwordField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 0.018 * view.frame.height),
+            passwordField.centerYAnchor.constraint(equalTo: cardView.centerYAnchor, constant: 0.092 * view.frame.height),
+            passwordField.widthAnchor.constraint(equalToConstant: 0.307 * view.frame.height),
+            passwordField.heightAnchor.constraint(equalToConstant: 0.049 * view.frame.height)
             ])
     }
 }
@@ -168,10 +168,10 @@ extension EditAccountViewController {
         view.addSubview(cancelButton)
         
         NSLayoutConstraint.activate([
-            cancelButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 15),
-            cancelButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -15),
-            cancelButton.widthAnchor.constraint(equalToConstant: 50),
-            cancelButton.heightAnchor.constraint(equalToConstant: 50)
+            cancelButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0.018 * view.frame.height),
+            cancelButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -0.018 * view.frame.height),
+            cancelButton.widthAnchor.constraint(equalToConstant: 0.061 * view.frame.height),
+            cancelButton.heightAnchor.constraint(equalToConstant: 0.061 * view.frame.height)
             ])
     }
     
@@ -192,7 +192,7 @@ extension EditAccountViewController {
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            saveButton.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 20)
+            saveButton.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 0.024 * view.frame.height)
             ])
     }
     
@@ -232,7 +232,7 @@ extension EditAccountViewController {
         NSLayoutConstraint.activate([
             copyUsernameButton.centerYAnchor.constraint(equalTo: usernameField.centerYAnchor),
             copyUsernameButton.leadingAnchor.constraint(equalTo: usernameField.trailingAnchor, constant: 5),
-            copyUsernameButton.widthAnchor.constraint(equalToConstant: 50),
+            copyUsernameButton.widthAnchor.constraint(equalToConstant: 0.133 * view.frame.width),
             copyUsernameButton.heightAnchor.constraint(equalTo: usernameField.heightAnchor)
             ])
     }
@@ -250,7 +250,7 @@ extension EditAccountViewController {
         NSLayoutConstraint.activate([
             copyPasswordButton.centerYAnchor.constraint(equalTo: passwordField.centerYAnchor),
             copyPasswordButton.leadingAnchor.constraint(equalTo: passwordField.trailingAnchor, constant: 5),
-            copyPasswordButton.widthAnchor.constraint(equalToConstant: 50),
+            copyPasswordButton.widthAnchor.constraint(equalToConstant: 0.133 * view.frame.width),
             copyPasswordButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor)
             ])
     }

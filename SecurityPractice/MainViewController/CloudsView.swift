@@ -99,45 +99,46 @@ class CloudsView: UIView {
     
     public func animateTitleCloud() {
         self.layoutIfNeeded()
-        titleCloudSlidingConstraint.constant = 40
+        titleCloudSlidingConstraint.constant = 0.049 * self.frame.height
         UIView.animate(withDuration: 3, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
             self.layoutIfNeeded()
         }, completion: nil)
     }
     
     private func setupTopCloudConstraints() {
-        topCloudImageView.widthAnchor.constraint(equalToConstant: 175).isActive = true
-        topCloudImageView.heightAnchor.constraint(equalToConstant: 175).isActive = true
-        topCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
+        print("Framey", self.frame)
+        topCloudImageView.widthAnchor.constraint(equalToConstant: 0.215 * self.frame.height).isActive = true
+        topCloudImageView.heightAnchor.constraint(equalToConstant: 0.215 * self.frame.height).isActive = true
+        topCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0.036 * self.frame.height).isActive = true
         
-        topCloudSlidingConstraint = topCloudImageView.leadingAnchor.constraint(equalTo: trailingAnchor, constant: 0)
+        topCloudSlidingConstraint = topCloudImageView.leadingAnchor.constraint(equalTo: trailingAnchor)
         topCloudSlidingConstraint.isActive = true
     }
     
     private func setupMiddleCloudConstraints() {
-        middleCloudImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        middleCloudImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        middleCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 300).isActive = true
+        middleCloudImageView.widthAnchor.constraint(equalToConstant: 0.246 * self.frame.height).isActive = true
+        middleCloudImageView.heightAnchor.constraint(equalToConstant: 0.246 * self.frame.height).isActive = true
+        middleCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0.369 * self.frame.height).isActive = true
         
-        middleCloudSlidingConstraint = middleCloudImageView.trailingAnchor.constraint(equalTo: leadingAnchor, constant: 0)
+        middleCloudSlidingConstraint = middleCloudImageView.trailingAnchor.constraint(equalTo: leadingAnchor)
         middleCloudSlidingConstraint.isActive = true
     }
     
     private func setupBottomCloudConstraints() {
-        bottomCloudImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        bottomCloudImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        bottomCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 550).isActive = true
+        bottomCloudImageView.widthAnchor.constraint(equalToConstant: 0.184 * self.frame.height).isActive = true
+        bottomCloudImageView.heightAnchor.constraint(equalToConstant: 0.184 * self.frame.height).isActive = true
+        bottomCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0.677 * self.frame.height).isActive = true
         
-        bottomCloudSlidingConstraint = bottomCloudImageView.trailingAnchor.constraint(equalTo: leadingAnchor, constant: 0)
+        bottomCloudSlidingConstraint = bottomCloudImageView.trailingAnchor.constraint(equalTo: leadingAnchor)
         bottomCloudSlidingConstraint.isActive = true
     }
     
     private func setupTitleCloudConstraints() {
-        titleCloudImageView.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        titleCloudImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        titleCloudImageView.widthAnchor.constraint(equalToConstant: 0.369 * self.frame.height).isActive = true
+        titleCloudImageView.heightAnchor.constraint(equalToConstant: 0.369 * self.frame.height).isActive = true
         titleCloudImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
-        titleCloudSlidingConstraint = titleCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 45)
+        titleCloudSlidingConstraint = titleCloudImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0.055 * self.frame.height)
         titleCloudSlidingConstraint.isActive = true
     }
     

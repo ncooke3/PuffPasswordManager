@@ -127,8 +127,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let stringURL = "https://autocomplete.clearbit.com/v1/companies/suggest?query=\(urlSafeServiceString)"
         let url = URL(string: stringURL)!
         
-        let testUrl = URL(string: "https://httpstat.us/404")!
-        
         // Make API call 🚧 Handles errors!
         Requests().fetchCompanyInformation(with: url) { (info) in
             
@@ -260,7 +258,7 @@ extension ViewController {
         cloudsAnimation.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cloudsAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cloudsAnimation.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.22),
+            cloudsAnimation.centerYAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.20),
             cloudsAnimation.widthAnchor.constraint(equalToConstant: view.frame.width),
             cloudsAnimation.heightAnchor.constraint(equalToConstant: view.frame.width)
             ])
@@ -283,9 +281,9 @@ extension ViewController {
         
         NSLayoutConstraint.activate([
             serviceField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            serviceField.topAnchor.constraint(equalTo: view.topAnchor, constant: 290),
-            serviceField.widthAnchor.constraint(equalToConstant: 250),
-            serviceField.heightAnchor.constraint(equalToConstant: 40)
+            serviceField.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.355 * view.frame.height),
+            serviceField.widthAnchor.constraint(equalToConstant: 0.666 * view.frame.width),
+            serviceField.heightAnchor.constraint(equalToConstant: 0.049 * view.frame.height)
             ])
     }
     
@@ -306,9 +304,9 @@ extension ViewController {
         
         NSLayoutConstraint.activate([
             usernameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            usernameField.topAnchor.constraint(equalTo: serviceField.bottomAnchor, constant: 30),
-            usernameField.widthAnchor.constraint(equalToConstant: 250),
-            usernameField.heightAnchor.constraint(equalToConstant: 40)
+            usernameField.topAnchor.constraint(equalTo: serviceField.bottomAnchor, constant: 0.025 * view.frame.height),
+            usernameField.widthAnchor.constraint(equalToConstant: 0.666 * view.frame.width),
+            usernameField.heightAnchor.constraint(equalToConstant: 0.049 * view.frame.height)
             ])
     }
     
@@ -329,9 +327,9 @@ extension ViewController {
         NSLayoutConstraint.activate([
             passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             passwordField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant:
-                30),
-            passwordField.widthAnchor.constraint(equalToConstant: 250),
-            passwordField.heightAnchor.constraint(equalToConstant: 40)
+                0.025 * view.frame.height),
+            passwordField.widthAnchor.constraint(equalToConstant: 0.666 * view.frame.width),
+            passwordField.heightAnchor.constraint(equalToConstant: 0.049 * view.frame.height)
             ])
     }
     
@@ -346,7 +344,7 @@ extension ViewController {
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            saveButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 20)
+            saveButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 0.024 * view.frame.height)
             ])
     }
 }
@@ -450,10 +448,10 @@ extension ViewController {
     private func setupCancelButton() {
         view.addSubview(cancelButton)
         NSLayoutConstraint.activate([
-            cancelButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 15),
-            cancelButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -15),
-            cancelButton.widthAnchor.constraint(equalToConstant: 50),
-            cancelButton.heightAnchor.constraint(equalToConstant: 50)
+            cancelButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0.018 * view.frame.height),
+            cancelButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -0.018 * view.frame.height),
+            cancelButton.widthAnchor.constraint(equalToConstant: 0.061 * view.frame.height),
+            cancelButton.heightAnchor.constraint(equalToConstant: 0.061 * view.frame.height)
             ])
         
         cancelButton.addTarget(self, action: #selector(handleCancelTapped), for: [.touchUpInside])

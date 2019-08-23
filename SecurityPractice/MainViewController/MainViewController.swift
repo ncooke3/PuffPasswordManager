@@ -14,59 +14,6 @@ import LocalAuthentication
 
 var globalMainViewController: MainViewController?
 
-/// handles local authentication
-extension MainViewController {
-    
-    func authenticateUser() {
-        let context = LAContext()
-        var error:NSError?
-        guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
-            showAlertViewIfNoBiometricSensorHasBeenDetected()
-            return
-        }
-        
-        let reason = "Let's make sure you are who you say you are! 😎"
-        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
-            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason, reply: { (success, error) in
-                if success {
-                    DispatchQueue.main.async {
-                        print("Authentication was successful")
-                    }
-                }else {
-                    DispatchQueue.main.async {
-                        self.showAlertWith(title: "Something went wrong... 🤔", message: "Please try again!")
-                        print("Authentication was error")
-                    }
-                }
-            })
-        } else {
-            self.showAlertWith(title: "Error", message: (error?.localizedDescription)!)
-        }
-    }
-    
-    
-    func showAlertWith( title:String, message:String ) {
-        
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let retryAction = UIAlertAction(title: "Retry", style: .default) {
-            (action) in
-            self.authenticateUser()
-        }
-        alertVC.addAction(retryAction)
-        
-        DispatchQueue.main.async {
-             self.present(alertVC, animated: true, completion: nil)
-        }
-        
-    }
-    
-    func showAlertViewIfNoBiometricSensorHasBeenDetected(){
-        
-        showAlertWith(title: "Error", message: "This device does not have a FaceID/TouchID sensor.")
-        
-    }
-}
-
 class MainViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -157,8 +104,59 @@ class MainViewController: UIViewController {
         self.present(nextVC, animated: true, completion: nil)
     }
     
+}
 
+/// handles local authentication
+extension MainViewController {
     
+    func authenticateUser() {
+        let context = LAContext()
+        var error:NSError?
+        guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
+            showAlertViewIfNoBiometricSensorHasBeenDetected()
+            return
+        }
+        
+        let reason = "Let's make sure you are who you say you are! 😎"
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason, reply: { (success, error) in
+                if success {
+                    DispatchQueue.main.async {
+                        print("Authentication was successful")
+                    }
+                }else {
+                    DispatchQueue.main.async {
+                        self.showAlertWith(title: "Something went wrong... 🤔", message: "Please try again!")
+                        print("Authentication was error")
+                    }
+                }
+            })
+        } else {
+            self.showAlertWith(title: "Error", message: (error?.localizedDescription)!)
+        }
+    }
+    
+    
+    func showAlertWith( title:String, message:String ) {
+        
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let retryAction = UIAlertAction(title: "Retry", style: .default) {
+            (action) in
+            self.authenticateUser()
+        }
+        alertVC.addAction(retryAction)
+        
+        DispatchQueue.main.async {
+            self.present(alertVC, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func showAlertViewIfNoBiometricSensorHasBeenDetected(){
+        
+        showAlertWith(title: "Error", message: "This device does not have a FaceID/TouchID sensor.")
+        
+    }
 }
 
 /// Handles Tableview Blur on Scroll
@@ -220,10 +218,10 @@ extension MainViewController {
         view.addSubview(addAccountButton)
         addAccountButton.addTarget(self, action: #selector(handleAddAccountTapped), for: [.touchUpInside])
         NSLayoutConstraint.activate([
-            addAccountButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 15),
-            addAccountButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -15),
-            addAccountButton.widthAnchor.constraint(equalToConstant: 50),
-            addAccountButton.heightAnchor.constraint(equalToConstant: 50)
+            addAccountButton.safeTopAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0.04 * view.frame.width),
+            addAccountButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -0.04 * view.frame.width),
+            addAccountButton.widthAnchor.constraint(equalToConstant: 0.133 * view.frame.width),
+            addAccountButton.heightAnchor.constraint(equalToConstant: 0.133 * view.frame.width)
             ])
     }
 }
@@ -329,7 +327,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 0.123 * view.frame.height
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -452,16 +450,18 @@ class AccountCell: SwipeTableViewCell {
     private func sharedInit() {
         self.backgroundColor = .clear
         
+        print(self.frame)
+        
         self.addSubview(cellView)
         cellView.addSubview(cellImageView)
         cellView.addSubview(usernameLabel)
         
         cellView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cellView.safeTopAnchor.constraint(equalTo: self.safeTopAnchor, constant: 5),
-            cellView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -5),
-            cellView.safeLeadingAnchor.constraint(equalTo: self.safeLeadingAnchor, constant: 10),
-            cellView.safeTrailingAnchor.constraint(equalTo: self.safeTrailingAnchor, constant: -10)])
+            cellView.safeTopAnchor.constraint(equalTo: self.safeTopAnchor, constant: 0.015 * self.frame.width),
+            cellView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: -0.015 * self.frame.width),
+            cellView.safeLeadingAnchor.constraint(equalTo: self.safeLeadingAnchor, constant: 0.031 * self.frame.width),
+            cellView.safeTrailingAnchor.constraint(equalTo: self.safeTrailingAnchor, constant: -0.031 * self.frame.width)])
         
         cellImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -474,7 +474,7 @@ class AccountCell: SwipeTableViewCell {
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             usernameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            usernameLabel.leadingAnchor.constraint(equalTo: cellImageView.trailingAnchor, constant: 50)
+            usernameLabel.leadingAnchor.constraint(equalTo: cellImageView.trailingAnchor, constant: 0.156 * self.frame.width)
             ])
     }
 }
