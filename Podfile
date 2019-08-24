@@ -15,6 +15,10 @@ target 'SecurityPractice' do
   pod 'UIImageColors'
   
   pod 'SDWebImage', '~> 5.0'
+  
+  pod 'Alamofire', '~> 5.0.0-beta.5'
+  
+  pod 'SwiftyJSON'
 
   target 'SecurityPracticeTests' do
     inherit! :search_paths

@@ -10,6 +10,8 @@ import UIKit
 import Locksmith
 import Lottie
 import UIImageColors
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -25,11 +27,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
     lazy var errorAnimation = AnimationView()
     
     let containerView = UIView()
-    let serviceField  = UITextField()
+    let serviceField  = UISuggestionTextField()
     let usernameField = UITextField()
     let passwordField = UITextField()
     let saveButton    = RoundButton()
     var cloudsAnimation = AnimationView()
+    
+    var userText = ""
+    var currentSuggestion: String = "" {
+        didSet {
+            serviceField.suggestionText = currentSuggestion
+        }
+    }
+    
+    private var request: Request? {
+        didSet {
+            oldValue?.cancel()
+        }
+    }
     
     let label = UILabel()
     let duration = 1.0
@@ -285,7 +300,60 @@ extension ViewController {
             serviceField.widthAnchor.constraint(equalToConstant: 0.666 * view.frame.width),
             serviceField.heightAnchor.constraint(equalToConstant: 0.049 * view.frame.height)
             ])
+        
+        serviceField.addTarget(self, action: #selector(textDidChange(textField:)), for: .editingChanged)
     }
+    
+    
+    
+    @objc private func textDidChange(textField: UITextField) {
+        self.serviceField.textChanged()
+        
+        userText = textField.text ?? ""
+        
+        navigationItem.rightBarButtonItem?.isEnabled = !userText.isEmpty
+        
+        if userText.lowercased() != currentSuggestion.lowercased().dropLast(max(currentSuggestion.count - userText.count, 0)) {
+            currentSuggestion = ""
+        }
+        
+        setRecommendation(for: userText)
+    }
+    
+    private func setRecommendation(for text : String) {
+        guard !text.isEmpty else {
+            request?.cancel()
+            currentSuggestion = ""
+            return
+        }
+        
+        
+        //make suggestion text label the first bit should be what the user has already written then after that display the rest of the suggestion
+        //when what the user has written doesnt match the suggestion than it will still look correct i.e capital E thing
+        
+        //user types vharacter that doesnt match up with next charcater in suggestion you need to hide suggestion immediately and show (textDidChange if last letter of text != what /// set sugg to empty s
+        
+        
+        request = AF.request("https://autocomplete.clearbit.com/v1/companies/suggest?query=\(text)", method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let companyNames = json.array?.compactMap { $0["name"].string } ?? []
+                self.currentSuggestion = self.recommendedSuggestions(for: companyNames)
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+    }
+    
+    func recommendedSuggestions(for suggestions: [String]) -> String {
+        guard !userText.isEmpty else {
+            return ""
+        }
+        return suggestions.first { $0.lowercased().hasPrefix(userText.lowercased()) } ?? ""
+    }
+
     
     private func setupUsernameTextfield() {
         usernameField.delegate = self
@@ -540,6 +608,9 @@ extension ViewController{
         } else {
             switch textField {
             case serviceField:
+                if currentSuggestion.count > 0 {
+                    serviceField.text = currentSuggestion
+                }
                 usernameField.becomeFirstResponder()
             case usernameField:
                 passwordField.becomeFirstResponder()

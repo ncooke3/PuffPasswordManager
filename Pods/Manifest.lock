@@ -1,34 +1,42 @@
 PODS:
+  - Alamofire (5.0.0-beta.7)
   - Locksmith (4.0.0)
   - lottie-ios (3.1.1)
   - SDWebImage (5.1.0):
     - SDWebImage/Core (= 5.1.0)
   - SDWebImage/Core (5.1.0)
+  - SwiftyJSON (5.0.0)
   - SwipeCellKit (2.6.0)
   - UIImageColors (2.1.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.0.0-beta.5)
   - Locksmith
   - lottie-ios
   - SDWebImage (~> 5.0)
+  - SwiftyJSON
   - SwipeCellKit
   - UIImageColors
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Locksmith
     - lottie-ios
     - SDWebImage
+    - SwiftyJSON
     - SwipeCellKit
     - UIImageColors
 
 SPEC CHECKSUMS:
+  Alamofire: bd07938ceecad59d2492aeecb1f785a8f2721160
   Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
   lottie-ios: 43a472d22b2dd2bed292cc4010c0b4d2e66d3ba8
   SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: 37964ea71f81392d5a36047a2d8bc6d5bd60b01a
+PODFILE CHECKSUM: 429566c6f80f48af955d456719689b225b479c16
 
 COCOAPODS: 1.6.1

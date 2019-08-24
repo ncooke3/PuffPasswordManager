@@ -22,6 +22,7 @@
 		EA0F83172308914D00777425 /* AddAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83162308914D00777425 /* AddAccountButton.swift */; };
 		EA0F83192308DF8C00777425 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F83182308DF8C00777425 /* CircularTransition.swift */; };
 		EA0F831D2309F29F00777425 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F831C2309F29F00777425 /* EditAccountViewController.swift */; };
+		EA0F8320230F9B7300777425 /* UISuggestionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F831F230F9B7300777425 /* UISuggestionTextField.swift */; };
 		EA7326D322F259030093CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D222F259030093CD4D /* AppDelegate.swift */; };
 		EA7326D522F259030093CD4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7326D422F259030093CD4D /* ViewController.swift */; };
 		EA7326DA22F259060093CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7326D922F259060093CD4D /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		EA0F83162308914D00777425 /* AddAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountButton.swift; sourceTree = "<group>"; };
 		EA0F83182308DF8C00777425 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		EA0F831C2309F29F00777425 /* EditAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
+		EA0F831F230F9B7300777425 /* UISuggestionTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISuggestionTextField.swift; sourceTree = "<group>"; };
 		EA7326CF22F259030093CD4D /* SecurityPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurityPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7326D222F259030093CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7326D422F259030093CD4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				EA7326FD22F27E710093CD4D /* Secure Classes */,
 				EA7326D922F259060093CD4D /* Assets.xcassets */,
 				EA7326DE22F259060093CD4D /* Info.plist */,
+				EA0F831F230F9B7300777425 /* UISuggestionTextField.swift */,
 			);
 			path = SecurityPractice;
 			sourceTree = "<group>";
@@ -434,8 +437,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SecurityPractice/Pods-SecurityPractice-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImageColors/UIImageColors.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -444,8 +449,10 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageColors.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -508,6 +515,7 @@
 			files = (
 				EA79721B22F765B500A1CDFE /* SwipeCellEnums.swift in Sources */,
 				EA7326FA22F268350093CD4D /* UIViewExtension.swift in Sources */,
+				EA0F8320230F9B7300777425 /* UISuggestionTextField.swift in Sources */,
 				EAF9F75F22F6B38B0084B008 /* UIViewControllerExtension.swift in Sources */,
 				EA0F831D2309F29F00777425 /* EditAccountViewController.swift in Sources */,
 				EA0F82F72306250100777425 /* GhostPopupView.swift in Sources */,
@@ -670,6 +678,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SecurityPractice/SecurityPractice.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K2A6VGGX23;
 				INFOPLIST_FILE = SecurityPractice/Info.plist;
@@ -679,6 +688,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.SecurityPractice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -690,6 +700,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SecurityPractice/SecurityPractice.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K2A6VGGX23;
 				INFOPLIST_FILE = SecurityPractice/Info.plist;
@@ -699,6 +710,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.SecurityPractice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
