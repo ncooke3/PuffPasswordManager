@@ -105,6 +105,8 @@ extension EditAccountViewController {
         NSLayoutConstraint.activate([
             serviceLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 0.061 * view.frame.height),
             serviceLabel.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
+            serviceLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 0.013 * view.frame.width),
+            serviceLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -0.013 * view.frame.width)
         ])
     }
     

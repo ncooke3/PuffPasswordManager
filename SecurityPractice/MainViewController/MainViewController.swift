@@ -57,12 +57,12 @@ class MainViewController: UIViewController {
         setupAddAccountButton()
         setupForegroundAndBackgroundNotifications()
 
-        // 🚧 Development Printing
+//      🚧 Development Printing
         Development.printAllAccounts()
         Development.printAllCompanies()
-        // 🚧 SDWebImage
-//                SDImageCache.shared.clearMemory()
-//                SDImageCache.shared.clearDisk(onCompletion: nil)
+//          🚧 SDWebImage
+//        SDImageCache.shared.clearMemory()
+//        SDImageCache.shared.clearDisk(onCompletion: nil)
 //        AccountDefaults.accounts.removeAll()
 //        CompanyDefaults.deleteAllCompanies()
     }
@@ -449,8 +449,6 @@ class AccountCell: SwipeTableViewCell {
     
     private func sharedInit() {
         self.backgroundColor = .clear
-        
-        print(self.frame)
         
         self.addSubview(cellView)
         cellView.addSubview(cellImageView)
