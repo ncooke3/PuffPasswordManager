@@ -1,4 +1,7 @@
-# Puff - Password Manager
+# Puff - Password Manager 🌥🔐
+[![forthebadge](http://forthebadge.com/images/badges/made-with-swift.svg)](http://forthebadge.com)
+
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
 Hey there! If you're reading this, that's awesome– someone is actually looking at my repo! Woohoo! 🙌🏼 Anyway, the idea for **Puff** came from wanting to give a go at creating an iOS app. Now, technically my *first* app was [**Zen - A Meditation Timer**](https://github.com/ncooke3/Zen), but this project was too simple in the sense that I didn't walk away with a strong enough feel for what iOS development was *really* like.  Sooo, back to **Puff**! The idea is pretty simple- a password manager. The need for having a password manager seemed pretty obvious to me, someone who stores all their accounts and passwords in the native iOS *Notes* app. Yes, I know, I know,  not very secure. So, let's talk a little more about some of **Puff**'s features and how I went about implementing them. 
 
@@ -21,11 +24,22 @@ With Puff, we have one list that keeps things simple. On the right of each UITab
 
 ## Adding an Account
 
+Tapping the **+** button in the top right corner of the main view will bring the user to the add account page. As the user types in the *service* textfield, they will notice a suggestion will fill the search bar. 
+
+The user can then fill in that account's associated username and password and press *Save*. This then brings up a temporary loading view where the user can see the progress of their account being created and stored. While the spinner is showing, network calls are being made to retrieve a URL where we can find a logo for that account's service. This `logoURL` will be used to then retrieve the actual image of the logo as a *.png* for display in the list we talked about earlier. I had a lot of fun figuring out how to make the spinners accurately represent the progress of the network calls and will share how I used some Swift threading 🧵 and concurrency to get the job done.
+
+### A Custom Suggestion Textfield
+More coming soon! 👀
+
+### Spinners gonna spin
 More coming soon! 👀
 
 ## Delete an Account
 
 More coming soon! 👀
+
+<img  src="https://media.giphy.com/media/VCQ8GDqf1iql2HidyU/giphy.gif"  alt="Delete Feature"  title="Swipe to delete" img align="right" 
+/>
 
 ## Edit an Account
 
@@ -48,14 +62,12 @@ But, moving on, the way I decided to store the user's accounts is really the *cr
 	Basically, this means that an instance of the class can be encoded and decoded into an external representation like JSON. For reference, [this](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types) article was amazing at helping me understand the concept.
 
 - The `Account` class has several properties. Let's focus on the `service`, `username`, and `password` properties. Let's say we have a *Spotify* account where our username is *lilUzi4eva* and our password is *we<3cats*. 
+- 
+
+## Lessons learned...💡
+More coming soon! 👀
 
 
 ## My attempt at a privacy policy
 
 I, the developer of **Puff**, do not have access to any of the information you enter into **Puff**. All of that information is stored on your iPhone (peep 👀 the source code for proof!). This being said, I am not responsible for your data being compromised should your phone fall into the hands of someone with malicious intents. If you leave your phone unlocked and your cat logs into **Puff** and changes your Netflix account's password, welp, that's on you! (I would also get rid of that cat ASAP!) The passwords you do store are stored in iOS keychain which we can think of as a black box of security stuff that Apple meticulously designed that I can't really explain. But bottom line, this is just a project by a college student so think responsibly and, most importantly, don't sue me! (Seriously, the college budget does not cover a lawsuit's associated legal fees! 😅)
-
-![Alt Text](https://media.giphy.com/media/JT80jguKPk1cDuhIMa/giphy.gif)
-
-
-
-![Alt Text](https://media.giphy.com/media/IdxqPmkB6Hsd8o4WjK/giphy.gif)
