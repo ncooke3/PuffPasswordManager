@@ -18,6 +18,9 @@ I think a password manager should have two (okay, three! 😏) main functionalit
 
 ## The List your Accounts Deserve
 
+<img  src="https://media.giphy.com/media/JpY5J4HutL0Q4UfkN7/giphy.gif"  alt="Delete Feature"  title="Swipe to delete" img align="right" width="100"
+/>
+
 When it comes to remembering our passwords, we all have the *list*. It could be a stack of loose sticky notes with scribbled usernames and passwords. It might be on a piece of paper that seems to always get lost, found, and then lost again. Maybe it's a digital list like my old one (before **Puff** 😉) where it lacked both efficiency and security. 
 
 With Puff, we have one list that keeps things simple. On the right of each UITableView cell, we have an UIImageView containing an image of the company logo. In the middle of the cell is a label with the corresponding username for the account tied to that company. 
