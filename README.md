@@ -71,6 +71,15 @@ But, moving on, the way I decided to store the user's accounts is really the *cr
 ## Lessons learned...💡
 More coming soon! 👀
 
+## Awesome Frameworks That I Used
+
+* [Locksmith 🔐](https://github.com/matthewpalmer/Locksmith)
+* [Lottie 🎢](https://github.com/airbnb/lottie-ios)
+* [SwipeCellKit ⬅](https://github.com/SwipeCellKit/SwipeCellKit)
+* [UIImageColors 🎨](https://github.com/jathu/UIImageColors)
+* [SDWebImage 📸](https://github.com/SDWebImage/SDWebImage)
+* [SwiftyJSON 😎](https://github.com/SwiftyJSON/SwiftyJSON)
+
 
 ## My attempt at a privacy policy
 
