@@ -18,7 +18,7 @@ I think a password manager should have two (okay, three! 😏) main functionalit
 
 ## The List your Accounts Deserve
 
-<img  src="https://media.giphy.com/media/JpY5J4HutL0Q4UfkN7/giphy.gif"  alt="Delete Feature"  title="Swipe to delete" img align="right" width="100"
+<img  src="https://media.giphy.com/media/JpY5J4HutL0Q4UfkN7/giphy.gif"  alt="Delete Feature"  title="Swipe to delete" img align="right" width="150"
 />
 
 When it comes to remembering our passwords, we all have the *list*. It could be a stack of loose sticky notes with scribbled usernames and passwords. It might be on a piece of paper that seems to always get lost, found, and then lost again. Maybe it's a digital list like my old one (before **Puff** 😉) where it lacked both efficiency and security. 
@@ -31,26 +31,34 @@ Tapping the **+** button in the top right corner of the main view will bring the
 
 The user can then fill in that account's associated username and password and press *Save*. This then brings up a temporary loading view where the user can see the progress of their account being created and stored. While the spinner is showing, network calls are being made to retrieve a URL where we can find a logo for that account's service. This `logoURL` will be used to then retrieve the actual image of the logo as a *.png* for display in the list we talked about earlier. I had a lot of fun figuring out how to make the spinners accurately represent the progress of the network calls and will share how I used some Swift threading 🧵 and concurrency to get the job done.
 
+### Covering all possibilities!
+* On the left represents the standard flow for adding an account. Here, everything just works. 🙏🏻
+* The flow in the middle occurs when the user forgets to fill out one or more of the fields. I *love* that ghost! 👻
+* The flow on the right represents the case where something went wrong. For 99.99% of the time, it is probably a network error that has occurred in trying to retrieve the service's url logo we mentioned earlier. 
+
+<img src="https://media.giphy.com/media/TKuNnnvVPPKWjDhMau/giphy.gif" width="150" height="300" img align="left"><p align="center"><img src="https://media.giphy.com/media/U3I3oG7XpCHWpriHXe/giphy.gif" width="150" height="300"><img src="https://media.giphy.com/media/dZWKeaZVSEVBwnrHj8/giphy.gif" width="150" height="300" img align="right"></p>
+
 ### A Custom Suggestion Textfield
 More coming soon! 👀
 
 ### Spinners gonna spin
 More coming soon! 👀
 
+
+
 ## Delete an Account
-<div>
-<img  src="https://media.giphy.com/media/VCQ8GDqf1iql2HidyU/giphy.gif"  alt="Delete Feature"  title="Swipe to delete" img align="right" width="100"
+<img  src="https://media.giphy.com/media/VCQ8GDqf1iql2HidyU/giphy.gif"  alt="Delete Feature"  title="Swipe to delete" img align="right" width="150"
 />
 
 Deleting 🚮 an account is simple and easy! Swipe left to reveal a red circle with a trashcan. Tap on the red delete button to delete the account. Behind the scenes, the account's *password* is removed from iOS Keychain and then the entire account is removed from the list of user accounts. 
-</div>
+
+This feature was implemented using  [SwipeCellKit](https://github.com/SwipeCellKit/SwipeCellKit)! It's an awesome library as all I needed to do was set the `delegate` property on an `AccountCell` (which subclassed `SwipeTableCell`– a class in the library) and then adopt the `SwipeTableViewCellDelegate`! It definitely can help if you desire a more "natively iOS cell swipe experience" as well so check it out! 🥳
 
 
 ## Edit an Account
+<img src="https://media.giphy.com/media/KYh0JTYjn576JT4ScU/giphy.gif"  alt="Delete Feature"  title="Swipe to delete" img align="right" width="150"/>
 
 Okay, okay... I might have lied about a password manager only needing three functionalities. The ability to edit an account isn't exactly necessary as you could always delete an account, say your Netflix account, and add it back with an updated password. But we are in the business of making our users' lives *easier*, so I added a view when the user taps on a cell that allows for viewing the account's information and updating the password. 
-
-[Pictures will go here! 👀]
 
 For both the displayed *username* and *password*, I added little copy buttons next to each label, respectively. Tapping on a button copies the content in the textfield it corresponds to. This saves the user the hassle from flipping back and forth between **Puff** and the app where they are trying to login into the account. 
 
