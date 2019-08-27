@@ -40,7 +40,7 @@ The user can then fill in that account's associated username and password and pr
 ### Spinners gonna spin
 When a user adds an account, a blue spinner circle (we will call this the *loading* animation) pops up on the screen to give the user feedback of the progress of storing their account and retrieving the needed information to display it in the main list. When the task is successful, a blue check mark (we will call this the *success* animation) is presented and the view is collapsed to bring the user back to the main screen. 
 
-Before I begin my network call. I started the loading animation.
+Before I begin my network call, I started the loading animation.
 Then, when the the network call is completed and the function's callback/completion handler is called (the network call is handled asynchronously), I needed a way to end the loading animation and present the success animation. 
 
 The problem I encountered was that these UI updates needed to happen on the main thread of the application. Apple requires that UI updates should occur on this thread to provide the smoothest user experience. Since these updates were being triggered in an asynchronous function's callback, I needed to get creative to create a solution that satisfied this condition and avoided a bunch of nested callbacks 🔥👹 (since I still had some additional waiting to since I was designing a sequence of animations that needed to be presented synchronously). 
