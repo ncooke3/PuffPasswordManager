@@ -1,3 +1,4 @@
+
 # Puff - Password Manager 🌥🔐
 [![forthebadge](http://forthebadge.com/images/badges/made-with-swift.svg)](http://forthebadge.com)	[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
@@ -158,21 +159,21 @@ To keep it short, I also stored a dictionary `companies =[String: Company]` in U
 
 ## Lessons learned...💡
 This was definitely my biggest personal project to date and I'm pretty proud of how it turned out. While my app isn't as *perfect* or as *robust* as some other password managers out there, it is still a great alternative to listing all of your accounts in the *Notes* app or jotting them down on sticky notes (only to get lost 🤦🏻‍♂️....). Plus, the *real* goal with **Puff** was to learn the fundamentals of iOS development. I definitely learned a lot about:
-✅ Laying out a UI 
-✅ Data fetching 
-✅ Persistent data storage
-✅ Secure data storage 
-✅ Local authentication (FaceID/TouchID/passcode)
-✅ Animations/Transitions
+- ✅ Laying out a UI 
+- ✅ Data fetching 
+- ✅ Persistent data storage
+- ✅ Secure data storage 
+- ✅ Local authentication (FaceID/TouchID/passcode)
+- ✅ Animations/Transitions
 
 I also became fairly comfortable with Swift and some of its features like:
-✅ Optionals
-✅ Error Handling
-✅ Completion handlers
-✅ Threading & Concurrency
-✅ Structs vs. Classes
-✅ Delegates
-✅ View Lifecycles
+- ✅ Optionals
+- ✅ Error Handling
+- ✅ Completion handlers
+- ✅ Threading & Concurrency
+- ✅ Structs vs. Classes
+- ✅ Delegates
+- ✅ View Lifecycles
 
 I think my biggest realization was just *how much* effort has to go into to creating a great piece of software. The designing, architecting, implementing, and testing are no joke! It takes **a lot** of time and it is easy to get discouraged along the way, especially if you are learning everything for the first time like I was on this journey. 
 
