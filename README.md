@@ -37,9 +37,6 @@ The user can then fill in that account's associated username and password and pr
 
 <img src="https://media.giphy.com/media/TKuNnnvVPPKWjDhMau/giphy.gif" width="150" height="300" img align="left"><p align="center"><img src="https://media.giphy.com/media/U3I3oG7XpCHWpriHXe/giphy.gif" width="150" height="300"><img src="https://media.giphy.com/media/dZWKeaZVSEVBwnrHj8/giphy.gif" width="150" height="300" img align="right"></p>
 
-### A Custom Suggestion Textfield
-More coming soon! 👀
-
 ### Spinners gonna spin
 When a user adds an account, a blue spinner circle (we will call this the *loading* animation) pops up on the screen to give the user feedback of the progress of storing their account and retrieving the needed information to display it in the main list. When the task is successful, a blue check mark (we will call this the *success* animation) is presented and the view is collapsed to bring the user back to the main screen. 
 
