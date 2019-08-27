@@ -38,11 +38,12 @@ More coming soon! 👀
 More coming soon! 👀
 
 ## Delete an Account
-
+<div>
 <img  src="https://media.giphy.com/media/VCQ8GDqf1iql2HidyU/giphy.gif"  alt="Delete Feature"  title="Swipe to delete" img align="right" width="100"
 />
 
 Deleting 🚮 an account is simple and easy! Swipe left to reveal a red circle with a trashcan. Tap on the red delete button to delete the account. Behind the scenes, the account's *password* is removed from iOS Keychain and then the entire account is removed from the list of user accounts. 
+</div>
 
 
 ## Edit an Account
