@@ -6,7 +6,7 @@
 Hey there! If you're reading this, that's awesome– someone is actually looking at my repo! Woohoo! 🙌🏼 Anyway, the idea for **Puff** came from wanting to give a go at creating an iOS app. Now, technically my *first* app was [**Zen - A Meditation Timer**](https://github.com/ncooke3/Zen), but this project was too simple in the sense that I didn't walk away with a strong enough feel for what iOS development was *really* like.  Sooo, back to **Puff**! The idea is pretty simple- a password manager. The need for having a password manager seemed pretty obvious to me, someone who stores all their accounts and passwords in the native iOS *Notes* app. Yes, I know, I know,  not very secure. So, let's talk a little more about some of **Puff**'s features and how I went about implementing them. 
 
 
-# Clouds, clouds, and more clouds!
+# Clouds, clouds, and more ☁!
 One of the main goals for this project was to create the best user interface I could make. I'll admit I didn't have much of a plan when I started, but I found a theme pretty early on. I added a Lottie animation to my project and was amazed at both how simple it was to add the Lottie and how much fun it brings to a view. I can't recommend them enough, so check [them](https://github.com/airbnb/lottie-ios) out! The Lottie I added featured some animated clouds with a lock that pops in and out every few seconds. I liked it so much that I decided I would stick with the clouds theme because it felt playful, light, and airy. In retrospect, I'm glad I chose this design scheme since it offers a little fun juxtaposition to the mundane, serious nature of managing your passwords. 
 
 ## Add and Delete Accounts Like a Boss 😎
@@ -75,6 +75,10 @@ But, moving on, the way I decided to store the user's accounts is really the *cr
 	Basically, this means that an instance of the class can be encoded and decoded into an external representation like JSON. For reference, [this](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types) article was amazing at helping me understand the concept.
 
 - The `Account` class has several properties. Let's focus on the `service`, `username`, and `password` properties. Let's say we have a *Spotify* account where our username is *lilUzi4eva* and our password is *we<3cats*. 
+- The most important piece of information we need to securely store is our user's `password`. I chose to store it in iOS's [Keychain](https://developer.apple.com/documentation/security/keychain_services). The instance of the `Account` class that the `password` is a property of sort of "points" to that secure chunk of memory Apple's keychain. I used Mathew Palmer's ***awesome*** [Locksmith](https://github.com/matthewpalmer/Locksmith) library to work with keychain. Setup was pretty easy after I figured it out. I needed to conform my `Account` class to some specific protocols in the Locksmith library and write up my own methods to properly store, retrieve, modify, and delete data stored in keychain. 
+
+	One quirky think I learned was that after storing something in Keychain on your personal phone, you can't really delete it unless you factory reset your phone. If running your app on the Xcode simulator, you can easily wipe the phone, but since I tested most of **Puff** on my personal iPhone, I definitely have some random account passwords floating in my device's memory that I added when I didn't yet have a way to properly delete them. 😂 Users won't have this persisting data issue since I designed the delete account flow to properly remove the account's password from the device's keychain! 👍🏼
+
 - 
 
 ## Lessons learned...💡
